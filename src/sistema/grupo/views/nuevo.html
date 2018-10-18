@@ -1,0 +1,96 @@
+
+  
+<div layout="column" class="relative" layout-fill role="main" flex ng-init="index('/sisGrupo')">
+
+  <md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+
+  <md-toolbar class="md-whiteframe-z1" ng-include="'src/app/views/header-ver-opciones.html'"></md-toolbar>
+  <md-content>
+    <md-card>
+      <md-card-content>
+
+        <form role="form" name="forma" ng-init="catalogo = []; cargarCatalogo('/permiso', catalogo)">
+          <md-content layout="column" layout-padding>
+
+            <md-input-container flex>
+              <label>{{ 'NOMBRE' | translate }}</label>
+              <input required name="nombre" ng-model="dato.nombre" md-minlength="3" md-maxlength="255">
+              <div ng-messages="forma.nombre.$error">
+                <div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>
+                <div ng-message="minlength">{{ 'CAMPO_MIN_L' | translate }} 3</div>
+                <div ng-message="maxlength">{{ 'CAMPO_MAX_L' | translate }} 255</div>
+              </div>
+            </md-input-container>
+
+
+            <div ng-cloak>
+              <md-content ng-init="num = 0">
+                <p>{{ 'PERMISO' | translate }}</p>
+                <md-tabs md-dynamic-height md-border-bottom>
+                  <md-tab label="{{ padre.nombre }}" ng-repeat="padre in catalogo">
+                    <md-content class="md-padding" layout="row" layout-wrap layout-align="center center">
+
+                      <md-card ng-repeat="hijos in padre.hijos" flex-xs flex-gt-xs="40" flex-gt-md="30" flex="100"
+                        ng-init="$parent.num = $parent.num > 18 ? 0 : $parent.num; num = $parent.num; $parent.num = $parent.num <= 18 ?
+                            $parent.num+1 : 0">
+
+                        <md-card-title md-colors="{background: '{{colors[num]}}'}" md-colors-watch="false" ng-if="!padre.accion.length > 0">
+                          <md-card-title-text>
+                            <span class="md-headline">
+                              <md-checkbox ng-model="permisos[hijos.controlador]" ng-true-value="1" ng-false-value="0"
+                                ng-change="todosAccion(hijos.controlador,hijos.accion, permisos[hijos.controlador], dato.permisos)">
+                                {{ hijos.nombre }}
+                              </md-checkbox>
+                            </span>
+                          </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content ng-if="!padre.accion.length > 0">
+                          <ul>
+                            <li ng-repeat="accion in hijos.accion" style="list-style-type: decimal-leading-zero;">
+
+                              <md-checkbox ng-model="dato.permisos[hijos.controlador+'.'+accion.recurso]" ng-true-value="1"
+                                ng-false-value="0">
+                                {{accion.nombre}}
+                              </md-checkbox>
+                            </li>
+                            <li ng-if="hijos.accion.length == 0">{{ 'NINGUNO' | translate }}</li>
+                          </ul>
+                        </md-card-content>
+
+
+                        <md-card-title md-colors="{background: '{{colors[$index]}}'}" md-colors-watch="false" ng-if="padre.accion.length > 0">
+                          <md-card-title-text>
+                            <span class="md-headline">
+                              <md-checkbox ng-model="permisos[padre.controlador]" ng-true-value="1" ng-false-value="0"
+                                ng-change="todosAccion(padre.controlador,padre.accion, permisos[padre.controlador], dato.permisos)">
+                                {{ 'ACCIONES-INDIVIDUALES' | translate}}
+                              </md-checkbox>
+                            </span>
+                          </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content ng-if="padre.accion.length > 0">
+                          <ul>
+                            <li ng-repeat="accion in padre.accion" style="list-style-type: decimal-leading-zero;">
+
+                              <md-checkbox ng-model="dato.permisos[padre.controlador+'.'+accion.recurso]" ng-true-value="1"
+                                ng-false-value="0">
+                                {{accion.nombre}}
+                              </md-checkbox>
+                            </li>
+                          </ul>
+                        </md-card-content>
+
+                      </md-card>
+
+                    </md-content>
+                  </md-tab>
+                </md-tabs>
+              </md-content>
+            </div>
+          </md-content>
+        </form>
+      </md-card-content>
+    </md-card>
+  </md-content>
+  <span ng-init="cargando = false;"></span>
+</div>

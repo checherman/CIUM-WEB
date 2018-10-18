@@ -1,0 +1,56 @@
+
+  
+<div layout="column" class="relative" layout-fill role="main" flex ng-init="index('/FormularioCapturaValor')">
+
+  <md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+
+  <md-toolbar class="md-whiteframe-z1" ng-include="'src/app/views/header-ver-opciones.html'"></md-toolbar>
+  <md-content>
+    <md-card>
+      <md-card-content>
+
+        <form role="form" name="forma" ng-init="usuarios = []; cargarCatalogo('/sisUsuario', usuarios);">
+          <md-content layout="column" class="imprimir">
+            <md-select flex placeholder="{{ 'ANIO-CAPTURA' | translate }}" ng-model="anio" ng-change="cambiar_anio_nuevo()">
+              <md-option ng-repeat="item in anios" value="{{item}}">
+                {{item}}
+              </md-option>
+            </md-select>
+        
+            <md-button href="#/formulario-captura/modificar/{{anio}}" title="Ir" ng-if="anio_dato" aria-label="modificar" class="md-raised md-primary">
+              Ir a edición
+            </md-button>
+            <!-- for de indicadores -->
+            <div layout="column" ng-cloak ng-repeat="(clave, indicadores) in dato">
+              <md-toolbar class="md-info">
+                <div class="md-toolbar-tools">
+                  <h2 class="md-flex">{{'INDICADOR' | translate}}: {{clave}}</h2>
+                </div>
+              </md-toolbar>
+        
+              <md-content flex layout-padding>
+                <!-- for de variables -->
+                <md-tabs md-dynamic-height md-border-bottom>
+                  <md-tab ng-repeat="(var, variables) in indicadores" label="{{var}}">
+                    <md-content class="md-padding">
+                      <!-- for de meses en el año -->
+                      <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm ng-repeat="mes in variables">
+                          <label>{{meses[$index] | translate}}</label>
+                          <input ng-model="mes.valor" type="number">
+                        </md-input-container>
+                      </div>
+                    </md-content>
+                  </md-tab>
+                </md-tabs>
+              </md-content>
+            </div>
+        
+          </md-content>
+        </form>
+
+      </md-card-content>
+    </md-card>
+  </md-content>
+  <span ng-init="cargando = false;"></span>
+</div>

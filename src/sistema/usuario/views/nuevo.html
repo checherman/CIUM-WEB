@@ -1,0 +1,135 @@
+
+  
+<div layout="column" class="relative" layout-fill role="main" flex ng-init="index('/sisUsuario')">
+
+  <md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+
+  <md-toolbar class="md-whiteframe-z1" ng-include="'src/app/views/header-ver-opciones.html'"></md-toolbar>
+  <md-content>
+    <md-card>
+      <md-card-content>
+
+        <md-tabs md-dynamic-height md-border-bottom>
+        
+          <md-tab label="{{ 'DATOS_GENERALES' | translate }}">
+        
+            <md-content layout="row" layout-padding>
+        
+              <md-input-container flex>
+                <label>{{ 'NOMBRE' | translate }}</label>
+                <input name="nombre" type="text" ng-model="dato.nombre" required>
+                <div ng-messages="forma.nombre.$error">
+                  <div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>
+                </div>
+        
+              </md-input-container>
+        
+              <md-input-container flex>
+                <label>{{ 'EMAIL' | translate }}</label>
+                <input name="email" type="email" ng-model="dato.email" required>
+                <div ng-messages="forma.email.$error">
+                  <div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>
+                  <div ng-message="email">{{ 'EMAIL_INVALIDO' | translate }}</div>
+                  <div ng-message="unique">{{ 'CORREO_YA_EXISTE' | translate }}</div>
+                </div>
+        
+              </md-input-container>
+            </md-content>
+        
+        
+        
+            <md-content layout="row" layout-padding>
+              <md-input-container flex>
+                <label>{{ 'USUARIO' | translate }}</label>
+                <input name="username" type="text" ng-model="dato.username">
+              </md-input-container>
+        
+             
+              <md-input-container flex>
+                <label>{{ 'PASSWORD' | translate }}</label>
+                <input name="password" type="password" ng-model="dato.password">
+              </md-input-container>
+        
+              <md-input-container flex>
+                <label>{{ 'REPETIR_CONTRASENA' | translate }}</label>
+                <input name="confirmarPassword" type="password" ng-model="dato.confirmarPassword">
+              </md-input-container>
+            </md-content>
+        
+            <md-content layout-xs="column" layout="row" layout-padding>
+              <md-input-container flex>
+                <label>{{ 'LAST_LOGIN' | translate }}</label>
+                <input name="username" type="text" ng-model="dato.last_login">
+        
+              </md-input-container>
+        
+              <md-checkbox ng-model="dato.activo" flex ng-true-value="1" ng-false-value="0">
+                <br>{{ 'ACTIVO' | translate }}
+              </md-checkbox>
+
+              <md-checkbox ng-model="dato.activated" flex ng-true-value="1" ng-false-value="0">
+                <br>{{ 'ACTIVATED' | translate }}
+              </md-checkbox>
+        
+              <md-checkbox ng-model="dato.es_super" flex ng-true-value="1" ng-false-value="0" *ngIf="activar_super">
+                <br>{{ 'ES_SUPER' | translate }}
+              </md-checkbox>
+            </md-content>
+        
+            <md-content>
+              <md-list flex>
+                <md-list-item class="md-3-line" style="background-color: rgba(220, 220, 220, 0.25);">
+                  <img ng-src="{{ url_base + '/adjunto/usuario/' + dato.foto}}" class="md-avatar" alt="foto" />
+                  <div class="md-list-item-text" layout="column">
+                    <md-input-container flex ng-if="dato.foto == ''">
+                      <label>{{ 'FOTO_PERFIL' | translate }}</label>
+                      <input name="foto" type="file" ng-model="dato.fotito" file64 accept="image/x-png,image/gif,image/jpeg,image/jpg">
+                    </md-input-container>
+                    <md-button class="md-raised md-warn" ng-if="dato.foto && dato.foto != ''" ng-click="borrarImagen(dato.foto, 'usuario')">
+                      <md-icon md-svg-icon="delete"></md-icon>
+                      {{'ELIMINAR_FOTO' | translate}}
+                    </md-button>
+                  </div>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item class="md-3-line" style="background-color: rgba(173, 208, 229, 0.25)">
+                  <img ng-src="{{dato.avatar}}" class="md-avatar" alt="foto" />
+                  <div class="md-list-item-text" layout="column">
+                    <md-input-container flex>
+                      <label>{{ 'URL_AVATAR' | translate }}</label>
+                      <input name="confirmarPassword" type="url" ng-model="dato.avatar">
+                    </md-input-container>
+                  </div>
+                </md-list-item>
+              </md-list>
+            </md-content>
+        
+        
+        
+        
+          </md-tab>
+        
+          <md-tab label="{{ 'GRUPO' | translate }}">
+            <span ng-init="grupos = []; dato.grupo = []; cargarCatalogo('/sisGrupo', grupos)"></span>
+        
+            <md-list ng-cloak>
+              <md-list-item ng-repeat="item in grupos">
+        
+                <md-checkbox flex ng-true-value="1" ng-false-value="0" ng-click="includeArray(item)" ng-checked="inArray(item)">
+        
+                </md-checkbox>
+                <p> {{item.nombre}} </p>
+                <md-icon class="md-secondary" md-svg-icon="account-multiple"></md-icon>
+              </md-list-item>
+              <md-divider></md-divider>
+            </md-list>
+        
+        
+          </md-tab>
+        
+        </md-tabs>
+      </md-card-content>
+    </md-card>
+  </md-content>
+  <span ng-init="cargando = false;"></span>
+</div>

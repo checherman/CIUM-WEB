@@ -1,0 +1,62 @@
+<div layout="column" class="relative" layout-fill role="main" flex ng-init="ver('/Accion')">
+	<md-button class="md-fab md-fab-bottom-right md-warn" ng-click="nuevo()" aria-label="{{ 'NUEVA' | translate }}">
+		<md-icon md-svg-icon="plus"></md-icon>
+	</md-button>
+	<md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+
+	<md-toolbar class="md-whiteframe-z1" ng-include="'src/app/views/header-ver-opciones.html'"></md-toolbar>
+
+	<md-content class="imprimir">
+		<md-card>
+			<md-card-title flex>
+				<md-card-title-text>
+					<span class="md-headline">{{ moduloName | translate }}</span>
+				</md-card-title-text>
+			</md-card-title>
+			<md-card-content class="radioButtondemoMultiColumn">
+				<md-content layout="column" layout-padding>
+					<md-input-container flex>
+						<label>ID</label>
+						<input disabled name="id" ng-model="dato.id" value="{{dato.id}}">
+
+					</md-input-container>
+					<md-input-container flex>
+						<label>{{ 'NOMBRE' | translate }}</label>
+						<input disabled name="nombre" ng-model="dato.nombre" ng-value="dato.nombre" minlength="3" maxlength="255">
+
+					</md-input-container>
+					<md-content class="radioDemo2 bidi">
+						<h2>{{ 'TIPO_ACCION' | translate }}</h2>
+						<md-divider></md-divider>
+						<md-radio-group ng-model="dato.tipo" disabled>
+							<div class="row">
+								<div flex layout='row' layout-padding layout-align="start center">
+									<md-radio-button disabled value="R" flex ng-checked="dato.tipo == 'R' ? true : false"> {{ 'RESOLUTIVA' | translate }}</md-radio-button>
+								</div>
+							</div>
+							<div class="row">
+								<div flex layout='row' layout-padding layout-align="start center">
+									<md-radio-button disabled value="S" flex ng-checked="dato.tipo == 'S' ? true : false"> {{ 'SEGUIMIENTO' | translate }} </md-radio-button>
+								</div>
+							</div>
+						</md-radio-group>
+						<md-divider></md-divider>
+					</md-content>
+
+					<md-input-container flex>
+						<label>{{ 'CREADO' | translate }}</label>
+						<input disabled name="creadoAl" ng-model="dato.creadoAl" value="{{dato.creadoAl}}">
+
+					</md-input-container>
+
+					<md-input-container flex>
+						<label>{{ 'MODIFICADO' | translate }}</label>
+						<input disabled name="modificadoAL" ng-model="dato.modificadoAl" value="{{dato.modificadoAl}}">
+
+					</md-input-container>
+
+				</md-content>
+			</md-card-content>
+		</md-card>
+	</md-content>
+</div>

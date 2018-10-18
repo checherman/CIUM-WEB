@@ -1,0 +1,77 @@
+
+    
+<div layout="column" class="relative" layout-fill role="main" flex ng-init="ver('/Cone')">
+    <md-button class="md-fab md-fab-bottom-right md-warn" ng-click="nuevo()" aria-label="{{ 'NUEVA' | translate }}">
+        <md-icon md-svg-icon="plus"></md-icon>
+    </md-button>
+    <md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999"
+        md-mode="indeterminate"></md-progress-linear>
+
+    <md-toolbar class="md-whiteframe-z1" ng-include="'src/app/views/header-ver-opciones.html'"></md-toolbar>
+
+    <md-content class="imprimir">
+        <md-card>
+            <md-card-title flex>
+                <md-card-title-text>
+                    <span class="md-headline">{{ moduloName | translate }}</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <md-content layout="row">
+                    <md-input-container flex>
+                        <label>ID</label>
+                        <input disabled name="id" ng-model="dato.id" value="{{dato.id}}">
+
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>{{ 'NOMBRE' | translate }}</label>
+                        <input disabled name="nombre" ng-model="dato.nombre" value="{{dato.nombre}}">
+
+                    </md-input-container>
+                </md-content>
+
+                <md-content layout="row">
+                    <md-input-container flex>
+                        <label>{{ 'CREADO' | translate }}</label>
+                        <input disabled name="creadoAl" ng-model="dato.creadoAl" value="{{dato.creadoAl}}">
+
+                    </md-input-container>
+
+                    <md-input-container flex>
+                        <label>{{ 'MODIFICADO' | translate }}</label>
+                        <input disabled name="modificadoAL" ng-model="dato.modificadoAl" value="{{dato.modificadoAl}}">
+
+                    </md-input-container>
+                </md-content>
+
+                <md-content ng-init="existeUM=[]">
+
+
+                    <md-data-table-container>
+                        <table md-data-table md-progress="datos">
+                            <thead md-order="query.order" md-trigger="onOrderChange">
+                                <tr>
+                                    <th>#</th>
+                                    <th name="CLUES"></th>
+                                    <th name="{{ 'NOMBRE' | translate}}"></th>
+                                    <th name="{{ 'JURISDICCION' | translate}}"></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr md-auto-select ng-repeat="u in dato.ConeClues">
+                                    <td>{{ $index + 1 }}</td>
+                                    <td> {{ u.clues }}
+                                        <span ng-model="dato.clues[$index]" ng-init="dato.clues[$index]=u.clues;existeUM[$index]=u.clues;"></span>
+                                    </td>
+                                    <td> {{ u.nombre }}</td>
+                                    <td> {{ u.jurisdiccion }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-data-table-container>
+                </md-content>
+            </md-card-content>
+        </md-card>
+    </md-content>
+</div>

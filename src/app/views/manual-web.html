@@ -1,0 +1,25 @@
+<div layout="column" class="relative" layout-fill role="main">
+
+	<md-toolbar class="md-whiteframe-z1">
+		<div class="md-toolbar-tools">
+			<md-button class="md-icon-button " ng-click="toggleSidenav()" aria-label="Menu">
+				<md-icon md-svg-icon="menu"></md-icon>
+			</md-button>
+
+			<md-button class="md-icon-button " ng-click="toggleMenu()" aria-label="colapse">
+				<md-icon md-svg-icon="chevron-left" ng-show="menuIsOpen"></md-icon>
+				<md-icon md-svg-icon="chevron-right" ng-show="!menuIsOpen"></md-icon>
+			</md-button>
+
+			<h2>
+				<span translate="MANUAL_WEB"></span>
+			</h2>
+			<span flex></span>
+
+			<span ng-include="'src/app/views/menu-opciones.html'"></span>
+		</div>
+	</md-toolbar>
+	<md-content layout="column" layour-align="center center" flex>
+		<embed ng-src="assets/manual usuario/Output/website/book/index.html" style="width:100%;height:{{tamano}}px;" flex></embed>
+	</md-content>
+</div>

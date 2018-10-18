@@ -1,0 +1,106 @@
+
+ 
+<div layout="column" class="relative" layout-fill role="main" flex ng-init="ver('/Indicador');Alertas();">
+	<md-button class="md-fab md-fab-bottom-right md-warn" ng-click="nuevo()" aria-label="{{ 'NUEVA' | translate }}">
+		<md-icon md-svg-icon="plus"></md-icon>
+	</md-button>
+	<md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+
+	<md-toolbar class="md-whiteframe-z1" ng-include="'src/app/views/header-ver-opciones.html'"></md-toolbar>
+	<md-content class="imprimir">
+		<md-card>
+			<md-card-title flex>
+				<md-card-title-text>
+					<span class="md-headline">{{ moduloName | translate }}</span>
+				</md-card-title-text>
+			</md-card-title>
+			<md-card-content>
+
+				<md-content layout="row">
+					<md-input-container>
+						<label>ID</label>
+						<input disabled name="id" ng-model="dato.id" value="{{dato.id}}">
+					</md-input-container>
+					<md-input-container flex>
+						<label>{{ 'CATEGORIA' | translate }}</label>
+						<input disabled name="categoria" ng-model="dato.categoria" value="{{dato.categoria}}">
+					</md-input-container>
+					<md-input-container>
+						<label>{{ 'COLOR' | translate }}</label>
+						<input name="color" ng-model="dato.color" value="{{dato.color}}" style="background: {{dato.color}};">
+					</md-input-container>
+
+				</md-content>
+				<md-content layout="row">
+					<md-input-container flex>
+						<label>{{ 'CODIGO' | translate }}</label>
+						<input disabled name="codigo" ng-model="dato.codigo">
+
+					</md-input-container>
+
+					<md-input-container flex>
+						<label>{{ 'NOMBRE' | translate }}</label>
+						<input disabled name="nombre" ng-model="dato.nombre" value="{{dato.nombre}}">
+
+					</md-input-container>
+				</md-content>
+
+				<md-content layout="row">
+
+					<md-input-container flex>
+						<label>{{ 'CREADO' | translate }}</label>
+						<input disabled name="creadoAl" ng-model="dato.creadoAl" value="{{dato.creadoAl}}">
+
+					</md-input-container>
+
+					<md-input-container flex>
+						<label>{{ 'MODIFICADO' | translate }}</label>
+						<input disabled name="modificadoAL" ng-model="dato.modificadoAl" value="{{dato.modificadoAl}}">
+
+					</md-input-container>
+				</md-content>
+
+				<md-content class="imprimir">
+					<md-card>
+						<md-card-title flex>
+							<md-card-title-text>
+								<span class="md-headline">{{ 'ALERTA' | translate }}</span>
+							</md-card-title-text>
+						</md-card-title>
+						<md-card-content>
+							<md-data-table-container>
+								<table md-data-table md-progress="datos">
+									<thead md-order="query.order" md-trigger="onOrderChange">
+										<tr>
+											<th></th>
+											<th name="{{  'MINIMO' | translate }}"></th>
+											<th name="{{  'MAXIMO' | translate }}"></th>
+											<th name="{{  'COLOR' | translate }}"></th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr md-auto-select ng-repeat="item in dato.indicador_alertas">
+											<td>{{ $index+1 }}</td>
+											<td>{{item.minimo}}</td>
+											<td>{{item.maximo}}</td>
+											<td>
+												<md-select placeholder="Color" ng-model="item.idAlerta" ng-change="getIndexOf(item.idAlerta,$index)"
+												 ng-init="getIndexOf(item.idAlerta,$index)">
+													<md-option ng-repeat="campo in alertas" value="{{campo.id}}">{{campo.nombre}}</md-option>
+												</md-select>
+											</td>
+											<td>
+												<span class="img-circle" style="background: {{ colorColor[$index] }}; display:block; height:25px; width:25px;"></span></td>
+										</tr>
+									</tbody>
+								</table>
+							</md-data-table-container>
+						</md-card-content>
+					</md-card>
+				</md-content>
+			</md-card-content>
+		</md-card>
+
+	</md-content>
+</div>

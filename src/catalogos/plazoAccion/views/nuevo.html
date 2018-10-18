@@ -1,0 +1,73 @@
+
+  
+<div layout="column" class="relative" layout-fill role="main" flex ng-init="index('/PlazoAccion')">
+
+  <md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+
+  <md-toolbar class="md-whiteframe-z1" ng-include="'src/app/views/header-ver-opciones.html'"></md-toolbar>
+  <md-content>
+    <md-card>
+      <md-card-content>
+
+        <form role="form" name="forma" class="radioButtondemoMultiColumn">
+          <md-content layout="column" layout-padding>
+            <div layout="row">
+              <md-input-container flex>
+                <label>{{ 'NOMBRE' | translate }}</label>
+                <input required name="nombre" ng-model="dato.nombre" minlength="3" maxlength="255">
+                <div ng-messages="forma.nombre.$error">
+                  <div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>
+                  <div ng-message="minlength">{{ 'CAMPO_MIN_L' | translate }} 3</div>
+                  <div ng-message="maxlength">{{ 'CAMPO_MAX_L' | translate }} 255</div>
+                </div>
+              </md-input-container>
+
+              <md-input-container flex>
+                <label>{{ 'VALOR' | translate }}</label>
+                <input type="number" step="any" required string-to-number name="valor" ng-model="dato.valor" min="1"
+                  max="365">
+                <div ng-messages="forma.valor.$error">
+                  <div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>
+                  <div ng-message="min">{{ 'CAMPO_MIN' | translate }} 1</div>
+                  <div ng-message="max">{{ 'CAMPO_MAX' | translate }} 365</div>
+                </div>
+              </md-input-container>
+            </div>
+
+            <div flex class="radioDemo2 bidi">
+              <h2>{{ 'TIPO' | translate }}</h2>
+              <md-divider></md-divider>
+              <md-radio-group ng-model="dato.tipo">
+                <div class="row">
+                  <div flex layout='row' layout-padding layout-align="start center">
+                    <md-radio-button value="d" flex> Día</md-radio-button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div flex layout='row' layout-padding layout-align="start center">
+                    <md-radio-button value="S" flex> Semana </md-radio-button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div flex layout='row' layout-padding layout-align="start center">
+                    <md-radio-button value="m" flex> Mes</md-radio-button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div flex layout='row' layout-padding layout-align="start center">
+                    <md-radio-button value="a" flex> Año </md-radio-button>
+                  </div>
+                </div>
+              </md-radio-group>
+              <md-divider></md-divider>
+            </div>
+
+
+
+          </md-content>
+        </form>
+      </md-card-content>
+    </md-card>
+    <span ng-init="cargando = false;"></span>
+  </md-content>
+</div>

@@ -1,0 +1,47 @@
+<div layout="column" class="relative" layout-fill role="main" flex ng-init="index('/Accion')">
+
+	<md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+
+	<md-toolbar class="md-whiteframe-z1" ng-include="'src/app/views/header-ver-opciones.html'"></md-toolbar>
+	<md-content layout="column">
+		<md-card>
+			<md-card-content layout="column">
+
+				<form role="form" name="forma" class="radioButtondemoMultiColumn">
+					<md-content layout="column" layout-padding>
+
+						<md-input-container flex>
+							<label>{{ 'NOMBRE' | translate }}</label>
+							<input required name="nombre" ng-model="dato.nombre" minlength="3" maxlength="255">
+							<div ng-messages="forma.nombre.$error">
+								<div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>
+								<div ng-message="minlength">{{ 'CAMPO_MIN_L' | translate }} 3</div>
+								<div ng-message="maxlength">{{ 'CAMPO_MAX_L' | translate }} 255</div>
+							</div>
+						</md-input-container>
+						<div flex class="radioDemo2 bidi">
+							<h2>{{ 'TIPO_ACCION' | translate }}</h2>
+							<md-divider></md-divider>
+							<md-radio-group ng-model="dato.tipo">
+								<div class="row">
+									<div flex layout='row' layout-padding layout-align="start center">
+										<md-radio-button value="R" flex> {{ 'RESOLUTIVA' | translate }}</md-radio-button>
+									</div>
+								</div>
+								<div class="row">
+									<div flex layout='row' layout-padding layout-align="start center">
+										<md-radio-button value="S" flex> {{ 'SEGUIMIENTO' | translate }} </md-radio-button>
+									</div>
+								</div>
+							</md-radio-group>
+							<md-divider></md-divider>
+						</div>
+
+
+					</md-content>
+				</form>
+			</md-card-content>
+		</md-card>
+		<span ng-init="cargando = false;"></span>
+	</md-content>
+</div>

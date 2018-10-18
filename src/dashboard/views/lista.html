@@ -1,0 +1,83 @@
+<STYLE>
+    .modulos figcaption h3 {
+        font-size: 10pt;
+    }
+
+    .modulos-black {
+        cursor: pointer;
+    }
+
+    .modulos-black :hover {
+        background-image: url('assets/images/semitransparent.png');
+        background-size: 100%;
+    }
+
+    .modulos-black md-icon svg :hover {
+        box-shadow: 1px 1px 1px red;
+    }
+
+    .modulos-black figcaption h3 {
+        font-size: 12pt;
+        text-shadow: 1px 1px 1px red;
+    }
+
+    .modulos md-icon,
+    .modulos-black md-icon {
+        margin: auto;
+        background-repeat: no-repeat;
+        display: inline-block;
+        vertical-align: middle;
+        width: 100%;
+        height: 100%;
+        padding-bottom: 0px; 
+    }
+</STYLE>
+
+    
+<div layout="column" class="relative" layout-fill role="main" flex>    
+    <md-toolbar style="z-index: 59;">
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button " ng-click="toggleSidenav()" aria-label="Menu">
+                <md-icon md-svg-icon="menu"></md-icon>
+            </md-button>
+
+            <md-button class="md-icon-button " ng-click="toggleMenu()" aria-label="colapse">
+                <md-icon md-svg-icon="chevron-left" ng-show="menuIsOpen"></md-icon>
+                <md-icon md-svg-icon="chevron-right" ng-show="!menuIsOpen"></md-icon>
+            </md-button>
+            <h2>
+                <span>Dashboard </span>
+            </h2>
+            <span flex></span>
+            <md-button ng-if="email == 'ramirez.esquinca@gmail.com'" aria-label="Resetear" ng-click="resetear_reporte()">
+                <md-icon md-svg-icon="delete"></md-icon>
+                Resetear Reporte
+            </md-button>
+
+            <md-button ng-if="email == 'ramirez.esquinca@gmail.com'" aria-label="Resetear" ng-click="resetear_resincronizacion()">
+                <md-icon md-svg-icon="delete"></md-icon>
+                Resetear Resincronización
+            </md-button>
+
+            <span ng-include="'src/app/views/menu-opciones.html'"></span>
+        </div>
+    </md-toolbar>
+    <md-content flex nlayout="column" layout-fill>
+        <md-card >
+            <md-card-content layout="column" layout-fill  flex>
+                <md-grid-list md-gutter-gt-sm="4px" class="dashboard" md-gutter="8px"
+                md-cols="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" 
+                md-row-height="2:1" md-row-height-sm="2:1" md-row-height-md="4:3" md-row-height-gt="6:5" md-row-height-gt-md="{{menuIsOpen ? '5:4' : '3:2'}}">
+                    <md-grid-tile class="modulos" ng-repeat="m in modulos" md-rowspan="{{m.row}}" md-colspan="{{m.col}}"
+                        md-colspan-sm="1" md-colspan-xs="1" style="{{'background:' + m.color}}" ng-click="ir(m.url)"
+                        onmouseover="this.className='modulos-black'" onmouseout="this.className='modulos'">
+                        <md-icon md-svg-icon="{{m.icono}}"></md-icon>
+                        <md-grid-tile-footer>
+                            <h3>{{m.titulo | translate}}</h3>
+                        </md-grid-tile-footer>
+                    </md-grid-tile>
+                </md-grid-list>
+            </md-card-content>
+        </md-card>
+    </md-content>
+</div>

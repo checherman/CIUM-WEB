@@ -1,0 +1,48 @@
+
+ 
+<div layout="column" class="relative" layout-fill role="main" flex ng-init="ver('/FormularioCapturaValor')">
+	<md-button class="md-fab md-fab-bottom-right md-warn" ng-click="nuevo()" aria-label="{{ 'NUEVA' | translate }}">
+		<md-icon md-svg-icon="plus"></md-icon>
+	</md-button>
+	<md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+
+
+	<md-toolbar class="md-whiteframe-z1" ng-include="'src/app/views/header-ver-opciones.html'"></md-toolbar>
+	<md-content class="imprimir">
+		<md-card>
+			<md-card-title flex>
+				<md-card-title-text>
+					<span class="md-headline">{{ moduloName | translate }}<br></span>
+				</md-card-title-text>
+			</md-card-title>
+			<md-card-content>
+				<md-content layout-padding>
+					<fieldset class="standard" ng-repeat="(indicador, variables) in dato">
+						<legend>{{'INDICADOR' | translate}}: {{indicador}}</legend>
+						<md-content>
+							<fieldset class="standard" ng-repeat="(variable, mesesillos) in variables">
+								<legend>{{'VARIABLE' | translate}}: {{variable}}</legend>
+								<md-content>
+									<md-grid-list md-cols-gt-md="6" md-cols="1" md-cols-md="3" md-row-height-gt-md="1:1" md-row-height="4:3"
+									 md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
+
+										<md-grid-tile ng-repeat="(mes, info) in mesesillos" ng-style="{ 'background': info.valor ? 'green' : 'red' }"
+										 md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+
+											<md-grid-tile-footer>
+												<h3>{{meses[mes - 1] | translate}}: {{info.valor}}</h3>
+											</md-grid-tile-footer>
+										</md-grid-tile>
+
+									</md-grid-list>
+								</md-content>
+							</fieldset>
+
+						</md-content>
+					</fieldset>
+
+				</md-content>
+			</md-card-content>
+		</md-card>
+	</md-content>
+</div>

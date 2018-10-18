@@ -1,0 +1,51 @@
+<div layout="column" class="relative" layout-fill role="main">
+
+	<md-toolbar class="md-whiteframe-z1">
+		<div class="md-toolbar-tools">
+			<md-button class="md-icon-button " ng-click="toggleSidenav()" aria-label="Menu">
+				<md-icon md-svg-icon="menu"></md-icon>
+			</md-button>
+
+			<md-button class="md-icon-button " ng-click="toggleMenu()" aria-label="colapse">
+				<md-icon md-svg-icon="chevron-left" ng-show="menuIsOpen"></md-icon>
+				<md-icon md-svg-icon="chevron-right" ng-show="!menuIsOpen"></md-icon>
+			</md-button>
+
+			<h2>
+				<span translate="ACERCA_DE"></span>
+			</h2>
+			<span flex></span>
+
+			<span ng-include="'src/app/views/menu-opciones.html'"></span>
+		</div>
+	</md-toolbar>
+	<md-content>
+		<md-card>
+			<md-card-content>
+				<h2 class="md-title">Descripción y contexto</h2>
+				<br>
+				<p style="text-align: justify;">
+					La secretaria de salud (ISECH) a través de la Dirección de Informática, con el apoyo del Proyecto Salud
+					Mesoamérica
+					2015 (SM2015), Ponen en marcha la mejora de los sistemas de medición de calidad y abastos en las unidades médicas
+					(etab y cium), esto con el fin de proporcionar las herramientas de monitoreo de una forma sencilla y a la vez más
+					completa que permitan la correcta toma de decisiones y acciones en base a la medición de sus indicadores.
+				</p>
+
+				<h3>Autor/es</h3>
+				<br>
+				<blockquote>
+					<ul>
+						<li><a target="_blank" href="http://saludchiapas.gob.mx/">Secretaria de salud del estado de chiapas ISECH</a></li>
+						<li><a target="_blank"href="https://www.iadb.org">Salud Mesoamerica 2015 SM2015</a></li>
+						<li><a target="_blank"href="mailto:akira.redwolf@gmail.com">akira.redwolf@gmail.com</a></li>
+						<li><a target="_blank"href="mailto:h.cortes@gmail.com">h.cortes@gmail.com</a></li>
+					</ul>
+					<ul>
+						<li><strong><a href="https://github.com/checherman" target="_blank" title="Github">Eliecer Ramirez Esquinca</a></strong></li>
+					</ul>
+				</blockquote>
+			</md-card-content>
+		</md-card>
+	</md-content>
+</div>

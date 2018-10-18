@@ -1,0 +1,79 @@
+<app-login layout="column" class="relative" role="main" flex>
+    <div class="at-theme-light mat-bg-white at-absolute at-wp-100 at-hp-100" flex>
+        <img class="at-wp-100 at-hp-100 at-fixed" src="assets/img/fondo.svg">
+
+        <md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999"
+            md-mode="indeterminate"></md-progress-linear>
+
+        <div layout-fill layout="column" layout-wrap layout-align="center center">
+
+            <md-card class="mat-card" layout="column" id="login-form">
+                <div layout="row" layour-align="start center" style="align-items: center;">
+                    <img src="assets/img/cium.svg" style="margin-left: -10px;width: 80px;">
+                    <div class="at-ml-20">
+                        <h2 class="at-mt-0">{{'RESETEAR-CONTRASENA' | translate}}</h2>
+                        <div align="justify">{{'RESETEAR-CONTRASENA-TEXTO' | translate}}</div>
+                    </div>
+                </div>
+
+                <br><br>
+                <form flex layout="column" ng-submit="resetear()" layout-padding ng-init="resetPassword()">
+
+                    <md-content layout="column" layout-padding>
+                        <md-input-container flex>
+                            <label>{{ 'PASSWORD' | translate }}</label>
+                            <input name="password" type="password" ng-model="recuperar.password">
+                        </md-input-container>
+
+                        <md-input-container flex>
+                            <label>{{ 'REPETIR_CONTRASENA' | translate }}</label>
+                            <input name="confirmarPassword" type="password" ng-model="recuperar.password_confirm">
+                        </md-input-container>
+                    </md-content>
+
+                    <md-content layout="row" class="recaptcha" ng-show="2==1">
+
+                    </md-content>
+
+                </form>
+
+                <br>
+                <div layout="row" layour-align="center center" layout-fill>
+                    <md-button type="submit" ng-disabled="cargando" class="md-raised md-primary" ng-click="resetear()"
+                        layout-fill>
+                        <md-icon md-svg-src="content-save"></md-icon>
+                        {{ 'RESETEAR' | translate }}
+                    </md-button>
+                </div>
+
+            </md-card>
+
+            <div class="login-footer" layout="row" layour-align="end center">
+                <span flex></span>
+
+                <md-button class="md-icon-button" aria-label="{{ 'LOGIN' | translate }}" ng-href="#!/signin">
+                    <md-icon md-svg-icon="keyboard-backspace"></md-icon>
+                    <md-tooltip hide-sm>
+                        {{ 'LOGIN' | translate }}
+                    </md-tooltip>
+                </md-button>
+
+                <md-button class="md-icon-button" aria-label="Ayuda" ng-click="mostrarAyuda($event, 'reset')">
+                    <md-icon md-svg-icon="help-circle"></md-icon>
+                    <md-tooltip hide-sm>
+                        {{ 'HELP' | translate }}
+                    </md-tooltip>
+                </md-button>
+
+                <md-button class="md-icon-button" aria-label="Cambiar idioma" ng-click="mostrarIdiomas($event)">
+                    <md-icon md-svg-icon="web"></md-icon>
+                    <md-tooltip hide-sm>
+                        {{ 'CAMBIAR_IDIOMA' | translate }}
+                    </md-tooltip>
+                </md-button>
+
+            </div>
+
+        </div>
+    </div>
+</app-login>

@@ -1,0 +1,105 @@
+
+  
+<div layout="column" class="relative" layout-fill role="main" flex ng-init="ver('/sisUsuario')">
+  <md-button class="md-fab md-fab-bottom-right md-warn" ng-click="nuevo()" aria-label="{{ 'NUEVA' | translate }}">
+    <md-icon md-svg-icon="plus"></md-icon>
+  </md-button>
+  <md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+
+
+  <md-toolbar class="md-whiteframe-z1" ng-include="'src/app/views/header-ver-opciones.html'"></md-toolbar>
+  <md-content class="imprimir">
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">{{ moduloName | translate }}</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <md-content layout="row" layout-padding>
+
+          <md-input-container flex>
+            <label>{{ 'NOMBRE' | translate }}</label>
+            <input name="nombre" type="text" ng-value="dato.nombre" disabled>            
+          </md-input-container>
+
+          <md-input-container flex>
+            <label>{{ 'EMAIL' | translate }}</label>
+            <input name="email" type="email" ng-value="dato.email" disabled>
+          </md-input-container>
+        </md-content>
+
+
+
+        <md-content layout="row" layout-padding>
+          <md-input-container flex>
+            <label>{{ 'USUARIO' | translate }}</label>
+            <input disabled name="username" type="text" ng-value="dato.username">
+          </md-input-container>
+
+         
+        
+          <md-input-container flex>
+            <label>{{ 'LAST_LOGIN' | translate }}</label>
+            <input disabled name="username" type="text" ng-value="dato.last_login">
+
+          </md-input-container>
+
+          <md-checkbox disabled ng-checked="dato.activo" flex ng-true-value="1" ng-false-value="0">
+            <br>{{ 'ACTIVO' | translate }}
+          </md-checkbox>
+
+          <md-checkbox disabled ng-model="dato.activated" flex ng-true-value="1" ng-false-value="0">
+            <br>{{ 'ACTIVATED' | translate }}
+          </md-checkbox>
+
+          <md-checkbox disabled ng-checked="dato.es_super" flex ng-true-value="1" ng-false-value="0" *ngIf="activar_super">
+            <br>{{ 'ES_SUPER' | translate }}
+          </md-checkbox>
+        </md-content>
+
+        <span ng-init="grupos = []; dato.grupo = []; cargarCatalogo('/sisGrupo', grupos)"></span>
+        <md-list ng-cloak>
+          <md-subheader class="md-no-sticky">{{ 'GRUPO' | translate }}</md-subheader>
+          <md-list-item ng-repeat="item in grupos">
+        
+            <md-checkbox disabled flex ng-true-value="1" ng-false-value="0" ng-checked="inArray(item)">
+        
+            </md-checkbox>
+            <p> {{item.nombre}} </p>
+            <md-icon class="md-secondary" md-svg-icon="account-multiple"></md-icon>
+          </md-list-item>
+          <md-divider></md-divider>
+        </md-list>
+
+        <md-content>
+          <md-list flex>
+            <md-list-item class="md-3-line" style="background-color: rgba(220, 220, 220, 0.25);">
+              <img ng-src="{{ url_base + '/adjunto/usuario/' + dato.foto}}" class="md-avatar" alt="foto" />
+              <div class="md-list-item-text" layout="column">
+                <md-input-container flex >
+                  <label>{{ 'FOTO_PERFIL' | translate }}</label>
+                  <input disabled name="foto" type="text" ng-value="url_base + '/adjunto/usuario/' + dato.foto" >
+                </md-input-container>
+                
+              </div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item class="md-3-line" style="background-color: rgba(173, 208, 229, 0.25)">
+              <img ng-src="{{dato.avatar}}" class="md-avatar" alt="foto" />
+              <div class="md-list-item-text" layout="column">
+                <md-input-container flex>
+                  <label>{{ 'URL_AVATAR' | translate }}</label>
+                  <input disabled name="confirmarPassword" type="text" ng-value="dato.avatar">
+                </md-input-container>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-content>
+
+        
+
+      </md-card-content>
+    </md-card>
+  </md-content>
+</div>

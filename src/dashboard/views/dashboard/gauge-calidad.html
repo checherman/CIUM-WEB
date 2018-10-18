@@ -1,0 +1,112 @@
+
+    
+<div layout="column" class="relative" layout-fill role="main" flex ng-controller="gaugeCalidadController">
+    <md-progress-linear ng-if="gaugeCalidad" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999"
+        md-mode="indeterminate"></md-progress-linear>
+    <md-toolbar style="z-index: 59;">
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button " ng-click="toggleSidenav()" aria-label="Menu">
+                <md-icon md-svg-icon="menu"></md-icon>
+            </md-button>
+
+            <md-button class="md-icon-button " ng-click="toggleMenu()" aria-label="colapse">
+                <md-icon md-svg-icon="chevron-left" ng-show="menuIsOpen"></md-icon>
+                <md-icon md-svg-icon="chevron-right" ng-show="!menuIsOpen"></md-icon>
+            </md-button>
+            <h2>
+                <span>Dashboard </span>
+            </h2>
+            <span flex></span>
+            <span ng-include="'src/app/views/menu-opciones.html'"></span>
+        </div>
+    </md-toolbar>
+    <md-content layout="column" layout-gt-md="row" layour-align="center center" flex id="principal" ng-init="toggleRightOpciones('gaugeCalidad');">
+        <md-content layout="column" flex-gt-xs="70" flex-gt-sm="80" flex-gt-md="60">
+            <md-card layout="column" flex>
+                <md-card-title flex>
+                    <md-card-title-text>
+                        <span class="md-headline">{{ 'CALIDAD' | translate}}</span>
+                        <span class="md-subhead">
+                            <span>{{ "ANIO" | translate}} : {{filtro.anio}} </span>
+                            <span ng-if="filtro.bimestre">{{"BIMESTRE" | translate}} : {{filtro.bimestre | nombreBimestre}}</span>
+                        </span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-actions flex layout="row" layout-align="end center">
+                    <md-switch ng-model="filtro.estricto" aria-label="Estricto" ng-change="init()"></md-switch>
+
+
+                    <md-button class="md-icon-button" ng-click="excel('Hallazgos de Calidad')" aria-label="Exportar a excel"
+                        ng-if="!mostrarGrafica">
+                        <md-icon md-svg-icon="file-excel"></md-icon>
+                        <md-tooltip hide-sm>
+                            Exportar a excel
+                        </md-tooltip>
+                    </md-button>
+
+                    <md-button class="md-icon-button" aria-label="tabla" ng-click="mostrarGrafica = !mostrarGrafica">
+                        <md-icon md-svg-icon="table" ng-if="mostrarGrafica"></md-icon>
+                        <md-icon md-svg-icon="gauge" ng-if="!mostrarGrafica"></md-icon>
+                        <md-tooltip hide-sm>
+                            {{ !mostrarGrafica ? 'Gauge' : 'Tabla' }}
+                        </md-tooltip>
+                    </md-button>
+
+                </md-card-actions>
+                <md-card-content flex="90" layout="column">
+                    <md-content layout="column" layout-align="center center" ng-if="datosOk && mostrarGrafica">
+                        <md-content style="width:58%" layout="column" class="relative gauge" ng-radial-gauge ranges="ranges"
+                            value="value" value-unit="unit" precision="precision" lower-limit="lowerLimit" upper-limit="upperLimit">
+                        </md-content>
+                        <md-content layout="column" layout-fill class="relative" style="font-size:.8em"
+                            align="center">
+                            {{ "NUM_UM" | translate}}
+                        </md-content>
+                    </md-content>
+                    <md-content layout="column" layout-align="center center" ng-if="datosOk && !mostrarGrafica">
+                        <div id="exportar_datos" layout="column" layout-fill>
+                            <table id="tabla_datos" class="table is-striped " flex layout-fill>
+                                <thead>
+                                    <tr>
+                                        <th width="1%">{{ "CLUES" | translate}}</th>
+                                        <th width="1%">{{ "NOMBRE" | translate}}</th>
+                                        <th width="1%">{{ "JURISDICCION" | translate}}</th>
+                                        <th width="1%">{{ "MUNICIPIO" | translate}}</th>
+                                        <th width="1%">{{ "LOCALIDAD" | translate}}</th>
+                                        <th>{{ "CONE" | translate}}</th>
+                                        <th>{{ "INDICADOR" | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="(key, value) in dato">
+                                        <th valign="top">{{key}}</th>
+                                        <td valign="top">{{value[0].nombre}}</td>
+                                        <td valign="top">{{value[0].jurisdiccion}}</td>
+                                        <td valign="top">{{value[0].municipio}}</td>
+                                        <td valign="top">{{value[0].localidad}}</td>
+                                        <td valign="top">{{value[0].cone}}</td>
+                                        <td valign="top">
+                                            <ul class="tc-chart-js-legend" style="padding:0px !important">
+                                                <li ng-repeat="item in value">
+                                                    <a href="{{'#!/evaluacion-calidad/ver/' + item.evaluacion}}"  target="_blank">
+                                                        <span style="background-color:{{item.color}}"></span>
+                                                            {{ "EVALUACION" | translate}}: {{item.evaluacion}}
+                                                            ({{item.codigo}} {{item.indicador}})
+                                                        
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                            </table>
+                        </div>
+                    </md-content>
+                    <div ng-show="!datosOk" layout="row" layout-align="center center">
+                        <h3>{{ 'NO_HAY_DATOS' | translate}}</h3>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </md-content>
+        <md-content layout-padding ng-include="'src/dashboard/views/dashboard/filtros.html'" flex> </md-content>
+    </md-content>
+</div>

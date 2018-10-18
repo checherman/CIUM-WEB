@@ -1,0 +1,111 @@
+<style>
+  .md-select-value>span>.md-text {
+    box-shadow: 1px 1px 1px;
+    padding: 0px 3px 0px 3px;
+  }
+</style>
+
+
+
+  
+<div layout="column" class="relative" layout-fill role="main" flex ng-init="ver('/FormularioCaptura')">
+  <md-button class="md-fab md-fab-bottom-right md-warn" ng-click="nuevo()" aria-label="{{ 'NUEVA' | translate }}">
+    <md-icon md-svg-icon="plus"></md-icon>
+  </md-button>
+  <md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+
+  <md-toolbar class="md-whiteframe-z1" ng-include="'src/app/views/header-ver-opciones.html'"></md-toolbar>
+  <md-content>
+    <md-card>
+      <md-card-content>
+
+        <form role="form" name="forma" ng-init=" usuarios = []; cargarCatalogo('/sisUsuario', usuarios);">
+          <md-content layout="column" class="imprimir">
+
+            <md-content layout="row" layout-padding>
+              <md-input-container flex>
+                <label>{{ 'CLAVE' | translate }}</label>
+                <input required name="clave" ng-model="dato.clave" minlength="3" maxlength="25">
+                <div ng-messages="forma.clave.$error">
+                  <div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>
+                  <div ng-message="minlength">{{ 'CAMPO_MIN_L' | translate }} 3</div>
+                  <div ng-message="maxlength">{{ 'CAMPO_MAX_L' | translate }} 255</div>
+                </div>
+              </md-input-container>
+
+              <md-input-container flex>
+                <label>{{ 'NOMBRE' | translate }}</label>
+                <input required name="nombre" ng-model="dato.nombre" minlength="3" maxlength="255">
+                <div ng-messages="forma.nombre.$error">
+                  <div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>
+                  <div ng-message="minlength">{{ 'CAMPO_MIN_L' | translate }} 3</div>
+                  <div ng-message="maxlength">{{ 'CAMPO_MAX_L' | translate }} 255</div>
+                </div>
+              </md-input-container>
+
+
+
+            </md-content>
+
+            <md-content layout="row" layout-padding>
+              <label>
+                <br>{{'VARIABLES' | translate}}</label>
+
+              <md-button class="md-raised md-primary" type="button" ng-click="agregarVariable()">
+                <md-icon md-svg-icon="plus"></md-icon>
+                <md-tooltip md-direction="right" show-gt-sm>{{'AGREGAR' | translate}}</md-tooltip>
+              </md-button>
+              <md-button class="md-raised md-accent" type="button" ng-show="dato.formulario_captura_variable.length > 0"
+                ng-click="limpiarVariable()">
+                <md-icon md-svg-icon="delete-forever"></md-icon>
+                <md-tooltip md-direction="right" show-gt-sm>{{'LIMPIAR' | translate}}</md-tooltip>
+              </md-button>
+            </md-content>
+            <md-content layout="row" layout-padding>
+              <md-data-table-container style=" width: 100%; ">
+                <table md-data-table md-progress="dato">
+                  <thead md-order="query.order" md-trigger="onOrderChange">
+                    <tr>
+                      <th name="{{  'VARIABLE' | translate }}" width="20%"></th>
+                      <th name="{{  'USUARIO' | translate }}" width="80%"></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr md-auto-select ng-repeat="item in dato.formulario_captura_variable">
+                      <td>
+                        <md-input-container flex layout>
+                          <input aria-label="var{{$index}}" ng-model="item.nombre">
+                        </md-input-container>
+                      </td>
+                      <td>
+
+                        <md-select style="box-shadow: 1px 1px 0px #0000001f;" ng-model="item.formulario_captura_usuarios"
+                          md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple>
+                          <md-select-header class="demo-select-header">
+                            <input ng-model="searchTerm" type="search" placeholder="Buscar usuario." class="demo-header-searchbox md-text">
+                          </md-select-header>
+                          <md-optgroup label="user">
+                            <md-option ng-value="val.id" ng-repeat="val in usuarios |
+                                                        filter:searchSelectTerm">{{val.email}}</md-option>
+                          </md-optgroup>
+                        </md-select>
+                      </td>
+                      <td>
+                        <md-button class="md-raised md-accent" type="button" ng-click="quitarVariable($index)">
+                          <md-icon md-svg-icon="delete-forever"></md-icon>
+                        </md-button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </md-data-table-container>
+
+            </md-content>
+
+          </md-content>
+        </form>
+      </md-card-content>
+    </md-card>
+  </md-content>
+</div>

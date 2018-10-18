@@ -1,0 +1,61 @@
+
+ 
+<div layout="column" class="relative" layout-fill role="main" flex ng-init="ver('/VersionApp')">
+	<md-button class="md-fab md-fab-bottom-right md-warn" ng-click="nuevo()" aria-label="{{ 'NUEVA' | translate }}">
+		<md-icon md-svg-icon="plus"></md-icon>
+	</md-button>
+	<md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+
+	<md-toolbar class="md-whiteframe-z1" ng-include="'src/app/views/header-ver-opciones.html'"></md-toolbar>
+	<md-content class="imprimir">
+		<md-card>
+			<md-card-title flex>
+				<md-card-title-text>
+					<span class="md-headline">{{ moduloName | translate }}</span>
+				</md-card-title-text>
+			</md-card-title>
+			<md-card-content>
+				<md-content layout="column" layout-padding>
+
+					<md-input-container flex>
+						<label>ID</label>
+						<input disabled name="id" ng-model="dato.id" value="{{dato.id}}">
+
+					</md-input-container>
+					<md-input-container flex>
+						<label>Path</label>
+						<input disabled name="path" ng-model="dato.path" value="{{dato.path}}">
+					</md-input-container>
+
+					<md-input-container flex>
+						<label>Version App</label>
+						<input disabled name="versionApp" ng-model="dato.versionApp" value="{{dato.versionApp}}">
+					</md-input-container>
+
+					<md-input-container flex>
+						<label>Version DB</label>
+						<input disabled name="versionDB" ng-model="dato.versionDB" value="{{dato.versionDB}}">
+					</md-input-container>
+
+					<md-input-container flex>
+						<label>Descripción</label>
+						<input disabled name="versionDB" ng-model="dato.descripcion" value="{{dato.descripcion}}">
+					</md-input-container>
+
+					<md-input-container flex>
+						<label>{{ 'CREADO' | translate }}</label>
+						<input disabled name="creadoAl" ng-model="dato.creadoAl" value="{{dato.creadoAl}}">
+
+					</md-input-container>
+
+					<md-input-container flex>
+						<label>{{ 'MODIFICADO' | translate }}</label>
+						<input disabled name="modificadoAL" ng-model="dato.modificadoAl" value="{{dato.modificadoAl}}">
+
+					</md-input-container>
+
+				</md-content>
+			</md-card-content>
+		</md-card>
+	</md-content>
+</div>

@@ -1,0 +1,349 @@
+<style>
+    .md-sidenav-backdrop {
+        position: fixed;
+        top: 0;
+    }
+
+    .md-sidenav-right {
+        position: fixed;
+    }
+
+    ul {
+        display: none !important;
+    }
+</style>
+<div layout="column" class="relative" layout-fill role="main" flex>
+    <md-toolbar style="z-index: 59;">
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button " ng-click="toggleSidenav()" aria-label="Menu">
+                <md-icon md-svg-icon="menu"></md-icon>
+            </md-button>
+
+            <md-button class="md-icon-button " ng-click="toggleMenu()" aria-label="colapse">
+                <md-icon md-svg-icon="chevron-left" ng-if="menuIsOpen"></md-icon>
+                <md-icon md-svg-icon="chevron-right" ng-if="!menuIsOpen"></md-icon>
+            </md-button>
+            <h2>
+                <span>Dashboard </span>
+            </h2>
+            <span flex></span>
+            <span ng-include="'src/app/views/menu-opciones.html'"></span>
+        </div>
+    </md-toolbar>
+
+    <md-content id="principal">
+
+        <md-card ng-controller="calidadController" id="calidad" layout="column" flex>
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{ 'RU_CALIDAD' | translate}}</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+
+
+                <md-button class="md-icon-button" ng-click="excel('Tendencia de Calidad')" aria-label="Exportar a excel"
+                    ng-if="!mostrarGrafica">
+                    <md-icon md-svg-icon="file-excel"></md-icon>
+                    <md-tooltip hide-sm>
+                        Exportar a excel
+                    </md-tooltip>
+                </md-button>
+
+                <md-button class="md-icon-button" aria-label="tabla" ng-click="mostrarGrafica = !mostrarGrafica">
+                    <md-icon md-svg-icon="table" ng-if="mostrarGrafica"></md-icon>
+                    <md-icon md-svg-icon="chart-line" ng-if="!mostrarGrafica"></md-icon>
+                    <md-tooltip hide-sm>
+                        {{ !mostrarGrafica ? 'Tendencia' : 'Tabla' }}
+                    </md-tooltip>
+                </md-button>
+
+                <md-button class="md-icon-button" aria-label="Opciones" ng-click="toggleRightOpciones('calidad');">
+                    <md-icon md-svg-icon="filter"></md-icon>
+                    <md-tooltip hide-sm>
+                        {{ 'FILTRO' | translate }}
+                    </md-tooltip>
+                </md-button>
+
+            </md-card-actions>
+            <md-card-content layout="column">
+                <md-progress-linear ng-if="calidad" class="md-accent" md-theme="altTheme" md-mode="indeterminate"></md-progress-linear>
+                <md-content layout="column" layout-align="center center" ng-if="datosOk && mostrarGrafica" layout-fill flex>
+                    <nvd3 options="options" data="data" class="with-3d-shadow with-transitions" layout-fill flex></nvd3>
+                </md-content>
+
+                <md-content layout="column" layout-align="center center" ng-if="datosOk && !mostrarGrafica" >
+                    <div id="exportar_datos" layout="column" layout-fill>
+                        <div ng-repeat="item in datos" >
+                            <table id="tabla_datos" class="table is-striped " flex layout-fill>
+                                <caption style="font-size: 18pt; background: aliceblue; padding: 14px; ">
+                                    <span class="color_indicador" style="background-color:{{item[0].color}}"></span>
+                                    {{ item[0].codigo }} {{ item[0].indicador }}
+                                </caption>
+                                <thead>
+                                    <tr>
+                                        <th width="1%">#</th>
+                                        <th width="1%">{{ "CLUES" | translate}}</th>
+                                        <th>{{ "NOMBRE" | translate}}</th>
+                                        <th>{{ "JURISDICCION" | translate}}</th>
+                                        <th>{{ "MUNICIPIO" | translate}}</th>
+                                        <th>{{ "LOCALIDAD" | translate}}</th>
+                                        <th>{{ "CONE" | translate}}</th>
+                                        <th width="1%">{{ "ANIO" | translate}}</th>
+                                        <th width="1%">{{ "MES" | translate}}</th>
+                                        <th width="1%">{{ "PORCENTAJE" | translate}}</th>
+                                        <th width="1%">{{ "EVALUACION" | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="value in item">
+                                        <th>{{$index + 1}}</th>
+                                        <th>{{value.clues}}</th>
+                                        <td>{{value.nombre}}</td>
+                                        <td>{{value.jurisdiccion}}</td>
+                                        <td>{{value.municipio}}</td>
+                                        <td>{{value.localidad}}</td>
+                                        <td>{{value.cone}}</td>
+                                        <td>{{value.anio}}</td>
+                                        <td>{{value.mes}}</td>
+                                        <td style="background:{{value.color_porcentaje}}; color:#FFF; text-shadow: 1px 1px 1px;">{{value.porcentaje | number:2}} %</td>
+                                        <td>
+                                            <a href="{{'#!/evaluacion-calidad/ver/' + value.evaluacion}}" target="_blank">
+                                                {{value.evaluacion}}
+                                            </a>
+                                        </td>
+                                    </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                </md-content>
+
+                <div ng-if="!datosOk" layout="row" layout-align="center center" flex>
+                    <h3>{{ 'NO_HAY_DATOS' | translate}}</h3>
+                </div>
+                <md-sidenav layout="column" layout-fill class="md-sidenav-right md-whiteframe-z2" md-component-id="calidad"
+                    ng-include="'src/dashboard/views/dialog.html'"></md-sidenav>
+
+            </md-card-content>
+        </md-card>
+
+        <md-card ng-controller="recursoController" id="recurso" flex>
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{ 'RU_RECURSO' | translate}}</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+
+                <md-button class="md-icon-button" ng-click="excel('Tendencia de Recurso')" aria-label="Exportar a excel"
+                    ng-if="!mostrarGrafica">
+                    <md-icon md-svg-icon="file-excel"></md-icon>
+                    <md-tooltip hide-sm>
+                        Exportar a excel
+                    </md-tooltip>
+                </md-button>
+
+                <md-button class="md-icon-button" aria-label="tabla" ng-click="mostrarGrafica = !mostrarGrafica">
+                    <md-icon md-svg-icon="table" ng-if="mostrarGrafica"></md-icon>
+                    <md-icon md-svg-icon="chart-line" ng-if="!mostrarGrafica"></md-icon>
+                    <md-tooltip hide-sm>
+                        {{ !mostrarGrafica ? 'Tendencia' : 'Tabla' }}
+                    </md-tooltip>
+                </md-button>
+
+                <md-button class="md-icon-button" aria-label="Opciones" ng-click="toggleRightOpciones('recurso');">
+                    <md-icon md-svg-icon="filter"></md-icon>
+                    <md-tooltip hide-sm>
+                        {{ 'FILTRO' | translate }}
+                    </md-tooltip>
+                </md-button>
+
+            </md-card-actions>
+            <md-card-content>
+                <md-progress-linear ng-if="recurso" class="md-accent" md-theme="altTheme" md-mode="indeterminate"></md-progress-linear>
+                <md-content layout="column" layout-align="center center" ng-if="datosOk && mostrarGrafica" layout-fill flex>
+                    <nvd3 options="options" data="data" class="with-3d-shadow with-transitions" layout-fill flex></nvd3>
+                </md-content>
+
+                <md-content layout="column" layout-align="center center" ng-if="datosOk && !mostrarGrafica" >
+                    <div id="exportar_datos" layout="column" layout-fill>
+                        <div ng-repeat="item in datos" >
+                            <table id="tabla_datos" class="table is-striped " flex layout-fill>
+                                <caption style="font-size: 18pt; background: aliceblue; padding: 14px; ">
+                                    <span class="color_indicador" style="background-color:{{item[0].color}}"></span>
+                                    {{ item[0].codigo }} {{ item[0].indicador }}
+                                </caption>
+                                <thead>
+                                    <tr>
+                                        <th width="1%">#</th>
+                                        <th width="1%">{{ "CLUES" | translate}}</th>
+                                        <th>{{ "NOMBRE" | translate}}</th>
+                                        <th>{{ "JURISDICCION" | translate}}</th>
+                                        <th>{{ "MUNICIPIO" | translate}}</th>
+                                        <th>{{ "LOCALIDAD" | translate}}</th>
+                                        <th>{{ "CONE" | translate}}</th>
+                                        <th width="1%">{{ "ANIO" | translate}}</th>
+                                        <th width="1%">{{ "MES" | translate}}</th>
+                                        <th width="1%">{{ "PORCENTAJE" | translate}}</th>
+                                        <th width="1%">{{ "EVALUACION" | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="value in item">
+                                        <th>{{$index + 1}}</th>
+                                        <th>{{value.clues}}</th>
+                                        <td>{{value.nombre}}</td>
+                                        <td>{{value.jurisdiccion}}</td>
+                                        <td>{{value.municipio}}</td>
+                                        <td>{{value.localidad}}</td>
+                                        <td>{{value.cone}}</td>
+                                        <td>{{value.anio}}</td>
+                                        <td>{{value.mes}}</td>
+                                        <td style="background:{{value.color_porcentaje}}; color:#FFF; text-shadow: 1px 1px 1px;">{{value.porcentaje | number:2}} %</td>
+                                        <td>
+                                            <a href="{{'#!/evaluacion-calidad/ver/' + value.evaluacion}}" target="_blank">
+                                                {{value.evaluacion}}
+                                            </a>
+                                        </td>
+                                    </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                </md-content>
+
+                <div ng-if="!datosOk" layout="row" layout-align="center center" flex>
+                    <h3>{{ 'NO_HAY_DATOS' | translate}}</h3>
+                </div>
+                <md-sidenav layout="column" layout-fill class="md-sidenav-right md-whiteframe-z2" md-component-id="recurso"
+                    ng-include="'src/dashboard/views/dialog.html'"></md-sidenav>
+            </md-card-content>
+        </md-card>
+
+        <md-card ng-controller="globalCalidadController" id="globalRecurso">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Top {{filtro.top}} {{ 'DE' | translate}} {{ 'CALIDAD' | translate}}</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+
+                <md-button class="md-icon-button" ng-click="excel('Top de Calidad')" aria-label="Exportar a excel">
+                    <md-icon md-svg-icon="file-excel"></md-icon>
+                    <md-tooltip hide-sm>
+                        Exportar a excel
+                    </md-tooltip>
+                </md-button>
+
+                <md-button class="md-icon-button" aria-label="Opciones" ng-click="toggleRightOpciones('globalCalidad');">
+                    <md-icon md-svg-icon="filter"></md-icon>
+                    <md-tooltip hide-sm>
+                        {{ 'FILTRO' | translate }}
+                    </md-tooltip>
+                </md-button>
+
+                
+            </md-card-actions>
+            <md-card-content>
+                <md-progress-linear ng-if="globalCalidad" class="md-accent" md-theme="altTheme" md-mode="indeterminate"></md-progress-linear>
+                <md-content layout-gt-md="row" layout="column" flex layout-fill>
+                    <div ng-repeat="(key, value) in dato" flex layout-fill class="md-whiteframe-1dp" ng-if="mostrarTop[key] && datosOk">
+                        <md-data-table-toolbar>
+                            <h2 class="md-title">{{ key | translate }}</h2>
+                        </md-data-table-toolbar>
+                        <md-data-table-container id="exportar_datos">
+                            <table md-data-table md-progress="indicadores">
+                                <thead md-order="query.order" md-trigger="onOrderChange">
+                                    <tr>
+                                        <th name="N°"></th>
+                                        <th name="{{ 'CLUES' | translate}}"></th>
+                                        <th name="{{ 'NOMBRE' | translate}}"></th>
+                                        <th name="{{ 'PORCENTAJE' | translate}}"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in value">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{ item.clues }}</td>
+                                        <td>{{ item.nombre }}</td>
+                                        <td>{{ item.porcentaje | number:2}} %</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </md-data-table-container>
+                    </div>
+                    <div ng-if="!datosOk" layout="row" layout-align="center center">
+                        <h3>{{ 'NO_HAY_DATOS' | translate}}</h3>
+                    </div>
+                </md-content>
+            </md-card-content>
+            </md-card-title>
+            <md-sidenav layout="column" layout-fill class="md-sidenav-right md-whiteframe-z2" md-component-id="globalCalidad"
+                ng-include="'src/dashboard/views/dialog.html'"></md-sidenav>
+        </md-card>
+
+        <md-card ng-controller="globalRecursoController" id="globalRecurso">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Top {{filtro.top}} {{ 'DE' | translate}} {{ 'RECURSO' | translate}}</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+
+                <md-button class="md-icon-button" ng-click="excel('Top de Recurso')" aria-label="Exportar a excel">
+                    <md-icon md-svg-icon="file-excel"></md-icon>
+                    <md-tooltip hide-sm>
+                        Exportar a excel
+                    </md-tooltip>
+                </md-button>
+
+                <md-button class="md-icon-button" aria-label="Opciones" ng-click="toggleRightOpciones('globalRecurso');">
+                    <md-icon md-svg-icon="filter"></md-icon>
+                    <md-tooltip hide-sm>
+                        {{ 'FILTRO' | translate }}
+                    </md-tooltip>
+                </md-button>
+
+            </md-card-actions>
+            <md-card-content>
+                <md-progress-linear ng-if="globalRecurso" class="md-accent" md-theme="altTheme" md-mode="indeterminate"></md-progress-linear>
+                <md-content layout-gt-md="row" layout="column" flex layout-fill>
+                    <div ng-repeat="(key, value) in dato" flex layout-fill class="md-whiteframe-1dp" ng-if="mostrarTop[key] && datosOk">
+                        <md-data-table-toolbar>
+                            <h2 class="md-title">{{ key | translate }}</h2>
+                        </md-data-table-toolbar>
+                        <md-data-table-container id="exportar_datos">
+                            <table md-data-table md-progress="indicadores">
+                                <thead md-order="query.order" md-trigger="onOrderChange">
+                                    <tr>
+                                        <th name="N°"></th>
+                                        <th name="{{ 'CLUES' | translate}}"></th>
+                                        <th name="{{ 'NOMBRE' | translate}}"></th>
+                                        <th name="{{ 'PORCENTAJE' | translate}}"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in value">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{ item.clues }}</td>
+                                        <td>{{ item.nombre }}</td>
+                                        <td>{{ item.porcentaje | number:2}} %</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </md-data-table-container>
+                    </div>
+                    <div ng-if="!datosOk" layout="row" layout-align="center center">
+                        <h3>{{ 'NO_HAY_DATOS' | translate}}</h3>
+                    </div>
+                </md-content>
+            </md-card-content>
+            </md-card-title>
+            <md-sidenav layout="column" layout-fill class="md-sidenav-right md-whiteframe-z2" md-component-id="globalRecurso"
+                ng-include="'src/dashboard/views/dialog.html'"></md-sidenav>
+        </md-card>
+
+
+    </md-content>
+</div>

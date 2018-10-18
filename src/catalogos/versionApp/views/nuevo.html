@@ -1,0 +1,40 @@
+
+ 
+<div layout="column" class="relative" layout-fill role="main" flex ng-init="index('/VersionApp')">
+
+	<md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+
+	<md-toolbar class="md-whiteframe-z1" ng-include="'src/app/views/header-ver-opciones.html'"></md-toolbar>
+	<md-content>
+		<md-card>
+			<md-card-content>
+				<form role="form" name="forma">
+					<md-content layout="column" class="imprimir" layout-padding>
+
+						<md-input-container flex>
+
+							<lf-ng-md-file-input lf-files="dato.path" lf-api="api01" ng-disabled="disabled01"></lf-ng-md-file-input>
+
+						</md-input-container>
+						<md-input-container flex>
+							<label>Version App</label>
+							<input required name="versionApp" ng-model="dato.versionApp">
+						</md-input-container>
+						<md-input-container flex>
+							<label>Version BD</label>
+							<input required name="versionDB" ng-model="dato.versionDB">
+						</md-input-container>
+						<md-input-container flex>
+							<label>Descripción</label>
+							<input required name="descripcion" ng-model="dato.descripcion">
+						</md-input-container>
+
+
+
+					</md-content>
+				</form>
+			</md-card-content>
+		</md-card>
+		<span ng-init="cargando = false;"></span>
+	</md-content>
+</div>

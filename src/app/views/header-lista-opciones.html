@@ -1,0 +1,77 @@
+<div class="md-toolbar-tools" ng-show="!showSearch">
+    <md-button class="md-icon-button " ng-click="toggleSidenav()"aria-label="Menu">
+        <md-icon md-svg-icon="menu"></md-icon>
+    </md-button>
+
+    <md-button class="md-icon-button " ng-click="toggleMenu()" aria-label="colapse">
+        <md-icon md-svg-icon="chevron-left" ng-show="menuIsOpen"></md-icon>
+        <md-icon md-svg-icon="chevron-right" ng-show="!menuIsOpen"></md-icon>
+    </md-button>
+    
+    <h2>
+        <span>{{ moduloName | translate }}</span>
+    </h2>
+    <span flex></span>
+
+
+    <md-button hide-md hide-sm hide-lg aria-label="{{ 'BUSCAR' | translate }}" ng-click="mostrarSearch(0)">
+        <md-icon md-svg-icon="magnify"></md-icon>
+        {{ 'BUSCAR' | translate }}
+    </md-button>
+    <md-button class="md-icon-button" hide show-sm show-md show-lg ng-click="mostrarSearch(0)" aria-label="{{ 'BUSCAR' | translate }}">
+        <md-icon md-svg-icon="magnify"></md-icon>
+        <md-tooltip hide-sm>
+            {{ 'BUSCAR' | translate }}
+        </md-tooltip>
+    </md-button>
+
+    <md-button hide-md hide-sm hide-lg aria-label="{{ 'ACTUALIZAR' | translate }}" ng-click="init()">
+        <md-icon md-svg-icon="refresh"></md-icon>
+        {{ 'ACTUALIZAR' | translate }}
+    </md-button>
+    <md-button class="md-icon-button" hide show-sm show-md show-lg ng-click="init()" aria-label="{{ 'ACTUALIZAR' | translate }}" >
+        <md-icon md-svg-icon="refresh"></md-icon>
+        <md-tooltip hide-sm>
+            {{ 'ACTUALIZAR' | translate }}
+        </md-tooltip>
+    </md-button>
+
+    <md-button hide-md hide-sm hide-lg aria-label="{{ 'RESETEAR' | translate }}" ng-click="resetear_clues()" ng-if="url.split('/')[1]=='clues'">
+        <md-icon md-svg-icon="delete"></md-icon>
+        {{ 'RESETEAR' | translate }}
+    </md-button>
+    <md-button class="md-icon-button" hide show-sm show-md show-lg ng-click="resetear_clues()" aria-label="{{ 'RESETEAR' | translate }}" ng-if="url.split('/')[1]=='clues'">
+        <md-icon md-svg-icon="delete"></md-icon>
+        <md-tooltip hide-sm>
+            {{ 'RESETEAR' | translate }}
+        </md-tooltip>
+    </md-button>
+
+    <md-button boton-permiso="store" hide-md hide-sm hide-lg aria-label="{{ 'NUEVO' | translate }}" ng-click="nuevo()">
+        <md-icon md-svg-icon="plus"></md-icon>
+        {{ 'NUEVO' | translate }}
+    </md-button>
+    <md-button boton-permiso="store" class="md-icon-button" hide show-sm show-md show-lg ng-click="nuevo()" aria-label="{{ 'NUEVO' | translate }}">
+        <md-icon md-svg-icon="plus"></md-icon>
+        <md-tooltip hide-sm>
+            {{ 'NUEVO' | translate }}
+        </md-tooltip>
+    </md-button>
+    <span ng-include="'src/app/views/menu-opciones.html'"></span>
+</div>
+
+<div class="md-toolbar-tools" ng-show="showSearch">
+    <md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+        <md-icon md-svg-icon="menu"></md-icon>
+    </md-button>
+    <md-button ng-click="mostrarSearch(1)" aria-label="{{ 'REGRESAR' | translate }}">
+        <md-icon md-svg-icon="keyboard-backspace"></md-icon> {{ 'REGRESAR' | translate}}
+    </md-button>
+
+    <form ng-submit="buscarL(buscar,columna)" flex layout="row" layout-wrap layout-align="center center">
+        <md-input-container flex>
+            <label>&nbsp;</label>
+            <input focus-me="showSearch" ng-model="buscar" type="text" placeholder="{{ 'BUSCAR' | translate }}" flex>
+        </md-input-container>
+    </form>
+</div>

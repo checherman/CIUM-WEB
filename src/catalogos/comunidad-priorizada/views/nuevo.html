@@ -1,0 +1,126 @@
+
+ 
+<div layout="column" class="relative" layout-fill role="main" flex ng-init="index('/comunidad-priorizada')">
+
+	<md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+
+	<md-toolbar class="md-whiteframe-z1" ng-include="'src/app/views/header-ver-opciones.html'"></md-toolbar>
+	<md-content layout="column">
+		<md-card>
+			<md-card-content layout="column">
+
+				<form role="form" name="forma" class="radioButtondemoMultiColumn">
+					<md-content layout="column" layout-padding>
+				
+						<md-input-container flex>
+							<label>{{ 'ANIO' | translate }}</label>
+							<input required name="anio" ng-model="dato.anio" minlength="4" maxlength="4" type="number">
+							<div ng-messages="forma.anio.$error">
+								<div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>
+								<div ng-message="minlength">{{ 'CAMPO_MIN_L' | translate }} 3</div>
+								<div ng-message="maxlength">{{ 'CAMPO_MAX_L' | translate }} 255</div>
+							</div>
+						</md-input-container>
+				
+						<md-input-container flex>
+							<label>{{ 'NUEVA-PC-PRIORIZADA' | translate }}</label>
+							<input required name="anio" ng-model="dato.total" minlength="1" maxlength="11" type="number">
+							<div ng-messages="forma.total.$error">
+								<div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>
+								<div ng-message="minlength">{{ 'CAMPO_MIN_L' | translate }} 3</div>
+								<div ng-message="maxlength">{{ 'CAMPO_MAX_L' | translate }} 255</div>
+							</div>
+						</md-input-container>
+				
+					</md-content>
+					<md-content>
+						<md-card>
+							<md-card-title flex>
+								<md-card-title-text>
+									<span class="md-headline">
+										<md-autocomplete md-selected-item="selectedItem" md-search-text-change="searchTextChange(searchText)"
+										 md-search-text="searchText" md-selected-item-change="selectedItemChange(item,dato.ComunidadesPriorizadasClues)"
+										 md-items="item in querySearch2(searchText)" md-item-text="item.nombre" md-min-length="1" placeholder="{{ 'UM' | translate }}"
+										 md-delay="300" ng-model="dato.idClues" md-input-name="idClues" md-menu-class="autocomplete-custom-template">
+					
+											<md-item-template>
+												<span class="item-title">
+													<md-icon md-svg-icon="hospital-building"></md-icon>
+													<span> {{item.nombre}} </span>
+													<md-icon md-svg-icon="star"></md-icon>
+													<span> <strong style="font-size:.8em;">{{item.clues}}</strong> </span>
+												</span>
+												<span class="item-metadata" style="font-size:.8em">
+													<span class="item-metastat">
+														<strong>JS: </strong> {{item.jurisdiccion}}
+													</span>
+													<span class="item-metastat">
+														<strong>M: </strong>{{item.municipio}}
+													</span>
+													<span class="item-metastat">
+														<strong>L: </strong> {{item.localidad}}
+													</span>
+												</span>
+												<span class="item-metadata" style="font-size:.6em">
+													<md-icon md-svg-icon="map-marker"></md-icon>
+													<span class="item-metastat">
+														{{item.domicilio}}
+													</span>
+												</span>
+												<span class="item-metadata" style="font-size:.7em">
+													<md-icon md-svg-icon="hospital-building"></md-icon>
+													<span class="item-metastat">
+														<strong>{{item.tipoUnidad}}</strong>
+													</span>
+													<span class="item-metastat">
+														<md-icon md-svg-icon="seat-flat"></md-icon>
+														<strong>{{item.tipologia}}</strong>
+													</span>
+												</span>
+											</md-item-template>
+					
+										</md-autocomplete>
+									</span>
+									<span class="md-subhead alert alert-info"></span>
+								</md-card-title-text>
+							</md-card-title>
+							<md-card-content layout="column" style="overflow: auto; max-height: 66vh;">
+					
+								<md-data-table-container flex>
+									<table md-data-table md-progress="datos">
+										<thead md-order="query.order" md-trigger="onOrderChange">
+											<tr>
+												<th>#</th>
+												<th name="CLUES"></th>
+												<th name="{{ 'NOMBRE' | translate}}"></th>
+												<th name="{{ 'JURISDICCION' | translate}}"></th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr md-auto-select ng-repeat="u in dato.ComunidadesPriorizadasClues">
+												<td>{{ $index + 1 }}</td>
+												<td> {{ u.clues }} <span ng-model="dato.clues[$index]" ng-init="dato.clues[$index]=u.clues;existeUM[$index]=u.clues;"></span></td>
+												<td> {{ u.nombre }}</td>
+												<td> {{ u.jurisdiccion }}</td>
+												<td>
+													<md-button type="button" class="md-accent" aria-label="Quitar" ng-click="borrarClues($index,dato.ComunidadesPriorizadasClues)">
+														<md-icon md-svg-icon="delete"></md-icon>
+													</md-button>
+												</td>
+					
+											</tr>
+										</tbody>
+									</table>
+								</md-data-table-container>
+					
+							</md-card-content>
+						</md-card>
+					
+					</md-content>
+				</form>
+			</md-card-content>
+		</md-card>
+		<span ng-init="cargando = false;"></span>
+	</md-content>
+</div>

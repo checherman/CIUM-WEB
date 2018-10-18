@@ -1,0 +1,107 @@
+<app-login layout="column" class="relative" role="main" flex>
+    <div class="at-theme-light mat-bg-white at-absolute at-wp-100 at-hp-100" flex>
+        <img class="at-wp-100 at-hp-100 at-fixed" src="assets/img/fondo.svg">
+
+        <md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+
+        <div layout-fill layout="column" layout-wrap layout-align="center center">
+
+            <md-card class="mat-card" layout="column" id="login-form">
+                <div layout="row" layour-align="start center" style="align-items: center;">
+                    <img src="assets/img/cium.svg" style="margin-left: -10px;width: 80px;">
+                    <div class="at-ml-20">
+                        <h2 class="at-mt-0">{{'REGISTRATE' | translate}}</h2>
+                        <div>{{'LLENRAR_FORMULARIO' | translate}}</div>
+                    </div>
+                </div>
+
+                <br><br>
+                <form flex layout="column" ng-submit="registrarUsuario()" layout-padding>
+
+                    <md-content layout="row" layout-padding>
+                        <md-input-container flex>
+                            <label>{{ 'NOMBRE' | translate }}</label>
+                            <input name="nombre" type="text" ng-model="registrar.nombre" required>
+                            <div ng-messages="forma.nombre.$error">
+                                <div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>
+                            </div>
+
+                        </md-input-container>
+                    </md-content>
+                    <md-content layout="row" layout-padding>
+                        <md-input-container flex>
+                            <label>{{ 'EMAIL' | translate }}</label>
+                            <input name="email" type="email" ng-model="registrar.email" required>
+                            <div ng-messages="forma.email.$error">
+                                <div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>
+                                <div ng-message="email">{{ 'EMAIL_INVALIDO' | translate }}</div>
+                                <div ng-message="unique">{{ 'CORREO_YA_EXISTE' | translate }}</div>
+                            </div>
+
+                        </md-input-container>
+                    
+                        <md-input-container flex>
+                            <label>{{ 'USUARIO' | translate }}</label>
+                            <input name="username" type="text" ng-model="registrar.username">
+                        </md-input-container>
+
+                    </md-content>
+
+                    <md-content layout="row" layout-padding >
+                        <md-input-container flex>
+                            <label>{{ 'PASSWORD' | translate }}</label>
+                            <input name="password" type="password" ng-model="registrar.password">
+                        </md-input-container>                        
+
+                        <md-input-container flex>
+                            <label>{{ 'REPETIR_CONTRASENA' | translate }}</label>
+                            <input name="confirmarPassword" type="password" ng-model="registrar.password_confirm">
+                        </md-input-container>
+                    </md-content>
+
+                    <md-content layout="row" class="recaptcha">
+                        
+                    </md-content>
+                    
+                </form>
+
+                <br>
+                <div layout="row" layour-align="center center" layout-fill>
+                    <md-button type="submit" ng-disabled="cargando" class="md-raised md-primary" ng-click="registrarUsuario()"
+                        layout-fill>
+                        <md-icon md-svg-src="send"></md-icon>
+                        {{ 'ENVIAR' | translate }}
+                    </md-button>
+                </div>
+
+            </md-card>
+
+            <div class="login-footer" layout="row" layour-align="end center">
+                <span flex></span>
+
+                <md-button class="md-icon-button" aria-label="{{ 'REGRESAR' | translate }}" ng-href="#!/signin">
+                    <md-icon md-svg-icon="keyboard-backspace"></md-icon>
+                    <md-tooltip hide-sm>
+                        {{ 'REGRESAR' | translate }}
+                    </md-tooltip>
+                </md-button>
+
+                <md-button class="md-icon-button" aria-label="Ayuda" ng-click="mostrarAyuda($event, 'registro')">
+                    <md-icon md-svg-icon="help-circle"></md-icon>
+                    <md-tooltip hide-sm>
+                        {{ 'HELP' | translate }}
+                    </md-tooltip>
+                </md-button>
+
+                <md-button class="md-icon-button" aria-label="Cambiar idioma" ng-click="mostrarIdiomas($event)">
+                    <md-icon md-svg-icon="web"></md-icon>
+                    <md-tooltip hide-sm>
+                        {{ 'CAMBIAR_IDIOMA' | translate }}
+                    </md-tooltip>
+                </md-button>
+
+            </div>
+
+        </div>
+    </div>
+</app-login>

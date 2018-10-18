@@ -1,0 +1,64 @@
+
+ 
+<div layout="column" class="relative" layout-fill role="main" flex ng-init="index('/Clues')">
+
+	<md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+	<md-toolbar md-theme="{{ showSearch ? 'altTheme' : 'default' }}" class="md-whiteframe-z1" ng-include="'src/app/views/header-lista-opciones.html'"></md-toolbar>
+	<md-content layout="column">
+		<md-card>
+			<md-card-content layout="column">
+
+				<md-data-table-container flex>
+					<table md-data-table md-progress="datos">
+						<thead md-order="query.order" md-trigger="onOrderChange">
+							<tr>
+								<th hide-sm name="Clues" order-by="clues"></th>
+								<th name="{{ 'NOMBRE' | translate }}" order-by="nombre"></th>
+								<th hide-sm name="{{ 'ENTIDAD' | translate }}" order-by="entidad"></th>
+								<th hide-sm name="{{ 'JURISDICCION' | translate }}" order-by="jurisdiccion"></th>
+								<th hide-sm name="{{ 'MUNICIPIO' | translate }}" order-by="municipio"></th>
+								<th hide-sm name="{{ 'LOCALIDAD' | translate }}" order-by="localidad"></th>
+								<th hide-sm name="{{ 'CONE' | translate }}"></th>
+								<th name=""></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr md-auto-select ng-repeat="dato in datos">
+								<td>{{dato.clues}}</td>
+								<td>{{dato.nombre }}</td>
+								<td hide-sm>{{dato.entidad }}</td>
+								<td hide-sm>{{dato.jurisdiccion}}</td>
+								<td hide-sm>{{dato.municipio}}</td>
+								<td hide-sm>{{dato.localidad}}</td>
+								<td hide-sm>{{dato.cone}}</td>
+								<td>
+
+									<section layout="row" layout-align="end center">
+									
+										<a url-modulo="ver/{{ dato.clues }}" boton-permiso="show">
+											<md-button class="md-icon-button md-primary" aria-label="Ver">
+												<md-icon md-svg-icon="eye"></md-icon>
+												<md-tooltip hide-sm>
+													{{ 'VER' | translate }}
+												</md-tooltip>
+											</md-button>
+										</a>
+									
+									
+									</section>
+
+								</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</md-data-table-container>
+
+
+				<md-data-table-pagination md-limit="query.limit" md-label="paginationLabel" md-row-select="[25,50,100,1000,10000]"
+				 md-page="query.page" md-total="{{paginacion.paginas}}" md-trigger="onPaginationChange" flex></md-data-table-pagination>
+			</md-card-content>
+		</md-card>
+
+	</md-content>
+</div>

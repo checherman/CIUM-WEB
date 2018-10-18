@@ -1,0 +1,24 @@
+<a url-modulo="ver/{{ dato.id }}" boton-permiso="show">
+    <md-button class="md-icon-button md-primary" aria-label="Ver" >
+        <md-icon md-svg-icon="eye"></md-icon>
+        <md-tooltip hide-sm>
+            {{ 'VER' | translate }}
+        </md-tooltip>
+    </md-button>
+</a>
+
+<a url-modulo="modificar/{{ dato.id }}" boton-permiso="update">
+    <md-button class="md-icon-button md-primary" aria-label="Editar">
+        <md-icon md-svg-icon="pencil"></md-icon>
+        <md-tooltip hide-sm>
+            {{ 'EDITAR' | translate }}
+        </md-tooltip>
+    </md-button>
+</a>
+
+<md-button ng-click="borrar(dato.id, $index)" class="md-icon-button md-warn" aria-label="Eliminar" boton-permiso="destroy">
+    <md-icon md-svg-src="delete"></md-icon>
+    <md-tooltip hide-sm>
+        {{ 'ELIMINAR' | translate }}
+    </md-tooltip>
+</md-button>
