@@ -638,7 +638,7 @@
       // obtiene los datos necesarios para crear el grid (listado)
       $scope.init = function(buscar, columna) {
         var url = $scope.ruta;
-        buscar = $scope.buscar;
+        buscar = document.getElementById("buscar_lista") ? document.getElementById("buscar_lista").value : undefined;
         var pagina = $scope.paginacion.pag;
         var limite = $scope.paginacion.lim;
 

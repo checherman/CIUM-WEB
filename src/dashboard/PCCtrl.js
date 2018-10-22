@@ -4,7 +4,7 @@
  * @description
  * Manejo de los eventos del gráfico en el dashboard
  */
-(function () {
+(function() {
   "use strict";
 
   angular
@@ -20,345 +20,20 @@
       URLS,
       $mdDialog,
       $mdUtil,
+      $mdSidenav,
       $translate,
       EvaluacionShow,
       EvaluacionId,
       CrudDataApi
     ) {
-      $scope.PC = true;
+      $scope.PCPC = true;
 
       $scope.datos = {};
 
       $scope.showModal = false;
       $scope.showModalCriterio = false;
       $scope.chart;
-      $scope.verPC = "";
-      $scope.dimension = [];
-      $scope.despegarInfo = true;
-      $scope.datosOk = true;
-
-      $scope.tempIndicador = [];
-      $scope.toggle = function (item, list) {
-        var idx = list.indexOf(item);
-        if (idx > -1) list.splice(idx, 1);
-        else {
-          list.push(item);
-        }
-      };
-      //lenar los check box tipo array
-      $scope.exists = function (item, list) {
-        return list.indexOf(item) > -1;
-      };
-
-      $scope.cambiarVerTodoIndicador = function () {
-        if ($scope.filtro.verTodosIndicadores) {
-          $scope.filtro.indicador = [];
-          $scope.chipIndicador = [];
-          $scope.tempIndicador = [];
-        }
-      };
-      $scope.cambiarVerTodoUM = function () {
-        if ($scope.filtro.verTodosUM) {
-          $scope.filtro.um = {};
-          $scope.filtro.um.tipo = "municipio";
-        }
-      };
-
-      $scope.cambiarVerTodoClues = function () {
-        $scope.filtro.clues = [];
-      };
-
-      $scope.showAlert = function (ev) {
-        $mdDialog.show(
-          $mdDialog
-            .alert()
-            .parent(angular.element(document.getElementById("principal")))
-            .title($translate.instant("TITULO_DIALOG"))
-            .content($translate.instant("MENSAJE_DIALOG"))
-            .ariaLabel("info")
-            .ok("Ok")
-            .targetEvent(ev)
-        );
-      };
-
-      var d = new Date();
-
-      $scope.filtro = {};
-      $scope.filtro.visualizar = "tiempo";
-      $scope.filtro.anio = d.getFullYear();
-      $scope.filtro.um = {};
-      $scope.filtro.um.tipo = "municipio";
-      $scope.filtro.clues = [];
-      $scope.mostrarCategoria = [];
-      $scope.filtro.verTodosIndicadores = true;
-      $scope.filtro.verTodosUM = true;
-      $scope.filtro.verTodosClues = true;
-      $scope.chipIndicador = [];
-      $scope.filtros = {};
-      $scope.filtros.activo = false;
-      $scope.verInfo = false;
-      //aplicar los filtros al area del grafico
-      $scope.aplicarFiltro = function (avanzado, item) {
-        $scope.filtros.activo = true;
-        $scope.filtro.indicador = $scope.tempIndicador;
-        if (!avanzado) {
-          $scope.filtro.indicador = [];
-          $scope.filtro.verTodosIndicadores = false;
-          if ($scope.filtro.indicador.indexOf(item.codigo) == -1) {
-            $scope.filtro.indicador.push(item.codigo);
-            $scope.chipIndicador[item.codigo] = item;
-          }
-        }
-        $scope.contador = 0;
-        $scope.intento = 0;
-        $scope.init();
-
-        if (
-          ($scope.filtro.visualizar == "parametro") &
-          ($scope.filtro.um.nivel == "clues")
-        ) {
-          $scope.verInfo = true;
-          $scope.showAlert();
-        }
-      };
-      $scope.contador = 0;
-      $scope.chartClick = function (event) {
-        if ($scope.verInfo) {
-          var points = $scope.chart.getBarsAtEvent(event);
-          if ($scope.contador == 0) {
-            $scope.PC = true;
-            $scope.intento = 0;
-            CrudDataApi.lista(
-              "/PCClues?filtro=" +
-              JSON.stringify($scope.filtro) +
-              "&clues=" +
-              points[0].label,
-              function (data) {
-                data = data.data;
-                if (data.status == 200) {
-                  $scope.data = data.data;
-                  $scope.total = data.total;
-                  $scope.PC = false;
-                  $scope.contador++;
-                } else {
-                  $scope.PC = false;
-                  errorFlash.error(data);
-                }
-              },
-              function (e) {
-                if ($scope.intento < 1) {
-                  $scope.chartClick(event);
-                  $scope.intento++;
-                }
-                $scope.PC = false;
-              }
-            );
-          }
-          if ($scope.contador == 1) {
-            var punto = points[0].label;
-            punto = punto.split("#");
-
-            $scope.showModalCriterio = !$scope.showModalCriterio;
-            EvaluacionId.setId(punto[1]);
-            $mdDialog.show({
-              controller: DialogPC,
-              templateUrl: "src/dashboard/views/verPC.html",
-              parent: angular.element(document.body)
-            });
-          }
-        }
-      };
-      //quitar los filtros seleccionados del dialog
-      $scope.quitarFiltro = function (avanzado) {
-        $scope.filtro.indicador = [];
-        $scope.filtro.clues = [];
-        $scope.filtro.um = {};
-        $scope.filtro.um.tipo = "municipio";
-        $scope.filtro.verTodosIndicadores = true;
-        $scope.filtro.verTodosUM = true;
-        $scope.filtros.activo = false;
-
-        $scope.intento = 0;
-        $scope.contador = 0;
-        $scope.init();
-      };
-
-      // cerrar el dialog
-      $scope.hide = function () {
-        $mdDialog.hide();
-      };
-      //cambiar a pantalla completa
-      $scope.isFullscreen = false;
-
-      $scope.toggleFullScreen = function (e) {
-        $scope.isFullscreen = !$scope.isFullscreen;
-      };
-      $scope.cargarFiltro = 0;
-      $scope.toggleRightOpciones = function (navID) {
-        if ($scope.cargarFiltro < 1) {
-          $scope.getDimension("anio", 0);
-          $scope.getDimension("month", 1);
-          $scope.getDimension(
-            "codigo,indicador,color, 'PC' as categoriaEvaluacion",
-            2
-          );
-          $scope.getDimension("jurisdiccion", 3);
-          $scope.getDimension("municipio", 4);
-          $scope.getDimension("zona", 5);
-          $scope.getDimension("cone", 6);
-          $scope.cargarFiltro++;
-        }
-      };
-      $scope.cambiarAnio = function (anio) {
-        $scope.filtro.bimestre = [];
-        $scope.filtro.anio = anio;
-        $scope.getDimension("month", 1);
-        $scope.getDimension(
-          "codigo,indicador,color, '" +
-          $scope.filtro.tipo +
-          "' as categoriaEvaluacion",
-          2
-        );
-        $scope.getDimension("jurisdiccion", 3);
-        $scope.getDimension("municipio", 4);
-        $scope.getDimension("zona", 5);
-        $scope.getDimension("cone", 6);
-      };
-      $scope.cambiarBimestre = function (bimestre) {
-        $scope.filtro.bimestre = bimestre;
-        $scope.getDimension(
-          "codigo,indicador,color, '" +
-          $scope.filtro.tipo +
-          "' as categoriaEvaluacion",
-          2
-        );
-        $scope.getDimension("jurisdiccion", 3);
-        $scope.getDimension("municipio", 4);
-        $scope.getDimension("zona", 5);
-        $scope.getDimension("cone", 6);
-      };
-
-      $scope.intentoOpcion = 0;
-      $scope.selectedIndex = 2;
-      $scope.getDimension = function (nivel, c) {
-        $scope.opcion = true;
-        if (c == 7) {
-          $scope.selectedIndex = 3;
-        }
-        var hacer = true;
-        if (c > 0) {
-          if ($scope.datos.length == 0 || $scope.filtro.anio == "")
-            hacer = false;
-        }
-        if (hacer) {
-          $scope.datos[c] = [];
-          CrudDataApi.lista(
-            "/PCDimension?filtro=" +
-            JSON.stringify($scope.filtro) +
-            "&nivel=" +
-            nivel,
-            function (data) {
-              data = data.data;
-              $scope.datos[c] = data.data;
-              $scope.opcion = false;
-            },
-            function (e) {
-              if ($scope.intentoOpcion < 1) {
-                $scope.getDimension(nivel, c);
-                $scope.intentoOpcion++;
-              }
-              $scope.opcion = false;
-            }
-          );
-        }
-      };
-
-      // obtiene los datos necesarios para crear el grid (listado)
-      $scope.intento = 0;
-      $scope.init = function () {
-        var url = "/PC";
-
-        $scope.PC = true;
-        CrudDataApi.lista(
-          url + "?filtro=" + JSON.stringify($scope.filtro),
-          function (data) {
-            data = data.data;
-            if (data.status == "407") $window.location = "acceso";
-
-            if (!angular.isUndefined(data.data.datasets)) {
-              $scope.data = data.data;
-              $scope.total = data.total;
-              $scope.anios = data.anio;
-              $scope.PC = false;
-              $scope.datosOk = true;
-            } else {
-              $scope.PC = false;
-              $scope.datosOk = false;
-            }
-            $scope.PC = false;
-          },
-          function (e) {
-            if ($scope.intento < 1) {
-              $scope.init();
-              $scope.intento++;
-            }
-            $scope.PC = false;
-          }
-        );
-      };
-      $scope.init();
-      $scope.quitar = false;
-      $scope.quitarAlert = function () {
-        $scope.quitar = !$scope.quitar;
-        var border = 0;
-        if ($scope.quitar) border = 3;
-
-        angular.forEach($scope.data.datasets, function (val, key) {
-          val.borderWidth = border;
-        });
-      };
-      $scope.options = {
-        legend: {
-          display: true
-        },
-
-        scales: {
-          xAxes: [
-            {
-              barPercentage: 0.95,
-              categoryPercentage: 0.9
-            }
-          ]
-        }
-      };
-    });
-
-  angular
-    .module("App")
-    .controller("piePCController", function (
-      $scope,
-      $http,
-      $window,
-      $location,
-      $timeout,
-      flash,
-      errorFlash,
-      URLS,
-      $mdDialog,
-      $mdUtil,
-      $translate,
-      CrudDataApi,
-      $filter,
-      NgMap
-    ) {
-      $scope.piePC = true;
-
-      $scope.datos = {};
-
-      $scope.showModal = false;
-      $scope.showModalCriterio = false;
-      $scope.chart;
-      $scope.verpiePC = "";
+      $scope.verPCPC = "";
       $scope.dimension = [];
       $scope.datosOk = true;
 
@@ -429,6 +104,7 @@
         $scope.contador = 0;
         $scope.intento = 0;
         $scope.init();
+        $mdSidenav("PC").close();
       };
       $scope.contador = 0;
 
@@ -445,6 +121,7 @@
         $scope.intento = 0;
         $scope.contador = 0;
         $scope.init();
+        $mdSidenav("PC").close();
       };
 
       // cerrar el dialog
@@ -459,17 +136,23 @@
       };
       $scope.cargarFiltro = 0;
       $scope.toggleRightOpciones = function (navID) {
-        $scope.getDimension("anio", 0);
-        $scope.getDimension("month", 1);
-        $scope.getDimension(
-          "codigo,indicador,color, 'PC' as categoriaEvaluacion",
-          2
-        );
-        $scope.getDimension("jurisdiccion", 3);
-        $scope.getDimension("municipio", 4);
-        $scope.getDimension("zona", 5);
-        $scope.getDimension("cone", 6);
-        $scope.cargarFiltro++;
+        $mdSidenav(navID)
+          .toggle()
+          .then(function () {
+            if ($scope.cargarFiltro < 1) {
+              $scope.getDimension("anio", 0);
+              $scope.getDimension("month", 1);
+              $scope.getDimension(
+                "codigo,indicador,color, 'PC' as categoriaEvaluacion",
+                2
+              );
+              $scope.getDimension("jurisdiccion", 3);
+              $scope.getDimension("municipio", 4);
+              $scope.getDimension("zona", 5);
+              $scope.getDimension("cone", 6);
+              $scope.cargarFiltro++;
+            }
+          });
       };
       $scope.cambiarAnio = function (anio) {
         $scope.filtro.bimestre = [];
@@ -534,13 +217,298 @@
       // obtiene los datos necesarios para crear el grid (listado)
       $scope.intento = 0;
       $scope.init = function () {
+        var url = "/PC";
+
+        $scope.PC = true;
+        CrudDataApi.lista(
+          url + "?filtro=" + JSON.stringify($scope.filtro),
+          function (data) {
+            data = data.data;
+
+            if (data.status == "407") $window.location = "acceso";
+            $scope.data = data.data;
+            console.log($scope.data);
+            $scope.datos = data.datos;
+            $scope.total = data.total;
+            $scope.PC = false;
+            $scope.datosOk = true;
+          },
+          function (e) {
+            if ($scope.intento < 1) {
+              $scope.init();
+              $scope.intento++;
+            }
+            $scope.PC = false;
+          }
+        );
+      };
+
+      $scope.mostrarGrafica = true;
+
+      $scope.options = {
+        chart: {
+          type: "lineChart",
+          height: 450,
+          margin: {
+            top: 20,
+            right: 20,
+            bottom: 40,
+            left: 55
+          },
+          x: function (d) {
+            return d.x;
+          },
+          y: function (d) {
+            return d.y / 100;
+          },
+          useInteractiveGuideline: true,
+          dispatch: {
+            stateChange: function (e) {
+              console.log("stateChange");
+            },
+            changeState: function (e) {
+              console.log("changeState");
+            },
+            tooltipShow: function (e) {
+              console.log("tooltipShow");
+            },
+            tooltipHide: function (e) {
+              console.log("tooltipHide");
+            }
+          },
+          xAxis: {
+            axisLabel: $translate.instant("TIEMPO"),
+            tickFormat: function (d) {
+              return d3.time.format("%Y-%m")(new Date(d));
+            },
+            showMaxMin: false,
+            staggerLabels: true,
+            axisLabelDistance: 30
+          },
+          yAxis: {
+            axisLabel: $translate.instant("PORCENTAJE"),
+            tickFormat: function (d) {
+              return d3.format(",.1%")(d);
+            },
+            axisLabelDistance: 20
+          },
+          callback: function (chart) {
+            console.log("!!! lineChart callback !!!");
+          }
+        }
+      };
+
+      $scope.init();
+    });
+
+  angular
+    .module("App")
+    .controller("piePCController", function(
+      $scope,
+      $http,
+      $window,
+      $location,
+      $timeout,
+      flash,
+      errorFlash,
+      URLS,
+      $mdDialog,
+      $mdUtil,
+      $translate,
+      CrudDataApi,
+      $filter,
+      NgMap
+    ) {
+      $scope.piePC = true;
+
+      $scope.datos = {};
+
+      $scope.showModal = false;
+      $scope.showModalCriterio = false;
+      $scope.chart;
+      $scope.verpiePC = "";
+      $scope.dimension = [];
+      $scope.datosOk = true;
+
+      $scope.tempIndicador = [];
+      $scope.toggle = function(item, list) {
+        var idx = list.indexOf(item);
+        if (idx > -1) list.splice(idx, 1);
+        else {
+          list.push(item);
+        }
+      };
+      //lenar los check box tipo array
+      $scope.exists = function(item, list) {
+        return list.indexOf(item) > -1;
+      };
+      $scope.dato_mapa = 1;
+      $scope.CambiarTipoMapa = function(tipo) {
+        $scope.dato_mapa = tipo;
+      };
+      $scope.cambiarVerTodoIndicador = function() {
+        if ($scope.filtro.verTodosIndicadores) {
+          $scope.filtro.indicador = [];
+          $scope.chipIndicador = [];
+          $scope.tempIndicador = [];
+        }
+      };
+      $scope.cambiarVerTodoUM = function() {
+        if ($scope.filtro.verTodosUM) {
+          $scope.filtro.um = {};
+          $scope.filtro.um.tipo = "municipio";
+        }
+      };
+
+      $scope.cambiarVerTodoClues = function() {
+        $scope.filtro.clues = [];
+      };
+
+      var d = new Date();
+      $scope.opcion = true;
+
+      $scope.filtro = {};
+      $scope.filtro.tipo = "PC";
+      $scope.filtro.visualizar = "tiempo";
+      $scope.filtro.anio = d.getFullYear();
+      $scope.filtro.um = {};
+      $scope.filtro.um.tipo = "municipio";
+      $scope.filtro.clues = [];
+      $scope.mostrarCategoria = [];
+      $scope.filtro.verTodosIndicadores = true;
+      $scope.filtro.verTodosUM = true;
+      $scope.filtro.verTodosClues = true;
+      $scope.chipIndicador = [];
+      $scope.filtros = {};
+      $scope.filtros.activo = false;
+      $scope.verInfo = false;
+      //aplicar los filtros al area del grafico
+      $scope.aplicarFiltro = function(avanzado, item) {
+        $scope.filtros.activo = true;
+        $scope.filtro.indicador = $scope.tempIndicador;
+        if (!avanzado) {
+          $scope.filtro.indicador = [];
+          $scope.filtro.verTodosIndicadores = false;
+          if ($scope.filtro.indicador.indexOf(item.codigo) == -1) {
+            $scope.filtro.indicador.push(item.codigo);
+            $scope.chipIndicador[item.codigo] = item;
+          }
+        }
+        $scope.contador = 0;
+        $scope.intento = 0;
+        $scope.init();
+      };
+      $scope.contador = 0;
+
+      //quitar los filtros seleccionados del dialog
+      $scope.quitarFiltro = function(avanzado) {
+        $scope.filtro.indicador = [];
+        $scope.filtro.clues = [];
+        $scope.filtro.um = {};
+        $scope.filtro.um.tipo = "municipio";
+        $scope.filtro.verTodosIndicadores = true;
+        $scope.filtro.verTodosUM = true;
+        $scope.filtros.activo = false;
+
+        $scope.intento = 0;
+        $scope.contador = 0;
+        $scope.init();
+      };
+
+      // cerrar el dialog
+      $scope.hide = function() {
+        $mdDialog.hide();
+      };
+      //cambiar a pantalla completa
+      $scope.isFullscreen = false;
+
+      $scope.toggleFullScreen = function(e) {
+        $scope.isFullscreen = !$scope.isFullscreen;
+      };
+      $scope.cargarFiltro = 0;
+      $scope.toggleRightOpciones = function(navID) {
+        $scope.getDimension("anio", 0);
+        $scope.getDimension("month", 1);
+        $scope.getDimension(
+          "codigo,indicador,color, 'PC' as categoriaEvaluacion",
+          2
+        );
+        $scope.getDimension("jurisdiccion", 3);
+        $scope.getDimension("municipio", 4);
+        $scope.getDimension("zona", 5);
+        $scope.getDimension("cone", 6);
+        $scope.cargarFiltro++;
+      };
+      $scope.cambiarAnio = function(anio) {
+        $scope.filtro.bimestre = [];
+        $scope.filtro.anio = anio;
+        $scope.getDimension("month", 1);
+        $scope.getDimension(
+          "codigo,indicador,color, '" +
+            $scope.filtro.tipo +
+            "' as categoriaEvaluacion",
+          2
+        );
+        $scope.getDimension("jurisdiccion", 3);
+        $scope.getDimension("municipio", 4);
+        $scope.getDimension("zona", 5);
+        $scope.getDimension("cone", 6);
+      };
+      $scope.cambiarBimestre = function(bimestre) {
+        $scope.filtro.bimestre = bimestre;
+        $scope.getDimension(
+          "codigo,indicador,color, '" +
+            $scope.filtro.tipo +
+            "' as categoriaEvaluacion",
+          2
+        );
+        $scope.getDimension("jurisdiccion", 3);
+        $scope.getDimension("municipio", 4);
+        $scope.getDimension("zona", 5);
+        $scope.getDimension("cone", 6);
+      };
+      $scope.cambiarCategoria = function() {
+        $scope.getDimension(
+          "codigo,indicador,color, '" +
+            $scope.filtro.tipo +
+            "' as categoriaEvaluacion",
+          2
+        );
+      };
+
+      $scope.intentoOpcion = 0;
+      $scope.getDimension = function(nivel, c) {
+        $scope.opcion = true;
+        var url = "/PCDimension";
+        if ($scope.filtro.tipo == "PC") url = "/PCDimension";
+        $scope.datos[c] = [];
+        CrudDataApi.lista(
+          url + "?filtro=" + JSON.stringify($scope.filtro) + "&nivel=" + nivel,
+          function(data) {
+            data = data.data;
+            $scope.datos[c] = data.data;
+            $scope.opcion = false;
+          },
+          function(e) {
+            if ($scope.intentoOpcion < 1) {
+              $scope.getDimension(nivel, c);
+              $scope.intentoOpcion++;
+            }
+            $scope.opcion = false;
+          }
+        );
+      };
+
+      // obtiene los datos necesarios para crear el grid (listado)
+      $scope.intento = 0;
+      $scope.init = function() {
         var url = "/pieVisita";
 
         $scope.piePC = true;
         $scope.clues_view = [];
         CrudDataApi.lista(
           url + "?filtro=" + JSON.stringify($scope.filtro),
-          function (data) {
+          function(data) {
             data = data.data;
             if (data.status == "407") $window.location = "acceso";
 
@@ -568,7 +536,7 @@
             }
             $scope.piePC = false;
           },
-          function (e) {
+          function(e) {
             if ($scope.intento < 1) {
               $scope.init();
               $scope.intento++;
@@ -580,11 +548,11 @@
       $scope.mostrarGrafica = "pie";
       $scope.init();
 
-      $scope.pintar_mapa = function () {
+      $scope.pintar_mapa = function() {
         var vm = this;
         vm.dynMarkers = [];
 
-        NgMap.getMap().then(function (map) {
+        NgMap.getMap().then(function(map) {
           for (var i = 0; i < $scope.dato.length; i++) {
             var icono = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
             if ($scope.dato[i].visitado == 1) {
@@ -608,10 +576,10 @@
         chart: {
           type: "pieChart",
           height: 500,
-          x: function (d) {
+          x: function(d) {
             return d.key;
           },
-          y: function (d) {
+          y: function(d) {
             return d.y;
           },
           showLabels: true,
@@ -633,7 +601,7 @@
 
   angular
     .module("App")
-    .controller("criterioPCController", function (
+    .controller("criterioPCController", function(
       $scope,
       $localStorage,
       $stateParams,
@@ -661,7 +629,7 @@
       $scope.datosOk = true;
 
       $scope.tempIndicador = [];
-      $scope.toggle = function (item, list) {
+      $scope.toggle = function(item, list) {
         var idx = list.indexOf(item);
         if (idx > -1) list.splice(idx, 1);
         else {
@@ -669,7 +637,7 @@
         }
       };
       $scope.valorGuardado = [];
-      $scope.getCriterioDetalle = function (ev, value) {
+      $scope.getCriterioDetalle = function(ev, value) {
         $scope.indicadorSeleccionado = value;
         $scope.showDialog = $mdDialog;
         $scope.tipo = 0;
@@ -681,7 +649,7 @@
         $scope.filtro.id = value.codigo;
         CrudDataApi.lista(
           url + "?filtro=" + JSON.stringify($scope.filtro),
-          function (data) {
+          function(data) {
             data = data.data;
             if (data.status == "407") $window.location = "acceso";
 
@@ -705,7 +673,7 @@
             $scope.cargando = false;
             $scope.criterioDetalle = false;
           },
-          function (e) {
+          function(e) {
             $scope.criterio = false;
             $scope.cargando = false;
           }
@@ -715,7 +683,7 @@
       $scope.tipo = 0;
       $scope.dimen = ["criterio", "jurisdiccion", "clues"];
 
-      $scope.getCriterioDetalleClick2 = function (ev, value, tipo) {
+      $scope.getCriterioDetalleClick2 = function(ev, value, tipo) {
         $scope.showDialog.show({
           targetEvent: ev,
           scope: $scope.$new(),
@@ -724,7 +692,7 @@
         });
         $scope.getCriterioDetalleClick(ev, value, tipo);
       };
-      $scope.getCriterioDetalleClick = function (ev, value, tipo) {
+      $scope.getCriterioDetalleClick = function(ev, value, tipo) {
         $scope.tipo = tipo;
         var url = "/criterioDetalle";
         $scope.criterioDetalle = true;
@@ -732,7 +700,7 @@
         $scope.filtro.valor = $scope.filtro.valor + "|" + value;
         $scope.filtro.grado = tipo;
 
-        angular.forEach($scope.valorGuardado, function (v, k) {
+        angular.forEach($scope.valorGuardado, function(v, k) {
           if (k > tipo) {
             $scope.valorGuardado[k] = "";
             delete $scope.valorGuardado[k];
@@ -740,7 +708,7 @@
         });
         CrudDataApi.lista(
           url + "?filtro=" + JSON.stringify($scope.filtro),
-          function (data) {
+          function(data) {
             data = data.data;
             if (data.status == "407") $window.location = "acceso";
 
@@ -750,13 +718,13 @@
             }
             $scope.criterioDetalle = false;
           },
-          function (e) {
+          function(e) {
             $scope.criterioDetalle = false;
           }
         );
       };
 
-      $scope.getCluesCriterios = function (ev, value, tipo) {
+      $scope.getCluesCriterios = function(ev, value, tipo) {
         $scope.filtro.valor = $scope.filtro.valor + "|" + value;
         $scope.filtro.grado = tipo;
         $scope.filtro.indicador = $scope.indicadorSeleccionado.codigo;
@@ -764,7 +732,7 @@
         $scope.criterioDetalle = true;
         CrudDataApi.lista(
           url + "?filtro=" + JSON.stringify($scope.filtro),
-          function (data) {
+          function(data) {
             data = data.data;
             if (data.status == "407") $window.location = "acceso";
 
@@ -784,7 +752,7 @@
             }
             $scope.criterioDetalle = false;
           },
-          function (e) {
+          function(e) {
             e = e.data;
             errorFlash.error(e);
             $scope.criterioDetalle = false;
@@ -793,25 +761,25 @@
       };
 
       //lenar los check box tipo array
-      $scope.exists = function (item, list) {
+      $scope.exists = function(item, list) {
         return list.indexOf(item) > -1;
       };
 
-      $scope.cambiarVerTodoIndicador = function () {
+      $scope.cambiarVerTodoIndicador = function() {
         if ($scope.filtro.verTodosIndicadores) {
           $scope.filtro.indicador = [];
           $scope.chipIndicador = [];
           $scope.tempIndicador = [];
         }
       };
-      $scope.cambiarVerTodoUM = function () {
+      $scope.cambiarVerTodoUM = function() {
         if ($scope.filtro.verTodosUM) {
           $scope.filtro.um = {};
           $scope.filtro.um.tipo = "municipio";
         }
       };
 
-      $scope.cambiarVerTodoClues = function () {
+      $scope.cambiarVerTodoClues = function() {
         $scope.filtro.clues = [];
       };
 
@@ -837,7 +805,7 @@
       $scope.filtro.valor = "";
 
       //aplicar los filtros al area del grafico
-      $scope.aplicarFiltro = function (avanzado, item) {
+      $scope.aplicarFiltro = function(avanzado, item) {
         $scope.filtros.activo = true;
         $scope.filtro.indicador = $scope.tempIndicador;
         if (!avanzado) {
@@ -855,7 +823,7 @@
       $scope.contador = 0;
 
       //quitar los filtros seleccionados del dialog
-      $scope.quitarFiltro = function (avanzado) {
+      $scope.quitarFiltro = function(avanzado) {
         $scope.filtro.indicador = [];
         $scope.filtro.clues = [];
         $scope.filtro.um = {};
@@ -870,24 +838,24 @@
       };
 
       // cerrar el dialog
-      $scope.hide = function () {
+      $scope.hide = function() {
         $mdDialog.hide();
       };
       //cambiar a pantalla completa
       $scope.isFullscreen = false;
 
-      $scope.toggleFullScreen = function (e) {
+      $scope.toggleFullScreen = function(e) {
         $scope.isFullscreen = !$scope.isFullscreen;
       };
       $scope.cargarFiltro = 0;
-      $scope.toggleRightOpciones = function (navID) {
+      $scope.toggleRightOpciones = function(navID) {
         if ($scope.cargarFiltro < 1) {
           $scope.getDimension("anio", 0);
           $scope.getDimension("month", 1);
           $scope.getDimension(
             "codigo,indicador,color, '" +
-            $scope.filtro.tipo +
-            "' as categoriaEvaluacion",
+              $scope.filtro.tipo +
+              "' as categoriaEvaluacion",
             2
           );
           $scope.getDimension("jurisdiccion", 3);
@@ -897,14 +865,14 @@
           $scope.cargarFiltro++;
         }
       };
-      $scope.cambiarAnio = function (anio) {
+      $scope.cambiarAnio = function(anio) {
         $scope.filtro.bimestre = [];
         $scope.filtro.anio = anio;
         $scope.getDimension("month", 1);
         $scope.getDimension(
           "codigo,indicador,color, '" +
-          $scope.filtro.tipo +
-          "' as categoriaEvaluacion",
+            $scope.filtro.tipo +
+            "' as categoriaEvaluacion",
           2
         );
         $scope.getDimension("jurisdiccion", 3);
@@ -912,12 +880,12 @@
         $scope.getDimension("zona", 5);
         $scope.getDimension("cone", 6);
       };
-      $scope.cambiarBimestre = function (bimestre) {
+      $scope.cambiarBimestre = function(bimestre) {
         $scope.filtro.bimestre = bimestre;
         $scope.getDimension(
           "codigo,indicador,color, '" +
-          $scope.filtro.tipo +
-          "' as categoriaEvaluacion",
+            $scope.filtro.tipo +
+            "' as categoriaEvaluacion",
           2
         );
         $scope.getDimension("jurisdiccion", 3);
@@ -925,29 +893,29 @@
         $scope.getDimension("zona", 5);
         $scope.getDimension("cone", 6);
       };
-      $scope.cambiarCategoria = function () {
+      $scope.cambiarCategoria = function() {
         $scope.getDimension(
           "codigo,indicador,color, '" +
-          $scope.filtro.tipo +
-          "' as categoriaEvaluacion",
+            $scope.filtro.tipo +
+            "' as categoriaEvaluacion",
           2
         );
       };
 
       $scope.intentoOpcion = 0;
-      $scope.getDimension = function (nivel, c) {
+      $scope.getDimension = function(nivel, c) {
         $scope.opcion = true;
         var url = "/PCDimension";
         if ($scope.filtro.tipo == "PC") url = "/PCDimension";
         $scope.datos[c] = [];
         CrudDataApi.lista(
           url + "?filtro=" + JSON.stringify($scope.filtro) + "&nivel=" + nivel,
-          function (data) {
+          function(data) {
             data = data.data;
             $scope.datos[c] = data.data;
             $scope.opcion = false;
           },
-          function (e) {
+          function(e) {
             if ($scope.intentoOpcion < 1) {
               $scope.getDimension(nivel, c);
               $scope.intentoOpcion++;
@@ -959,14 +927,14 @@
 
       // obtiene los datos necesarios para crear el grid (listado)
       $scope.intento = 0;
-      $scope.init = function () {
+      $scope.init = function() {
         var url = "/criterioDash";
         if ($scope.filtro.estricto) url = "/criterioEstricto";
 
         $scope.criterioDetalle = true;
         CrudDataApi.lista(
           url + "?filtro=" + JSON.stringify($scope.filtro),
-          function (data) {
+          function(data) {
             data = data.data;
             if (data.status == "407") $window.location = "acceso";
 
@@ -982,7 +950,7 @@
             }
             $scope.criterioDetalle = false;
           },
-          function (e) {
+          function(e) {
             if ($scope.intento < 1) {
               $scope.init();
               $scope.intento++;
@@ -997,7 +965,7 @@
 
   angular
     .module("App")
-    .controller("alertaPCController", function (
+    .controller("alertaPCController", function(
       $scope,
       $localStorage,
       $stateParams,
@@ -1025,7 +993,7 @@
       $scope.datosOk = true;
 
       $scope.tempIndicador = [];
-      $scope.toggle = function (item, list) {
+      $scope.toggle = function(item, list) {
         var idx = list.indexOf(item);
         if (idx > -1) list.splice(idx, 1);
         else {
@@ -1033,7 +1001,7 @@
         }
       };
       $scope.valorGuardado = [];
-      $scope.getAlertaDetalle = function (ev, value) {
+      $scope.getAlertaDetalle = function(ev, value) {
         $scope.indicadorSeleccionado = value;
         $scope.showDialog = $mdDialog;
         $scope.tipo = 0;
@@ -1045,7 +1013,7 @@
         $scope.filtro.id = value.codigo;
         CrudDataApi.lista(
           url + "?filtro=" + JSON.stringify($scope.filtro),
-          function (data) {
+          function(data) {
             data = data.data;
             if (data.status == "407") $window.location = "acceso";
 
@@ -1067,7 +1035,7 @@
             $scope.cargando = false;
             $scope.alertaPC = false;
           },
-          function (e) {
+          function(e) {
             $scope.alerta = false;
             $scope.cargando = false;
           }
@@ -1077,7 +1045,7 @@
       $scope.tipo = 0;
       $scope.dimen = ["jurisdiccion", "municipio", "cone"];
 
-      $scope.getAlertaDetalleClick = function (ev, jurisdiccion, cone) {
+      $scope.getAlertaDetalleClick = function(ev, jurisdiccion, cone) {
         var url = "/alertaDetalle";
         $scope.alertaDetalle = true;
         $scope.filtro.id = $scope.indicadorSeleccionado.codigo;
@@ -1086,7 +1054,7 @@
 
         CrudDataApi.lista(
           url + "?filtro=" + JSON.stringify($scope.filtro),
-          function (data) {
+          function(data) {
             data = data.data;
             if (data.status == "407") $window.location = "acceso";
 
@@ -1095,32 +1063,32 @@
             }
             $scope.alertaDetalle = false;
           },
-          function (e) {
+          function(e) {
             $scope.alertaDetalle = false;
           }
         );
       };
 
       //lenar los check box tipo array
-      $scope.exists = function (item, list) {
+      $scope.exists = function(item, list) {
         return list.indexOf(item) > -1;
       };
 
-      $scope.cambiarVerTodoIndicador = function () {
+      $scope.cambiarVerTodoIndicador = function() {
         if ($scope.filtro.verTodosIndicadores) {
           $scope.filtro.indicador = [];
           $scope.chipIndicador = [];
           $scope.tempIndicador = [];
         }
       };
-      $scope.cambiarVerTodoUM = function () {
+      $scope.cambiarVerTodoUM = function() {
         if ($scope.filtro.verTodosUM) {
           $scope.filtro.um = {};
           $scope.filtro.um.tipo = "municipio";
         }
       };
 
-      $scope.cambiarVerTodoClues = function () {
+      $scope.cambiarVerTodoClues = function() {
         $scope.filtro.clues = [];
       };
 
@@ -1145,7 +1113,7 @@
       $scope.filtro.estricto = false;
 
       //aplicar los filtros al area del grafico
-      $scope.aplicarFiltro = function (avanzado, item) {
+      $scope.aplicarFiltro = function(avanzado, item) {
         $scope.filtros.activo = true;
         $scope.filtro.indicador = $scope.tempIndicador;
         if (!avanzado) {
@@ -1163,7 +1131,7 @@
       $scope.contador = 0;
 
       //quitar los filtros seleccionados del dialog
-      $scope.quitarFiltro = function (avanzado) {
+      $scope.quitarFiltro = function(avanzado) {
         $scope.filtro.indicador = [];
         $scope.filtro.clues = [];
         $scope.filtro.um = {};
@@ -1178,24 +1146,24 @@
       };
 
       // cerrar el dialog
-      $scope.hide = function () {
+      $scope.hide = function() {
         $mdDialog.hide();
       };
       //cambiar a pantalla completa
       $scope.isFullscreen = false;
 
-      $scope.toggleFullScreen = function (e) {
+      $scope.toggleFullScreen = function(e) {
         $scope.isFullscreen = !$scope.isFullscreen;
       };
       $scope.cargarFiltro = 0;
-      $scope.toggleRightOpciones = function (navID) {
+      $scope.toggleRightOpciones = function(navID) {
         if ($scope.cargarFiltro < 1) {
           $scope.getDimension("anio", 0);
           $scope.getDimension("month", 1);
           $scope.getDimension(
             "codigo,indicador,color, '" +
-            $scope.filtro.tipo +
-            "' as categoriaEvaluacion",
+              $scope.filtro.tipo +
+              "' as categoriaEvaluacion",
             2
           );
           $scope.getDimension("jurisdiccion", 3);
@@ -1205,14 +1173,14 @@
           $scope.cargarFiltro++;
         }
       };
-      $scope.cambiarAnio = function (anio) {
+      $scope.cambiarAnio = function(anio) {
         $scope.filtro.bimestre = [];
         $scope.filtro.anio = anio;
         $scope.getDimension("month", 1);
         $scope.getDimension(
           "codigo,indicador,color, '" +
-          $scope.filtro.tipo +
-          "' as categoriaEvaluacion",
+            $scope.filtro.tipo +
+            "' as categoriaEvaluacion",
           2
         );
         $scope.getDimension("jurisdiccion", 3);
@@ -1220,12 +1188,12 @@
         $scope.getDimension("zona", 5);
         $scope.getDimension("cone", 6);
       };
-      $scope.cambiarBimestre = function (bimestre) {
+      $scope.cambiarBimestre = function(bimestre) {
         $scope.filtro.bimestre = bimestre;
         $scope.getDimension(
           "codigo,indicador,color, '" +
-          $scope.filtro.tipo +
-          "' as categoriaEvaluacion",
+            $scope.filtro.tipo +
+            "' as categoriaEvaluacion",
           2
         );
         $scope.getDimension("jurisdiccion", 3);
@@ -1233,29 +1201,29 @@
         $scope.getDimension("zona", 5);
         $scope.getDimension("cone", 6);
       };
-      $scope.cambiarCategoria = function () {
+      $scope.cambiarCategoria = function() {
         $scope.getDimension(
           "codigo,indicador,color, '" +
-          $scope.filtro.tipo +
-          "' as categoriaEvaluacion",
+            $scope.filtro.tipo +
+            "' as categoriaEvaluacion",
           2
         );
       };
 
       $scope.intentoOpcion = 0;
-      $scope.getDimension = function (nivel, c) {
+      $scope.getDimension = function(nivel, c) {
         $scope.opcion = true;
         var url = "/PCDimension";
         if ($scope.filtro.tipo == "PC") url = "/PCDimension";
         $scope.datos[c] = [];
         CrudDataApi.lista(
           url + "?filtro=" + JSON.stringify($scope.filtro) + "&nivel=" + nivel,
-          function (data) {
+          function(data) {
             data = data.data;
             $scope.datos[c] = data.data;
             $scope.opcion = false;
           },
-          function (e) {
+          function(e) {
             if ($scope.intentoOpcion < 1) {
               $scope.getDimension(nivel, c);
               $scope.intentoOpcion++;
@@ -1267,14 +1235,14 @@
 
       // obtiene los datos necesarios para crear el grid (listado)
       $scope.intento = 0;
-      $scope.init = function () {
+      $scope.init = function() {
         var url = "/alertaDash";
         if ($scope.filtro.estricto) url = "/alertaEstricto";
 
         $scope.alertaPC = true;
         CrudDataApi.lista(
           url + "?filtro=" + JSON.stringify($scope.filtro),
-          function (data) {
+          function(data) {
             data = data.data;
             if (data.status == "407") $window.location = "acceso";
 
@@ -1290,7 +1258,7 @@
             }
             $scope.alertaPC = false;
           },
-          function (e) {
+          function(e) {
             if ($scope.intento < 1) {
               $scope.init();
               $scope.intento++;
@@ -1304,7 +1272,7 @@
 
   angular
     .module("App")
-    .controller("globalPCController", function (
+    .controller("globalPCController", function(
       $scope,
       $http,
       $window,
@@ -1330,7 +1298,7 @@
       $scope.datosOk = true;
 
       $scope.tempIndicador = [];
-      $scope.toggle = function (item, list) {
+      $scope.toggle = function(item, list) {
         var idx = list.indexOf(item);
         if (idx > -1) list.splice(idx, 1);
         else {
@@ -1338,29 +1306,29 @@
         }
       };
       //lenar los check box tipo array
-      $scope.exists = function (item, list) {
+      $scope.exists = function(item, list) {
         return list.indexOf(item) > -1;
       };
 
-      $scope.cambiarVerTodoIndicador = function () {
+      $scope.cambiarVerTodoIndicador = function() {
         if ($scope.filtro.verTodosIndicadores) {
           $scope.filtro.indicador = [];
           $scope.chipIndicador = [];
           $scope.tempIndicador = [];
         }
       };
-      $scope.cambiarVerTodoUM = function () {
+      $scope.cambiarVerTodoUM = function() {
         if ($scope.filtro.verTodosUM) {
           $scope.filtro.um = {};
           $scope.filtro.um.tipo = "municipio";
         }
       };
 
-      $scope.cambiarVerTodoClues = function () {
+      $scope.cambiarVerTodoClues = function() {
         $scope.filtro.clues = [];
       };
 
-      $scope.showAlert = function (ev) {
+      $scope.showAlert = function(ev) {
         $mdDialog.show(
           $mdDialog
             .alert()
@@ -1398,7 +1366,7 @@
       $scope.verInfo = false;
 
       $scope.valorMostrarTop = 0;
-      $scope.cambiarVistaTop = function (valor) {
+      $scope.cambiarVistaTop = function(valor) {
         if (valor == 1) {
           $scope.mostrarTop["TOP_MAS"] = true;
           $scope.mostrarTop["TOP_MENOS"] = false;
@@ -1413,7 +1381,7 @@
         }
       };
       //aplicar los filtros al area del grafico
-      $scope.aplicarFiltro = function (avanzado, item) {
+      $scope.aplicarFiltro = function(avanzado, item) {
         $scope.filtros.activo = true;
         $scope.filtro.indicador = $scope.tempIndicador;
         if (!avanzado) {
@@ -1438,7 +1406,7 @@
       $scope.contador = 0;
 
       //quitar los filtros seleccionados del dialog
-      $scope.quitarFiltro = function (avanzado) {
+      $scope.quitarFiltro = function(avanzado) {
         $scope.filtro.indicador = [];
         $scope.filtro.clues = [];
         $scope.filtro.um = {};
@@ -1453,17 +1421,17 @@
       };
 
       // cerrar el dialog
-      $scope.hide = function () {
+      $scope.hide = function() {
         $mdDialog.hide();
       };
       //cambiar a pantalla completa
       $scope.isFullscreen = false;
 
-      $scope.toggleFullScreen = function (e) {
+      $scope.toggleFullScreen = function(e) {
         $scope.isFullscreen = !$scope.isFullscreen;
       };
       $scope.cargarFiltro = 0;
-      $scope.toggleRightOpciones = function (navID) {
+      $scope.toggleRightOpciones = function(navID) {
         $scope.catVisible = false;
 
         if ($scope.cargarFiltro < 1) {
@@ -1471,8 +1439,8 @@
           $scope.getDimension("month", 1);
           $scope.getDimension(
             "codigo,indicador,color, '" +
-            $scope.filtro.tipo +
-            "' as categoriaEvaluacion",
+              $scope.filtro.tipo +
+              "' as categoriaEvaluacion",
             2
           );
           $scope.getDimension("jurisdiccion", 3);
@@ -1482,14 +1450,14 @@
           $scope.cargarFiltro++;
         }
       };
-      $scope.cambiarAnio = function (anio) {
+      $scope.cambiarAnio = function(anio) {
         $scope.filtro.bimestre = [];
         $scope.filtro.anio = anio;
         $scope.getDimension("month", 1);
         $scope.getDimension(
           "codigo,indicador,color, '" +
-          $scope.filtro.tipo +
-          "' as categoriaEvaluacion",
+            $scope.filtro.tipo +
+            "' as categoriaEvaluacion",
           2
         );
         $scope.getDimension("jurisdiccion", 3);
@@ -1497,12 +1465,12 @@
         $scope.getDimension("zona", 5);
         $scope.getDimension("cone", 6);
       };
-      $scope.cambiarBimestre = function (bimestre) {
+      $scope.cambiarBimestre = function(bimestre) {
         $scope.filtro.bimestre = bimestre;
         $scope.getDimension(
           "codigo,indicador,color, '" +
-          $scope.filtro.tipo +
-          "' as categoriaEvaluacion",
+            $scope.filtro.tipo +
+            "' as categoriaEvaluacion",
           2
         );
         $scope.getDimension("jurisdiccion", 3);
@@ -1510,28 +1478,28 @@
         $scope.getDimension("zona", 5);
         $scope.getDimension("cone", 6);
       };
-      $scope.cambiarCategoria = function () {
+      $scope.cambiarCategoria = function() {
         $scope.getDimension(
           "codigo,indicador,color, '" +
-          $scope.filtro.tipo +
-          "' as categoriaEvaluacion",
+            $scope.filtro.tipo +
+            "' as categoriaEvaluacion",
           2
         );
       };
 
       $scope.intentoOpcion = 0;
-      $scope.getDimension = function (nivel, c) {
+      $scope.getDimension = function(nivel, c) {
         $scope.opcion = true;
         var url = "/PCDimension";
         $scope.datos[c] = [];
         CrudDataApi.lista(
           url + "?filtro=" + JSON.stringify($scope.filtro) + "&nivel=" + nivel,
-          function (data) {
+          function(data) {
             data = data.data;
             $scope.datos[c] = data.data;
             $scope.opcion = false;
           },
-          function (e) {
+          function(e) {
             if ($scope.intentoOpcion < 1) {
               $scope.getDimension(nivel, c);
               $scope.intentoOpcion++;
@@ -1543,13 +1511,13 @@
 
       // obtiene los datos necesarios para crear el grid (listado)
       $scope.intento = 0;
-      $scope.init = function () {
+      $scope.init = function() {
         var url = "/TopPCGlobal";
 
         $scope.globalPC = true;
         CrudDataApi.lista(
           url + "?filtro=" + JSON.stringify($scope.filtro),
-          function (data) {
+          function(data) {
             data = data.data;
             if (data.status == "407") $window.location = "acceso";
 
@@ -1565,7 +1533,7 @@
             }
             $scope.globalPC = false;
           },
-          function (e) {
+          function(e) {
             if ($scope.intento < 1) {
               $scope.init();
               $scope.intento++;
@@ -1579,7 +1547,7 @@
 
   angular
     .module("App")
-    .controller("gaugePCController", function (
+    .controller("gaugePCController", function(
       $scope,
       $http,
       $window,
@@ -1605,7 +1573,7 @@
       $scope.datosOk = true;
 
       $scope.tempIndicador = [];
-      $scope.toggle = function (item, list) {
+      $scope.toggle = function(item, list) {
         var idx = list.indexOf(item);
         if (idx > -1) list.splice(idx, 1);
         else {
@@ -1613,25 +1581,25 @@
         }
       };
       //lenar los check box tipo array
-      $scope.exists = function (item, list) {
+      $scope.exists = function(item, list) {
         return list.indexOf(item) > -1;
       };
 
-      $scope.cambiarVerTodoIndicador = function () {
+      $scope.cambiarVerTodoIndicador = function() {
         if ($scope.filtro.verTodosIndicadores) {
           $scope.filtro.indicador = [];
           $scope.chipIndicador = [];
           $scope.tempIndicador = [];
         }
       };
-      $scope.cambiarVerTodoUM = function () {
+      $scope.cambiarVerTodoUM = function() {
         if ($scope.filtro.verTodosUM) {
           $scope.filtro.um = {};
           $scope.filtro.um.tipo = "municipio";
         }
       };
 
-      $scope.cambiarVerTodoClues = function () {
+      $scope.cambiarVerTodoClues = function() {
         $scope.filtro.clues = [];
       };
 
@@ -1656,7 +1624,7 @@
       $scope.indicadores = [];
       $scope.filtro.estricto = false;
       //aplicar los filtros al area del grafico
-      $scope.aplicarFiltro = function (avanzado, item) {
+      $scope.aplicarFiltro = function(avanzado, item) {
         $scope.filtros.activo = true;
         $scope.filtro.indicador = $scope.tempIndicador;
         if (!avanzado) {
@@ -1674,7 +1642,7 @@
       $scope.contador = 0;
 
       //quitar los filtros seleccionados del dialog
-      $scope.quitarFiltro = function (avanzado) {
+      $scope.quitarFiltro = function(avanzado) {
         $scope.filtro.indicador = [];
         $scope.filtro.clues = [];
         $scope.filtro.um = {};
@@ -1689,24 +1657,24 @@
       };
 
       // cerrar el dialog
-      $scope.hide = function () {
+      $scope.hide = function() {
         $mdDialog.hide();
       };
       //cambiar a pantalla completa
       $scope.isFullscreen = false;
 
-      $scope.toggleFullScreen = function (e) {
+      $scope.toggleFullScreen = function(e) {
         $scope.isFullscreen = !$scope.isFullscreen;
       };
       $scope.cargarFiltro = 0;
-      $scope.toggleRightOpciones = function (navID) {
+      $scope.toggleRightOpciones = function(navID) {
         if ($scope.cargarFiltro < 1) {
           $scope.getDimension("anio", 0);
           $scope.getDimension("month", 1);
           $scope.getDimension(
             "codigo,indicador,color, '" +
-            $scope.filtro.tipo +
-            "' as categoriaEvaluacion",
+              $scope.filtro.tipo +
+              "' as categoriaEvaluacion",
             2
           );
           $scope.getDimension("jurisdiccion", 3);
@@ -1716,14 +1684,14 @@
           $scope.cargarFiltro++;
         }
       };
-      $scope.cambiarAnio = function (anio) {
+      $scope.cambiarAnio = function(anio) {
         $scope.filtro.bimestre = [];
         $scope.filtro.anio = anio;
         $scope.getDimension("month", 1);
         $scope.getDimension(
           "codigo,indicador,color, '" +
-          $scope.filtro.tipo +
-          "' as categoriaEvaluacion",
+            $scope.filtro.tipo +
+            "' as categoriaEvaluacion",
           2
         );
         $scope.getDimension("jurisdiccion", 3);
@@ -1731,12 +1699,12 @@
         $scope.getDimension("zona", 5);
         $scope.getDimension("cone", 6);
       };
-      $scope.cambiarBimestre = function (bimestre) {
+      $scope.cambiarBimestre = function(bimestre) {
         $scope.filtro.bimestre = bimestre;
         $scope.getDimension(
           "codigo,indicador,color, '" +
-          $scope.filtro.tipo +
-          "' as categoriaEvaluacion",
+            $scope.filtro.tipo +
+            "' as categoriaEvaluacion",
           2
         );
         $scope.getDimension("jurisdiccion", 3);
@@ -1746,18 +1714,18 @@
       };
 
       $scope.intentoOpcion = 0;
-      $scope.getDimension = function (nivel, c) {
+      $scope.getDimension = function(nivel, c) {
         $scope.opcion = true;
         var url = "/PCDimension";
         $scope.datos[c] = [];
         CrudDataApi.lista(
           url + "?filtro=" + JSON.stringify($scope.filtro) + "&nivel=" + nivel,
-          function (data) {
+          function(data) {
             data = data.data;
             $scope.datos[c] = data.data;
             $scope.opcion = false;
           },
-          function (e) {
+          function(e) {
             if ($scope.intentoOpcion < 1) {
               $scope.getDimension(nivel, c);
               $scope.intentoOpcion++;
@@ -1769,13 +1737,13 @@
 
       // obtiene los datos necesarios para crear el grid (listado)
       $scope.intento = 0;
-      $scope.init = function () {
+      $scope.init = function() {
         var url = "/hallazgoGauge";
 
         $scope.gaugePC = true;
         CrudDataApi.lista(
           url + "?filtro=" + JSON.stringify($scope.filtro),
-          function (data) {
+          function(data) {
             data = data.data;
             if (data.status == "407") $window.location = "acceso";
 
@@ -1799,7 +1767,7 @@
             }
             $scope.gaugePC = false;
           },
-          function (e) {
+          function(e) {
             if ($scope.intento < 1) {
               $scope.init();
               $scope.intento++;
@@ -1812,7 +1780,7 @@
       $scope.init();
 
       function update(valor) {
-        $timeout(function () {
+        $timeout(function() {
           $scope.value = $scope.value + 5;
           if ($scope.value < valor) {
             update(valor);
@@ -1832,13 +1800,13 @@
     $scope.acciones = [];
     $scope.hallazgos = {};
     $scope.imprimirDetalle = true;
-    listaOpcion.options("/Accion").success(function (data) {
+    listaOpcion.options("/Accion").success(function(data) {
       data = data.data;
       $scope.acciones = data.data;
     });
 
     $scope.plazos = [];
-    listaOpcion.options("/PlazoAccion").success(function (data) {
+    listaOpcion.options("/PlazoAccion").success(function(data) {
       data = data.data;
       $scope.plazos = data.data;
     });
@@ -1847,7 +1815,7 @@
     EvaluacionShow.ver(
       "/EvaluacionPC",
       id,
-      function (data) {
+      function(data) {
         data = data.data;
         if (data.status == "407") $window.location = "acceso";
 
@@ -1858,7 +1826,7 @@
         }
         $scope.cargando = false;
       },
-      function (e) {
+      function(e) {
         errorFlash.error(e);
         $scope.cargando = false;
       }
@@ -1867,7 +1835,7 @@
     EvaluacionShow.ver(
       "/EvaluacionPCCriterio",
       id,
-      function (data) {
+      function(data) {
         data = data.data;
         if (data.status == "407") $window.location = "acceso";
 
@@ -1880,11 +1848,11 @@
           $scope.hallazgos = data.hallazgos;
           $scope.indicadores = [];
 
-          angular.forEach(data.data.indicadores, function (val, key) {
+          angular.forEach(data.data.indicadores, function(val, key) {
             $scope.indicadores.push(val);
             $scope.indicadorColumna[val.codigo] = [];
             var c = 0;
-            angular.forEach(val.columnas, function (v, k) {
+            angular.forEach(val.columnas, function(v, k) {
               $scope.columnas[v.expediente] = v.expediente;
               $scope.indicadorColumna[val.codigo][v.expediente] = v;
               c++;
@@ -1900,13 +1868,13 @@
         }
         $scope.cargando = false;
       },
-      function (e) {
+      function(e) {
         errorFlash.error(e);
         $scope.cargando = false;
       }
     );
 
-    $scope.hide = function () {
+    $scope.hide = function() {
       $mdDialog.hide();
     };
   }

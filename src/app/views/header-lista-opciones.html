@@ -1,4 +1,4 @@
-<div class="md-toolbar-tools" ng-show="!showSearch">
+<div class="md-toolbar-tools" ng-if="!showSearch">
     <md-button class="md-icon-button " ng-click="toggleSidenav()"aria-label="Menu">
         <md-icon md-svg-icon="menu"></md-icon>
     </md-button>
@@ -60,7 +60,7 @@
     <span ng-include="'src/app/views/menu-opciones.html'"></span>
 </div>
 
-<div class="md-toolbar-tools" ng-show="showSearch">
+<div class="md-toolbar-tools" ng-if="showSearch">
     <md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
         <md-icon md-svg-icon="menu"></md-icon>
     </md-button>
@@ -71,7 +71,7 @@
     <form ng-submit="buscarL(buscar,columna)" flex layout="row" layout-wrap layout-align="center center">
         <md-input-container flex>
             <label>&nbsp;</label>
-            <input focus-me="showSearch" ng-model="buscar" type="text" placeholder="{{ 'BUSCAR' | translate }}" flex>
+            <input focus-me="showSearch" ng-model="buscar" type="text" placeholder="{{ 'BUSCAR' | translate }}" flex id="buscar_lista">
         </md-input-container>
     </form>
 </div>

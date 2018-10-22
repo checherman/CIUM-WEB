@@ -17,7 +17,7 @@
                 </div>
 
                 <br><br>
-                <form flex layout="column" ng-submit="signin()" layout-padding>
+                <form flex layout="column" ng-submit="signin()" layout-padding id="login">
 
                     <md-input-container class="md-block">
                         <md-icon md-svg-src="email" class="email"></md-icon>
@@ -45,7 +45,7 @@
                 <br>
                 <div layout="row" layour-align="center center" layout-fill>
                     <md-button type="submit" ng-disabled="cargando" class="md-raised md-primary" ng-click="signin()"
-                        layout-fill>
+                        layout-fill form="login">
                         <md-icon md-svg-src="lock-open"></md-icon>
                         {{ 'ENTRAR' | translate }}
                     </md-button>
