@@ -7,11 +7,13 @@
 (function(){
 	'use strict';
 	angular.module('App').constant('URLS', {
-    	BASE: 'http://localhost/Cium_2017/APIRESTfull/public',
-    	BASE_API: 'http://localhost/Cium_2017/APIRESTfull/public/v1',
-		OAUTH_CLIENTE: 'http://sistemas.salud.chiapas.gob.mx/salud-id',
-		OAUTH_SERVER: 'http://localhost/SSA_MATERIAL/oauth2-server/public',
-		ETAB: "http://localhost/etabISSUBIDO/web/app_dev.php/iframe/usuario_etab/password_etab",
-    	MAPS_KEY: "AIzaSyDw9kG14NQj-jkbInyeHBn1_HL3K6g2EI"
+    	OAUTH_DISPONIBLE: false,
+		BASE: "http://localhost/Cium_2018/APIRESTfull/public",
+		BASE_API: "http://localhost/Cium_2018/APIRESTfull/public/v1",
+		OAUTH_CLIENTE: "http://sistemas.salud.chiapas.gob.mx/salud-id",
+		OAUTH_SERVER: "http://localhost/SSA_MATERIAL/oauth2-server/public",
+		ETAB: "http://localhost/etabISSUBIDO/web/app_dev.php/iframe/admin/salud00txx&",
+		CAPTCHA: "6LfJlxUUAAAAADhVzxCiIYsZ8aCOlhanl4h8q3nL",
+		MAPS_KEY: "AIzaSyDw9kG14NQj-jkbInyeHBn1_HL3K6g2EIw"
    	});	
 })();
