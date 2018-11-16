@@ -490,7 +490,16 @@
         $scope.filtro.indicadorActivo = indicador;
 
         $localStorage.cium.filtro = $scope.filtro;
-        $location.path("/hallazgo/ver").search({ id: id });
+        var path ='';
+        if ($scope.filtro.tipo == "CALIDAD")
+          path = "#!/evaluacion-calidad/ver/" + id;
+        if ($scope.filtro.tipo == "RECURSO")
+          path = "#!/evaluacion-recurso/ver/" + id;
+
+        var a = document.createElement("a");
+        a.target = "_blank";
+        a.href = path;
+        a.click();
       };
       /**
        * @ngdoc method
@@ -503,9 +512,9 @@
       $scope.verEvaluacionCompleta = function() {
         var id = $stateParams.id;
         if ($scope.filtro.tipo == "CALIDAD")
-          $location.path("/evaluacion-calidad/ver").search({ id: id });
+          $location.path("/evaluacion-calidad/ver/"+ id);
         if ($scope.filtro.tipo == "RECURSO")
-          $location.path("/evaluacion-recurso/ver").search({ id: id });
+          $location.path("/evaluacion-recurso/ver/" + id);
       };
       // inicializa las rutas para crear los href correspondientes en la vista actual
       $scope.index = function(ruta) {

@@ -364,7 +364,7 @@
       };
       $scope.link = '';
       $scope.mostrarAyuda = function(event, link) {
-        $scope.link = "manual_usuario/login/Output/website/book/capitulo-1.html#" + link;
+        $scope.link = "manual_usuario/Output/website/book/capitulo-1.html#" + link;
         $mdDialog.show({
           targetEvent: event,
           scope: $scope.$new(),
@@ -480,7 +480,7 @@
 
       $scope.link = '';
       $scope.mostrarAyuda = function (event, link) {
-        $scope.link = "manual_usuario/login/Output/website/book/capitulo-1.html#" + link;
+        $scope.link = "manual_usuario/Output/website/book/index.html";
         $mdDialog.show({
           targetEvent: event,
           scope: $scope.$new(),

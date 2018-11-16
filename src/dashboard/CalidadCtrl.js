@@ -227,7 +227,7 @@
 
             if (data.status == "407") $window.location = "acceso";
             $scope.data = data.data;
-            console.log($scope.data);
+            
             $scope.datos = data.datos;
             $scope.total = data.total;
             $scope.calidad = false;
@@ -293,7 +293,7 @@
             axisLabelDistance: 20
           },
           callback: function(chart) {
-            console.log("!!! lineChart callback !!!");
+            
           }
         }
       };

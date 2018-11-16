@@ -379,6 +379,7 @@
         var json = $scope.dato;
 
         if (json) {
+          $scope.cargando = true;
           CrudDataApi.editar(
             url,
             id,

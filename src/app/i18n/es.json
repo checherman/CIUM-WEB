@@ -98,7 +98,7 @@
   "CODIGO": "Código",
   "DATOS_GENERALES": "Datos generales",
   "TELEFONO": "Teléfono",
-  "USUARIO": "Usuario",
+  
   "DATOS_ACCESO": "Datos de acceso",
   "TEXTO_1_USUARIO": "Puede seleccionar multiples grupos de usuario haciendo click sobre cada uno. ",
   "TEXTO_2_USUARIO": "Para quitar un grupo hacer click sobre el mismo",
@@ -401,7 +401,7 @@
 
   "USERNAME": "Apodo",
   "LAST-LOGIN": "Último login",
-  "ACTIVATED-AT": "Fecha de activacion",
+  "ACTIVATED-AT": "Fecha de activación",
   "AUTOMATICO": "Para esta app sera automatica la autorización",
   "TERMINOS-CONDICIONES-ACEPT": "Debe de aceptar los terminos y condiciones",
   "TERMINOS-CONDICIONES": "Terminos y condiciones",

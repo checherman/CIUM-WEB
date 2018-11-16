@@ -203,70 +203,61 @@
     }
   ]);
 
-  angular.module("App").factory("Menu", [
-    "$localStorage",
-    "$mdSidenav",
-    "MENU",
-    function($localStorage, $mdSidenav, MENU) {
-      var menuAutorizado = $localStorage.cium.permisos || [""];
-      var menu = [""];
-      var menuIsOpen = false;
+  angular.module("App").factory("Menu", function ($localStorage, $rootScope, $location, MENU) {
+    var menuAutorizado = $localStorage.etab.permisos || [""];
+    var menu = [""];
 
-      function updateMenu() {
-        // Se clona el array con los elementos del menu
-        menu = JSON.parse(JSON.stringify(MENU));
-
-        // Recorremos todo el menu y quitamos los elementos a los que no se tenga autorizacion
-        for (var i in menu) {
-          for (var j = 0; j < menu[i].lista.length; j++) {
-            if (menuAutorizado.indexOf(menu[i].lista[j].key) == -1) {
-              menu[i].lista.splice(j, 1);
-              j -= 1;
-            }
-          }
-        }
-
-        // Borramos los grupos que no tengan items en su lista
-        for (var i = 0; i < menu.length; i++) {
-          if (menu[i].lista.length == 0) {
-            menu.splice(i, 1);
-            i -= 1;
+    function updateMenu() {
+      menu = JSON.parse(JSON.stringify(MENU));
+      // Recorremos todo el menu y quitamos los elementos a los que no se tenga autorizacion
+      for (var i in menu) {
+        for (var j = 0; j < menu[i].lista.length; j++) {
+          if (menuAutorizado.indexOf(menu[i].lista[j].key) == -1) {
+            menu[i].lista.splice(j, 1);
+            j = 0;
           }
         }
       }
-      if ($localStorage.cium.access_token) {
-        updateMenu();
-      }
 
-      return {
-        menu: menu,
-        menuIsOpen: menuIsOpen,
-        getMenu: function() {
-          return menu;
-        },
-        setMenu: function(nuevo_menu) {
-          if (nuevo_menu.length) {
-            menuAutorizado = nuevo_menu;
-          } else {
-            menuAutorizado = ["DASHBOARD"];
-          }
-          $localStorage.cium.permisos = menuAutorizado;
-          updateMenu();
-        },
-
-        existePath: function(path) {
-          for (var i in menu) {
-            for (var j in menu[i].lista) {
-              if (menu[i].lista[j].path == path) {
-                return true;
-              }
-            }
-          }
-          return false;
+      // Borramos los grupos que no tengan items en su lista
+      for (var i = 0; i < menu.length; i++) {
+        if (menu[i].lista.length == 0) {
+          menu.splice(i, 1);
+          i = 0;
         }
-      };
+      }
     }
-  ]);
+    if ($localStorage.etab.access_token) {
+      updateMenu();
+    }
+
+    return {
+      menu: menu,
+      getMenu: function () {
+        // cambia de color el menu seleccionado
+        $rootScope.menuSelected =
+          "/" + $location.path().split("/")[1] + "/lista";
+        return menu;
+      },
+
+      setMenu: function (nuevo_menu) {
+        $localStorage.etab.permisos = nuevo_menu;
+        updateMenu();
+      },
+
+      existePath: function (path) {
+        for (var i in menu) {
+          for (var j in menu[i].lista) {
+            if (menu[i].lista[j].path == path) {
+              return true;
+            }
+          }
+        }
+        return false;
+      }
+    };
+  });
+  
   angular.module("App").factory("listaOpcion", [
     "$http",
     "URLS",

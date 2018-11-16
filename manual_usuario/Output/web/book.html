@@ -1,0 +1,2149 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="author" content="Eliecer Ramírez Esquinca" />
+    <meta name="date" content="16/11/2018"/>
+    <meta name="generator" content="easybook 4.9.0"/>
+
+    <title>CIUM WEB</title>
+
+    <link rel="stylesheet" href="./css/easybook.css" />
+
+</head>
+
+<body>
+
+<div class="container">
+<div class="row">
+    <div class="span12">
+    <div class="item cover">
+    <h1>CIUM WEB</h1>
+    <h2>Eliecer Ramírez Esquinca</h2>
+</div>    </div>
+    <div class="span9">
+        <div class="item chapter">
+    <h1 id="login"><span>Capítulo 1</span> Login</h1>
+    <p style="text-align: justify;">
+La secretaria de salud (ISECH) a través del Área de Informática de la dirección de planeación, con el apoyo del Proyecto Salud Mesoamérica 2015 (SM2015), pone en marcha el desarrollo del proyecto 
+Captura de indicadores de unidades medicas (CIUM), cuyo objetivo es facilitar y fortalecer la detección de la ubicación de los puntos críticos en la medición de proceso y recursos 
+en unidades médicas, agilizando la toma de decisiones en todos los niveles provenientes del eTAB, por medio de los cuales se logran alcanzar las metas propuestas por el sector salud.
+</p>
+
+<h2 id="objetivo">1.1 Objetivo</h2>
+
+<p style="text-align: justify;">
+El siguiente manual es para explicar el uso de la herramienta web CIUM. 
+El CIUM en línea es construido para monitorear en tiempo casi real el progreso de la captura de las evaluaciones a unidades médicas, se dice casi real por que los evaluadores 
+trabajan con un dispositivo móvil IOS o Android para la evaluación de las unidades médicas que no cuenten con internet. Posteriormente el dispositivo tendrá que sincronizar toda 
+la información que se haya recabado con la base de datos una vez el evaluador alcance la señal de internet
+</p>
+
+<h2 id="inicio-de-sesion">1.2 Inicio de sesión</h2>
+
+<p style="text-align: justify;">
+Como todo sistema de la secretaria de salud esta protegido por usuario y contraseña, asi tambien el CIUM, en el siguiente esquema se eplica los elementos dela pantalla de login.
+</p>
+
+<div class="figure" id="figure-1-1">
+    <img src="images/1-login.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Pantalla de inicio sesión</strong></p>
+  
+  <ul>
+  <li>1.- Logo que identifica al sistema CIUM</li>
+  <li>2.- Correo electrónico de la cuenta a acceder</li>
+  <li>3.- Contraseña de la cuenta</li>
+  <li>4.- Botón de recordar datos, para futuros accesos ya no escribir nuevamente la cuenta</li>
+  <li>5.- Botón de acceso</li>
+  <li>6.- Si no tiene cuenta dar click en el botón <a href="#registro">"REGISTRATE"</a> </li>
+  <li>7.- Si olvidaste la contraseña puedes restablecerla en este botón <a href="#recuperar-contrasena">"¿Olvidaste tu contraseña?"</a></li>
+  <li>8.- Ayuda</li>
+  <li>9.- Cambiar idioma</li>
+  </ul>
+</blockquote>
+
+<h2 id="login-2">1.3 Login</h2>
+
+<p style="text-align: justify;">
+Si ya tienes cuenta y tienes los permisos suficientes para entra al sistema CIUM, entonces puedes llenar los datos de la pantalla de login de la siguiente manera.
+</p>
+
+<div class="figure" id="figure-1-2">
+    <img src="images/2-login.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Iniciando sesión</strong></p>
+  
+  <ul>
+  <li>1.- Correo electrónico de la cuenta valida</li>
+  <li>2.- Contraseña de la cuenta valida</li>
+  <li>3.- (Opcional) Recordar credenciales</li>
+  <li>4.- Botón de acceso</li>
+  </ul>
+</blockquote>
+
+<p style="text-align: justify;">
+Si algun dato es erroneo se visualizara un mensaje como el siguiente
+</p>
+
+<div class="figure" id="figure-1-3">
+    <img src="images/3-login.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Iniciando sesión</strong></p>
+  
+  <ul>
+  <li>5.- Mensajes</li>
+  </ul>
+</blockquote>
+
+<p style="text-align: justify;">
+Si los datos son correctos sera redirigido a la pantalla principal "DASHBOARD".
+</p>
+
+<div class="figure" id="figure-1-4">
+    <img src="images/4-login.png" alt="" />
+
+</div>
+
+
+<p style="text-align: justify;">
+El sistema CIUM esta protegido por permisos. Si al acceder no visualiza algun modulo o alguna accion o aparece un mensaje que dice que no esta permitido es por que no cuenta con los permisos suficientes para acceder
+a la información. los permisos los asigna el administrador del sistema CIUM
+</p>
+
+<h2 id="recuperar-contrasena">1.4 Recuperar contraseña</h2>
+
+<p style="text-align: justify;">
+Si te olvidastes de la contraseña puedes recuperarla siguiendo estos pasos.
+</p>
+
+<div class="figure" id="figure-1-5">
+    <img src="images/5-login.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Recuperando contraseña</strong></p>
+  
+  <ul>
+  <li>1.- Correo de la cuenta a recuperar</li>
+  <li>2.- Captcha para evitar peticiones indeceadas</li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-1-6">
+    <img src="images/6-login.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Captcha</strong></p>
+  
+  <ul>
+  <li>3.- El captcha tiene un mecanismo que si ya se activo muchas veces aparece una serie de imagenes para seleccionar de acuerdo a una pregunta</li>
+  <li>4.- Botón de verificar los datos seleccionados</li>
+  <li>5.- Otras opciones  </li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-1-7">
+    <img src="images/7-login.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Captcha valido</strong></p>
+  
+  <ul>
+  <li>6.- Si la prueba del captcha es valido se activa la casilla con una palomita y se puede hacer click al botón "RESTABLECER"</li>
+  <li>7.- Si la cuenta es valida se notifica que se envio un correo</li>
+  </ul>
+  
+  <p><strong>Correo</strong></p>
+</blockquote>
+
+<p style="text-align: justify;">
+Revisar la bandeja de entrada del correo asociado. NOTA: si el correo no aparece en la bandeja de entrada favor de revisar la carpeta de "SPAM". 
+</p>
+
+<div class="figure" id="figure-1-8">
+    <img src="images/8-login.png" alt="" />
+
+</div>
+
+
+<p style="text-align: justify;">
+El correo tiene un link que nos llevara al sistema CIUM donde tendremos que seguir con los pasos para restablecer la contraseña. NOTA: No actualizar la página o salir de ella por que solo estara disponible una vez, si se pierde el formulario iniciar nuevamente la recuperación
+</p>
+
+<div class="figure" id="figure-1-9">
+    <img src="images/9-login.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Link de recuperación</strong></p>
+  
+  <ul>
+  <li>8.- Contraseña nueva</li>
+  <li>9.- Repetir contraseña nueva</li>
+  <li>10.- Restablecer y regresar a login</li>
+  </ul>
+</blockquote>
+
+<h2 id="registro">1.5 Registro</h2>
+
+<p style="text-align: justify;">
+Si no tienes una cuenta puedes iniciar el proceso de registro. NOTA: despues de validar el correo se requiere la acción de un administrador para finalizar el registro
+</p>
+
+<div class="figure" id="figure-1-10">
+    <img src="images/10-login.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Link de recuperación</strong></p>
+  
+  <ul>
+  <li>1.- Nombre de la persona a registrar</li>
+  <li>2.- Correo valido y unico, nombre de usuario corto</li>
+  <li>3.- Contraseña con la que se accederá al sistema</li>
+  <li>4.- Captcha</li>
+  <li>5.- Enviar datos y validar correo</li>
+  <li>6.- Notificación que se creo la cuenta y se envio correo</li>
+  </ul>
+  
+  <p><strong>Validación del correo</strong></p>
+</blockquote>
+
+<p style="text-align: justify;">
+Se envia un correo para activar la cuenta y justificar que el correo es correcto, para ello ir al correo y revisar la bandeja de entrada del correo asociado. NOTA: si el correo no aparece en la bandeja de entrada favor de revisar la carpeta de "SPAM". 
+</p>
+
+<div class="figure" id="figure-1-11">
+    <img src="images/11-login.png" alt="" />
+
+</div>
+
+
+<p style="text-align: justify;">
+El correo tiene un link que nos ayudara a activar la cuenta. NOTA: No actualizar la página o salir de ella por que solo estara disponible una vez, si se pierde el formulario contactar con soporte e informarle que no pudo hacer la activación del correo
+</p>
+
+<div class="figure" id="figure-1-12">
+    <img src="images/12-login.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Link de activación</strong></p>
+</blockquote>
+
+<p style="text-align: justify;">
+El link del correo nos lleva a una pantalla donde vemos que el sistema esta activando la cuenta, al finalizar veremos un mensaje de exito, en este momento el primer paso para la activación de su cuenta esta completado, el ultimo paso es notificar al administrador para que apruebe la cuenta y le asigne los permisos para asi poder acceder al sistema.
+</p>
+
+</div>
+        <div class="item chapter">
+    <h1 id="tablero"><span>Capítulo 2</span> Tablero</h1>
+    <h2 id="objetivo-2">2.1 Objetivo</h2>
+
+<p style="text-align: justify;">
+El tablero es un menu en cual se puede acceder a las diferentes opciones de reportes que tiene el sistema, desde aca tambien se pueden crear las evaluaciones.
+</p>
+
+<div class="figure" id="figure-2-1">
+    <img src="images/1-dashboard.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Pantalla de inicio</strong></p>
+  
+  <ul>
+  <li>1.- Menu general
+  >      1.1.- Menu lateral con acceso a los diferentes modulos
+  >      1.2.- Nombre del modulo en pantalla, menu de ocultar/aparecer el menu lateral y maccion de ocultar/mostra textos de menu lateral</li>
+  <li>2.- Menus de accesos rapidos, estan agrupados por tres tipos de cada uno, Procesos, Recurso y Plataforma Comunitaria</li>
+  <li>3.- Acciones generales del dashboard
+  >      3.1.- Botones reset solo disponibles para usuarios root, sirven para resetear los reportes que se utilizan para la creación de los gráficos</li>
+  </ul>
+</blockquote>
+
+<p>En este menu puede acceder a cada uno de los siguientes pantallas</p>
+
+<p><a href="#cobertura">"COBERTURA"</a> 
+<a href="#criterio">"CRITERIO"</a> 
+<a href="#indicador">"INDICADOR"</a> 
+<a href="#gauge">"GAUGE"</a> 
+<a href="#pivot">"TABLA DINÁMICA"</a> 
+<a href="#tendencia">"TENDENCIAS"</a></p>
+
+<h2 id="filtros">2.2 Filtros</h2>
+
+<p style="text-align: justify;">
+Antes de empezar a explicar los gráficos, es importante conocer como operan los filtros, los filtros son los mismos para cada tipo de reporte por eso se explica de manera general en esta sección
+</p>
+
+<div class="figure" id="figure-2-2">
+    <img src="images/filtros.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Filtros</strong></p>
+  
+  <ul>
+  <li>1.- Categorias de filtros</li>
+  <li>2.- Botones de accion
+  >      2.1.- Boton aplicar filtro, se utiliza para que cada vez que interactuemos con los filtros le demos aplicar y se construlla la consulta
+  >      2.2.- Boton quitar filtro, se utiliza para restablecer el gráfico a estado original</li>
+  </ul>
+</blockquote>
+
+<h2 id="filtros-por-periodo">2.3 Filtros por periodo</h2>
+
+<p style="text-align: justify;">
+Esta opción se refiere a las fechas disponibles para aplicar en el filtro de cada gráfico.
+</p>
+
+<div class="figure" id="figure-2-3">
+    <img src="images/filtros1.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Periodos</strong></p>
+  
+  <ul>
+  <li>1.- AÑO: seleccion multiples de años que tengan una evaluacion</li>
+  <li>2.- TRIMESTRE: Timestres disponibles del año seleccinado</li>
+  <li>3.- RANGOS: Se pueden omitir los 2 primeros y seleccionar un rando de fechas que contempla el desde y el hasta</li>
+  </ul>
+</blockquote>
+
+<p style="text-align: justify;">
+Filtros por uno o mas indicadores, que esten diponibles en el año del filtro anterior.
+</p>
+
+<div class="figure" id="figure-2-4">
+    <img src="images/filtros2.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Indicador</strong></p>
+  
+  <ul>
+  <li>1.- Opciones de filtro
+  >      1.1.- Ver todos sin ningun filtro de indicadores
+  >      1.2.- Por indicador lista los indicadores disponibles para filtrado</li>
+  <li>2.- Lista de indicadores se puede seleccionar multiples</li>
+  </ul>
+</blockquote>
+
+<p style="text-align: justify;">
+Filtrar por regiónes o niveles de cone
+</p>
+
+<div class="figure" id="figure-2-5">
+    <img src="images/filtro3.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Parametros</strong></p>
+  
+  <ul>
+  <li>1.- Opciones de filtro
+  >      1.1.- Ver todos sin ningun filtro de parametros
+  >      1.2.- Por filtro habilita las opciones disponibles para filtrado</li>
+  <li>2.- Filtrado por nivel de CONE</li>
+  <li>3.- Filtrado por Jurisdiccion</li>
+  <li>4.- Filtrado por Municipio o Zona</li>
+  </ul>
+</blockquote>
+
+<h2 id="cobertura">2.4 Cobertura</h2>
+
+<h2 id="cobertura-calidad">2.5 Cobertura calidad</h2>
+
+<h2 id="cobertura-recurso">2.6 Cobertura recurso</h2>
+
+<h2 id="cobertura-p-c">2.7 Cobertura p c</h2>
+
+<p style="text-align: justify;">
+El gráfico de cobertura muestra las visitas que el equipo de seguramiento de la calidad ha realizado a una unidad médica, las normas estipulan que el equip debe ir una vez cada trimestre a una unidad, esto quiere decir que el grafico al inicio de trimestre estara en rojo pero al final del mismo estara en verde.
+</p>
+
+<div class="figure" id="figure-2-6">
+    <img src="images/cobertura.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Cobertura</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del gráfico</li>
+  <li>2.- Opciones del dato <a href="#cobertura-opciones">"VER OPCIONES"</a> </li>
+  <li>3.- Área donde se muestra el dato en el formato seleccionado</li>
+  <li>4.- Opciones rapidas de filtrado</li>
+  <li>5.- Opciones de filtrado <a href="#filtros">"VER FILTROS"</a> </li>
+  </ul>
+</blockquote>
+
+<h2 id="cobertura-opciones">2.8 Cobertura opciones</h2>
+
+<p style="text-align: justify;">
+Este gráfico tiene diferentes formas de mostrar la información
+</p>
+
+<div class="figure" id="figure-2-7">
+    <img src="images/cobertura-opciones.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>De izquierda a derecha</strong></p>
+  
+  <ul>
+  <li>1.- Modo estricto</li>
+  <li>2.- Mostrar los dastos en forma de pastel
+  <div class="figure" id="figure-2-8">
+    <img src="images/cobertura-pastel.png" alt="" />
+
+</div>
+</li>
+  <li>3.- Mostrar los datos en forma de mapa, solo si se tiene un plan de datos de parte del instituto
+  <div class="figure" id="figure-2-9">
+    <img src="images/cobertura-mapa.png" alt="" />
+
+</div>
+</li>
+  <li>4.- Mostrar los datos en forma de tabla, estos datos se pueden exportar a excel
+  <div class="figure" id="figure-2-10">
+    <img src="images/cobertura-tabla.png" alt="" />
+
+</div>
+</li>
+  </ul>
+</blockquote>
+
+<h2 id="criterio">2.9 Criterio</h2>
+
+<h2 id="criterio-calidad">2.10 Criterio calidad</h2>
+
+<h2 id="criterio-recurso">2.11 Criterio recurso</h2>
+
+<h2 id="criterio-p-c">2.12 Criterio p c</h2>
+
+<p style="text-align: justify;">
+El gráfico de criterio muestra los indicadores evaluados y el porcentaje obtenido segun el filtro de estricto.
+</p>
+
+<div class="figure" id="figure-2-11">
+    <img src="images/criterio.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Criterio</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del gráfico</li>
+  <li>2.- Opciones del modo estricto y exportar a excel</li>
+  <li>3.- Área donde se muestra el dato <a href="#desagregacion-criterio">"VER DESAGREGACIÓN"</a> </li>
+  <li>4.- Opciones de filtrado <a href="#filtros">"VER FILTROS"</a> </li>
+  </ul>
+</blockquote>
+
+<h2 id="desagregacion-criterio">2.13 Desagregación criterio</h2>
+
+<p style="text-align: justify;">
+Este gráfico tiene desagregaciones, es decir se puede dar clic a cada elemento y mostra mas detalle de este
+</p>
+
+<blockquote>
+  <ul>
+  <li>1.- Listado de criterios del indicador y su porcentaje
+  <div class="figure" id="figure-2-12">
+    <img src="images/criterio1.png" alt="" />
+
+</div>
+</li>
+  <li>2.- Listado de jurisdicciones del criterio
+  <div class="figure" id="figure-2-13">
+    <img src="images/criterio2.png" alt="" />
+
+</div>
+</li>
+  <li>3.- Listado de CLUES de la jurisdicción
+  <div class="figure" id="figure-2-14">
+    <img src="images/criterio3.png" alt="" />
+
+</div>
+</li>
+  <li>4.- Listado de evaluaciones en el período
+  <div class="figure" id="figure-2-15">
+    <img src="images/criterio4.png" alt="" />
+
+</div>
+</li>
+  <li>5.- Evaluación correspondinte
+  <div class="figure" id="figure-2-16">
+    <img src="images/criterio5.png" alt="" />
+
+</div>
+</li>
+  </ul>
+</blockquote>
+
+<h2 id="indicador">2.14 Indicador</h2>
+
+<h2 id="indicador-calidad">2.15 Indicador calidad</h2>
+
+<h2 id="indicador-recurso">2.16 Indicador recurso</h2>
+
+<h2 id="indicador-p-c">2.17 Indicador p c</h2>
+
+<p style="text-align: justify;">
+El gráfico de indicador muestra los indicadores evaluados y el porcentaje obtenido segun el filtro de estricto.
+</p>
+
+<div class="figure" id="figure-2-17">
+    <img src="images/indicador.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Indicador</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del gráfico</li>
+  <li>2.- Opciones del modo estricto y exportar a excel</li>
+  <li>3.- Área donde se muestra el dato <a href="#desagregacion-indicador">"VER DESAGREGACIÓN"</a> </li>
+  <li>4.- Opciones de filtrado <a href="#filtros">"VER FILTROS"</a> </li>
+  </ul>
+</blockquote>
+
+<h2 id="desagregacion">2.18 Desagregación</h2>
+
+<p style="text-align: justify;">
+Este gráfico tiene desagregaciones, es decir se puede dar clic a cada elemento y mostra mas detalle de este
+</p>
+
+<blockquote>
+  <ul>
+  <li>1.- Listado de jurisdicciones por nivel de CONE
+  <div class="figure" id="figure-2-18">
+    <img src="images/indicador1.png" alt="" />
+
+</div>
+</li>
+  <li>2.- Listado de unidades medicas evaluadas
+  <div class="figure" id="figure-2-19">
+    <img src="images/indicador2.png" alt="" />
+
+</div>
+</li>
+  <li>3.- Evaluación correspondinte
+  <div class="figure" id="figure-2-20">
+    <img src="images/indicador3.png" alt="" />
+
+</div>
+</li>
+  </ul>
+</blockquote>
+
+<h2 id="gauge">2.19 Gauge</h2>
+
+<h2 id="gauge-calidad">2.20 Gauge calidad</h2>
+
+<h2 id="gauge-recurso">2.21 Gauge recurso</h2>
+
+<h2 id="gauge-p-c">2.22 Gauge p c</h2>
+
+<p style="text-align: justify;">
+El gráfico de gauge muestra los hallagazgos encontrados en el período de evaluaciones
+</p>
+
+<div class="figure" id="figure-2-21">
+    <img src="images/gauge.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Gauge</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del gráfico</li>
+  <li>2.- Opciones del modo estricto y cambiar a tabla</li>
+  <li>3.- Área donde se muestra el dato </li>
+  <li>4.- Opciones de filtrado <a href="#filtros">"VER FILTROS"</a> </li>
+  </ul>
+</blockquote>
+
+<h2 id="desagregacion-2">2.23 Desagregación</h2>
+
+<p style="text-align: justify;">
+Este gráfico tiene infomación para mostrar en tabla que se puede exportar a excel
+</p>
+
+<div class="figure" id="figure-2-22">
+    <img src="images/gauge1.png" alt="" />
+
+</div>
+
+
+<h2 id="pivot">2.24 Pivot</h2>
+
+<h2 id="pivot-calidad">2.25 Pivot calidad</h2>
+
+<h2 id="pivot-recurso">2.26 Pivot recurso</h2>
+
+<h2 id="pivot-p-c">2.27 Pivot p c</h2>
+
+<p style="text-align: justify;">
+Una tabla dinámica es un reporte deonde el usuario puede visualizar los datos segun el resultado de la interacción con los elementos, la tabla dinámica tiene 2 ejes para arrastrar y soltar los elemento y de esta forma contruir los datos, estos datos se pueden exportar a excel.
+</p>
+
+<div class="figure" id="figure-2-23">
+    <img src="images/pivot.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Pivot</strong></p>
+  
+  <ul>
+  <li>1.- Opciones de visualización del dato</li>
+  <li>2.- Opciones de operaciones aritmeticas y logicas para el dato</li>
+  <li>3.- Elementos disponibles (Corresponde a una columna de datos)</li>
+  <li>4.- Eje y donde podemos arrastra uno o varios elementos</li>
+  <li>5.- Eje x donde podemos arrastra uno o varios elementos</li>
+  </ul>
+</blockquote>
+
+<p style="text-align: justify;">
+Cada elemento tiene una opción de filtrado dandole clic en la flechita a lado del nombre
+</p>
+
+<div class="figure" id="figure-2-24">
+    <img src="images/pivot1.png" alt="" />
+
+</div>
+
+
+<h2 id="tendecia">2.28 Tendecia</h2>
+
+<p style="text-align: justify;">
+Este gráfico muestra la tendencia de los indicadores (PROCESO y RECURSO) a travez del tiempo 
+</p>
+
+<div class="figure" id="figure-2-25">
+    <img src="images/tendencia.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Pivot</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del gráfico</li>
+  <li>2.- Opciones de tabla y filtrado <a href="#filtros">"VER FILTROS"</a> </li>
+  <li>3.- Datos mostrados en el gráfico <a href="#filtro-1-clic">"VER"</a> </li>
+  <li>4.- Área donde se muestra el dato <a href="#tendencia-tabla">"VER TABLA"</a> </li>
+  </ul>
+</blockquote>
+
+<h2 id="filtro-1-click">2.29 Filtro 1 click</h2>
+
+<p>&lt;</p>
+
+<p>p style="text-align: justify;">
+Si al elemento se le da un click este desaparece del gráfico
+<div class="figure" id="figure-2-26">
+    <img src="images/tendencia1.png" alt="" />
+
+</div>
+
+
+<h2 id="filtro-2-click">2.30 Filtro 2 click</h2>
+
+<p>&lt;</p>
+
+<p>p style="text-align: justify;">
+Si al elemento se le da doble click el elemento se conserva en el gráfico y los demas desaparecen
+<div class="figure" id="figure-2-27">
+    <img src="images/tendencia2.png" alt="" />
+
+</div>
+
+
+<h2 id="tendencia-tabla">2.31 Tendencia tabla</h2>
+
+<p>&lt;</p>
+
+<p>p style="text-align: justify;">
+Muestra los datos en forma de tabla
+<div class="figure" id="figure-2-28">
+    <img src="images/tendencia3.png" alt="" />
+
+</div>
+
+
+</div>
+        <div class="item chapter">
+    <h1 id="hallazgos"><span>Capítulo 3</span> Hallazgos</h1>
+    <p style="text-align: justify;">
+Hallazgos módulo que muestra de entrada los problemas principales actuales o historico segun el filtro por unidad médica, indicador y criterio.
+Podemos acceder al modulo desde la pantalla de inicio "Reporte de hallazgos" o desde el menu lateral "Hallazgo".
+</p>
+
+<div class="figure" id="figure-3-1">
+    <img src="images/hallazgo.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Pantalla de hallazgos</strong></p>
+  
+  <ul>
+  <li>1.- Pestañas de opciones de mostrar la informacion <a href="#hallazgo-indicador">"INDICADOR"</a> o <a href="#hallazgo-unidad-medica">"UNIDADES MEDICAS"</a> </li>
+  <li>2.- Menu de acciones y filtro <a href="#hallazgo-accion">"ACCION"</a> </li>
+  <li>3.- Información por indicadores</li>
+  <li>4.- Acciones de filtrado
+  >      4.1.- Cambiar tipo de evaluación
+  >      4.2.- Ordenar Asc/Desc
+  >      4.3.- Desagrupar/Agrupar.</li>
+  </ul>
+</blockquote>
+
+<h2 id="hallazgo-accion">3.1 Hallazgo acción</h2>
+
+<p style="text-align: justify;">
+Estas acciones estan diponibles para la pantalla de hallazgos, de izquierda a derecha
+</p>
+
+<div class="figure" id="figure-3-2">
+    <img src="images/hallazgo-accion.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Acciones</strong></p>
+  
+  <ul>
+  <li>1.- Buscar, Activa el campo para buscar texto libre, puede ser una unidad medica, clues, jurisdicción, etc.</li>
+  <li>2.- Filtros <a href="#hallazgo-filtros">"VER"</a></li>
+  <li>3.- Indicadores con problemas <a href="#hallazgo-probelmas">"VER"</a></li>
+  <li>4.- Historial muestra todos los indicadores con problemas desde el origen de los tiempos</li>
+  <li>5.- Cambiar idioma</li>
+  <li>6.- Ayuda</li>
+  <li>7.- salir del sistema</li>
+  </ul>
+</blockquote>
+
+<h2 id="hallazgo-indicador">3.2 Hallazgo indicador</h2>
+
+<p style="text-align: justify;">
+La lista de indicadores es accecible y se puede desagregar pare ver el problema
+</p>
+
+<div class="figure" id="figure-3-3">
+    <img src="images/hallazgo-accion.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Problemas</strong></p>
+  
+  <ul>
+  <li>1.- Indicador, al hacer clic muestra la lista de hitos </li>
+  <li>2.- Hitos encontrados, al hacer clic muestra la lista de unidades que tiene el problema y al hacer click abre la evaluación
+  <div class="figure" id="figure-3-4">
+    <img src="images/hallazgo-hito-um.png" alt="" />
+
+</div>
+</li>
+  </ul>
+</blockquote>
+
+<h2 id="hallazgo-unidad-medica">3.3 Hallazgo unidad medica</h2>
+
+<p style="text-align: justify;">
+La lista de unidades medicas con problemas en las evaluaciones
+</p>
+
+<div class="figure" id="figure-3-5">
+    <img src="images/hallazgo-um.png" alt="" />
+
+</div>
+
+
+<h2 id="hallazgo-filtros">3.4 Hallazgo Filtros</h2>
+
+<p style="text-align: justify;">
+Los filtros estan disponibles desde el menu de acciones en hallazgos
+</p>
+
+<div class="figure" id="figure-3-6">
+    <img src="images/filtros.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Filtros</strong></p>
+  
+  <ul>
+  <li>1.- Categorias de filtros</li>
+  <li>2.- Botones de accion
+  >      2.1.- Boton aplicar filtro, se utiliza para que cada vez que interactuemos con los filtros le demos aplicar y se construlla la consulta
+  >      2.2.- Boton quitar filtro, se utiliza para restablecer el gráfico a estado original</li>
+  </ul>
+</blockquote>
+
+<h2 id="filtros-por-periodo-2">3.5 Filtros por periodo</h2>
+
+<p style="text-align: justify;">
+Esta opción se refiere a las fechas disponibles para aplicar en el filtro de cada gráfico.
+</p>
+
+<div class="figure" id="figure-3-7">
+    <img src="images/filtros1.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Periodos</strong></p>
+  
+  <ul>
+  <li>1.- AÑO: seleccion multiples de años que tengan una evaluacion</li>
+  <li>2.- TRIMESTRE: Timestres disponibles del año seleccinado</li>
+  <li>3.- RANGOS: Se pueden omitir los 2 primeros y seleccionar un rando de fechas que contempla el desde y el hasta</li>
+  </ul>
+</blockquote>
+
+<p style="text-align: justify;">
+Filtros por uno o mas indicadores, que esten diponibles en el año del filtro anterior.
+</p>
+
+<div class="figure" id="figure-3-8">
+    <img src="images/filtros2.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Indicador</strong></p>
+  
+  <ul>
+  <li>1.- Opciones de filtro
+  >      1.1.- Ver todos sin ningun filtro de indicadores
+  >      1.2.- Por indicador lista los indicadores disponibles para filtrado</li>
+  <li>2.- Lista de indicadores se puede seleccionar multiples</li>
+  </ul>
+</blockquote>
+
+<p style="text-align: justify;">
+Filtrar por regiónes o niveles de cone
+</p>
+
+<div class="figure" id="figure-3-9">
+    <img src="images/filtro3.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Parametros</strong></p>
+  
+  <ul>
+  <li>1.- Opciones de filtro
+  >      1.1.- Ver todos sin ningun filtro de parametros
+  >      1.2.- Por filtro habilita las opciones disponibles para filtrado</li>
+  <li>2.- Filtrado por nivel de CONE</li>
+  <li>3.- Filtrado por Jurisdiccion</li>
+  <li>4.- Filtrado por Municipio o Zona</li>
+  </ul>
+</blockquote>
+
+</div>
+        <div class="item chapter">
+    <h1 id="evaluaciones"><span>Capítulo 4</span> Evaluaciónes</h1>
+    <p style="text-align: justify;">
+En este apartado se encuentra las parte transaccional de la aplicación es decir la parte donde se generan y procesan los datos recabados de las evaluaciónes.
+<br/>
+<br/>
+Las evaluaciónes  tiene un listado con el formato y las opciones siguientes:
+</p>
+
+<div class="figure" id="figure-4-1">
+    <img src="images/evaluación_lista.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Listado</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del modulo</li>
+  <li>2.- Acciones en el modulo</li>
+  <li>3.- Opciones de filtros</li>
+  <li>4.- Aplicar filtro</li>
+  <li>5.- Datos </li>
+  <li>6.- Acciones por registro</li>
+  <li>7.- Enviar la evaluación por correo, diponble solo para las que estan cerradas</li>
+  <li>8.- Paginación</li>
+  </ul>
+</blockquote>
+
+<p style="text-align: justify;">
+Acciones del modulo de izquierda a derecha
+</p>
+
+<div class="figure" id="figure-4-2">
+    <img src="images/evaluación_lista_accion.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <ul>
+  <li>1.- Buscar</li>
+  <li>2.- Actualizar cargar de nuevo los datos</li>
+  <li>3.- Ir a formulario nuevo</li>
+  <li>4.- Evaluación impresa</li>
+  <li>5.- Cambiar idioma</li>
+  <li>6.- Ayuda</li>
+  <li>7.- Salir del sistema</li>
+  </ul>
+  
+  <p><strong>Listado buscar</strong>
+  <div class="figure" id="figure-4-3">
+    <img src="images/evaluación_lista_buscar.png" alt="" />
+
+</div>
+
+  
+  <ul>
+  <li>1.- Regresar y restablecer las opciones</li>
+  <li>2.- Campo de busqueda: escribir y dar enter para iniciar la busqueda</li>
+  </ul>
+</blockquote>
+
+<h3 id="crear-una-nueva-evaluacion">4.0.1 Crear una nueva evaluación</h3>
+
+<p style="text-align: justify;">
+Para crear una evaluación simplemente busque una unidad medica, al seleccionar la unidad se llena la ficha de los datos, una vez cargado los datos hacer clic en crear
+</p>
+
+<div class="figure" id="figure-4-4">
+    <img src="images/evaluación_nueva.png" alt="" />
+
+</div>
+
+
+<h2 id="evaluacion-recursos">4.1 Evaluación recursos</h2>
+
+<p style="text-align: justify;">
+Recursos es la evaluación que en las unidades médicas se encarga de monitoriar los indicadores de medición del tipo abasto y equipos, asi como los recursos humanos.
+</p>
+
+<div class="figure" id="figure-4-5">
+    <img src="images/recurso_form.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Evaluación</strong></p>
+  
+  <ul>
+  <li>1.- Información general reducida de la unidad medica</li>
+  <li>2.- Informacion general ampliada de la unidad medica, aca tambien se puede cambiar la unidad</li>
+  <li>3.- Lista de indicadores disponibles en esta evaluación </li>
+  <li>4.- Lista de inidcadores evaluados</li>
+  <li>5.- Procentaje de avace del indicador para la evaluación</li>
+  <li>6.- Criterios evaluados/ Total de criterios</li>
+  <li>7.- Nombre del criterio</li>
+  <li>8.- Opciones de respuesta</li>
+  <li>9.- Hallazgo, en caso de que no de los criterios sea negativo</li>
+  </ul>
+</blockquote>
+
+<p style="text-align: justify;">
+El boton guardar solo almacena la información de la evaluación, para especificar que la evaluación esta concluidad dar clic en el boton de cerrar evaluación, este boton solo aparecera si todos los criterios de los indicadores seleccionados estan completados
+</p>
+
+<h2 id="evaluacion-recursos-ver">4.2 Evaluación recursos ver</h2>
+
+<p style="text-align: justify;">
+Una vez cerrada la evaluación se puede ver el resultado, esta hja se puede exportar a PDF
+</p>
+
+<div class="figure" id="figure-4-6">
+    <img src="images/recurso_ver.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Indicador</strong></p>
+  
+  <ul>
+  <li>1.- Fecha de cierre y folio</li>
+  <li>2.- Datos de la unidad</li>
+  <li>3.- Resultado general de los indicadores</li>
+  <li>4.- Estadistica de cada indicador</li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-4-7">
+    <img src="images/recurso_ver_criterio.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Criterios</strong></p>
+  
+  <ul>
+  <li>1.- Indicador</li>
+  <li>2.- Criterios</li>
+  <li>3.- Respuestas</li>
+  <li>4.- Descricpion del hallazgo</li>
+  </ul>
+</blockquote>
+
+<h2 id="evaluacion-proceso">4.3 Evaluación proceso</h2>
+
+<p style="text-align: justify;">
+Procesos es la evaluación que en las unidades médicas se encarga de monitoriar los indicadores de medición que tienen que ver con la procesos de la atención.
+</p>
+
+<div class="figure" id="figure-4-8">
+    <img src="images/proceso_form.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Evaluación</strong></p>
+  
+  <ul>
+  <li>1.- Información general reducida de la unidad medica</li>
+  <li>2.- Informacion general ampliada de la unidad medica, aca tambien se puede cambiar la unidad</li>
+  <li>3.- Lista de indicadores disponibles en esta evaluación </li>
+  <li>4.- Lista de inidcadores evaluados</li>
+  <li>5.- Procentaje de avace del indicador para la evaluación</li>
+  <li>6.- Numero de expediente a agregar</li>
+  <li>7.- Quitar el inidcador completo</li>
+  <li>8.- Agregar nuevo expedeinte</li>
+  <li>9.- Expedientes evaluados</li>
+  <li>10.- Nombre del criterio</li>
+  <li>11.- Criterios evaluados/ Total de criterios</li>
+  <li>12.- Opciones de respuesta</li>
+  </ul>
+</blockquote>
+
+<p style="text-align: justify;">
+El boton guardar solo almacena la información de la evaluación, para especificar que la evaluación esta concluidad dar clic en el boton de cerrar evaluación, este boton solo aparecera si todos los criterios de los indicadores seleccionados estan completados
+</p>
+
+<h2 id="evaluacion-procesos-ver">4.4 Evaluación procesos ver</h2>
+
+<p style="text-align: justify;">
+Una vez cerrada la evaluación se puede ver el resultado, esta hoja se puede exportar a PDF
+</p>
+
+<div class="figure" id="figure-4-9">
+    <img src="images/proceso_ver.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Indicador</strong></p>
+  
+  <ul>
+  <li>1.- Fecha de cierre y folio</li>
+  <li>2.- Datos de la unidad</li>
+  <li>3.- Resultado general de los indicadores</li>
+  <li>4.- Estadistica de cada indicador</li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-4-10">
+    <img src="images/proceso_ver_criterio.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Criterios</strong></p>
+  
+  <ul>
+  <li>1.- Indicador</li>
+  <li>2.- Criterios</li>
+  <li>3.- Respuestas</li>
+  </ul>
+</blockquote>
+
+<h2 id="evaluacion-p-c">4.5 Evaluación p c</h2>
+
+<p style="text-align: justify;">
+PC es la evaluación que corresponde a las plataformas comunitarias, su enfoque es a la medición del total de plataformas conformadas en el año
+</p>
+
+<div class="figure" id="figure-4-11">
+    <img src="images/pc_form.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Evaluación</strong></p>
+  
+  <ul>
+  <li>1.- Información general reducida de la unidad medica</li>
+  <li>2.- Informacion general ampliada de la unidad medica, aca tambien se puede cambiar la unidad</li>
+  <li>3.- Lista de indicadores disponibles en esta evaluación </li>
+  <li>4.- Lista de inidcadores evaluados</li>
+  <li>5.- Procentaje de avace del indicador para la evaluación</li>
+  <li>6.- Criterios evaluados/ Total de criterios</li>
+  <li>7.- Nombre del criterio</li>
+  <li>8.- Opciones de respuesta</li>
+  </ul>
+</blockquote>
+
+<p style="text-align: justify;">
+El boton guardar solo almacena la información de la evaluación, para especificar que la evaluación esta concluidad dar clic en el boton de cerrar evaluación, este boton solo aparecera si todos los criterios de los indicadores seleccionados estan completados
+</p>
+
+<h2 id="evaluacion-p-c-ver">4.6 Evaluación p c ver</h2>
+
+<p style="text-align: justify;">
+Una vez cerrada la evaluación se puede ver el resultado, esta hoja se puede exportar a PDF
+</p>
+
+<div class="figure" id="figure-4-12">
+    <img src="images/pc_ver.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Indicador</strong></p>
+  
+  <ul>
+  <li>1.- Fecha de cierre y folio</li>
+  <li>2.- Datos de la unidad</li>
+  <li>3.- Resultado general de los indicadores</li>
+  <li>4.- Estadistica de cada indicador</li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-4-13">
+    <img src="images/pc_ver_criterio.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Criterios</strong></p>
+  
+  <ul>
+  <li>1.- Indicador</li>
+  <li>2.- Criterios</li>
+  <li>3.- Respuestas</li>
+  </ul>
+</blockquote>
+
+</div>
+        <div class="item chapter">
+    <h1 id="catalogos"><span>Capítulo 5</span> Catálogos</h1>
+    <p style="text-align: justify;">
+En términos generales, un catálogo es la lista ordenada o clasificada que se hará sobre los datos que necesita el sistema para operar. Normalmente estos catálogos no cambian su contenido. Se crean una sola vez y después se utilizan muchas veces en operaciones y reportes.
+<br/>
+Todos los módulos tiene un listado con las opciones como se describen. ["VER"](#caatalogos-listado) 
+<br/>
+<br/>
+Todos los formularios tiene los elementos como se describen. ["VER"](#caatalogos-formulario) 
+<br/>
+</p>
+
+<h2 id="catalogos-listado">5.1 Catálogos listado</h2>
+
+<div class="figure" id="figure-5-1">
+    <img src="images/sistema-lista.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Listado</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del modulo</li>
+  <li>2.- Acciones en el modulo</li>
+  <li>3.- Datos </li>
+  <li>4.- Acciones por registro</li>
+  <li>4.- Paginación</li>
+  </ul>
+</blockquote>
+
+<p style="text-align: justify;">
+Acciones del modulo de izquierda a derecha
+</p>
+
+<div class="figure" id="figure-5-2">
+    <img src="images/sistema-lista-accion.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <ul>
+  <li>1.- Buscar</li>
+  <li>2.- Actualizar cargar de nuevo los datos</li>
+  <li>3.- Ir a formulario nuevo</li>
+  <li>4.- Cambiar idioma</li>
+  <li>5.- Ayuda</li>
+  <li>6.- Salir del sistema</li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-5-3">
+    <img src="images/sistema-lista-buscar.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Listado buscar</strong></p>
+  
+  <ul>
+  <li>1.- Regresar y restablecer las opciones</li>
+  <li>2.- Campo de busqueda: escribir y dar enter para iniciar la busqueda</li>
+  </ul>
+  
+  <p><strong>Listado actualizar</strong></p>
+  
+  <ul>
+  <li>1.- Actualizar cargar de nuevo los datos</li>
+  </ul>
+  
+  <p><strong>Listado nuevo</strong></p>
+  
+  <ul>
+  <li>1.- Ir al formulario de nuevo elemento</li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-5-4">
+    <img src="images/sistema-lista-registro.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Listado aciones por registro</strong></p>
+  
+  <ul>
+  <li>1.- Abrir el registro para visualizar la informacion e imprimir</li>
+  <li>2.- Abrir el regsitro para ser editado</li>
+  <li>2.- Eliminar el regsitro </li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-5-5">
+    <img src="images/sistema-lista-paginacion.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Listado paginación</strong></p>
+  
+  <ul>
+  <li>1.- Numero de registros por pagina</li>
+  <li>2.- Numero total de paginas y registros</li>
+  <li>2.- Botones de adelantar y regresar entre los registros</li>
+  </ul>
+</blockquote>
+
+<h2 id="catalogos-formulario">5.2 Catálogos formulario</h2>
+
+<div class="figure" id="figure-5-6">
+    <img src="images/sistema-form.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Formulario</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del modulo</li>
+  <li>2.- Acciones en el módulo</li>
+  <li>3.- Datos (Formulario)</li>
+  <li>4.- Si es en edición o ver agregar nuevo</li>
+  </ul>
+</blockquote>
+
+<p style="text-align: justify;">
+Acciones del modulo de izquierda a derecha
+</p>
+
+<div class="figure" id="figure-5-7">
+    <img src="images/sistema-form-accion.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <ul>
+  <li>1.- Regresar a la lista</li>
+  <li>2.- Guardar los datos del formulario</li>
+  <li>3.- Si esta en edicion ir a ver (Viseversa)</li>
+  <li>4.- Si esta en edicion o ver puede eliminar</li>
+  <li>5.- Cambiar idioma</li>
+  <li>6.- Ayuda</li>
+  <li>7.- Salir del sistema</li>
+  </ul>
+</blockquote>
+
+<h2 id="comunidad-priorizada">5.3 Comunidad priorizada</h2>
+
+<p style="text-align: justify;">
+Las comunidades priorizadas es un catalogo para la evaluacion de plataforma comunitaria, aca se especifica el numero a cubrir en el año y este dato sirve de numerador para los reportes
+</p>
+
+<div class="figure" id="figure-5-8">
+    <img src="images/comunidad-priorizada.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Crear / Editar</strong></p>
+  
+  <ul>
+  <li>1.- Año</li>
+  <li>2.- Numero de comunidades priorizadas en el año</li>
+  <li>3.- Lista de clues qeu contempla</li>
+  <li>4.- Busqueda de clues </li>
+  <li>5.- Datos de las clues</li>
+  <li>6.- Quitar de la lista</li>
+  </ul>
+</blockquote>
+
+<h2 id="acciones">5.4 Acciones</h2>
+
+<p style="text-align: justify;">
+Acciones contiene todos los datos a seleccionar cuando en una evaluación se encuentra un hallazgo. 
+</p>
+
+<div class="figure" id="figure-5-9">
+    <img src="images/accion.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Crear / Editar</strong></p>
+  
+  <ul>
+  <li>1.- Nombre de la accion</li>
+  <li>2.- Tipo de acción</li>
+  </ul>
+</blockquote>
+
+<h2 id="alertas">5.5 Alertas</h2>
+
+<p style="text-align: justify;">
+Alerta contiene todos los datos a seleccionar para identifcar las alertas por el valor que tome los indicadores en las evaluaciones. 
+</p>
+
+<div class="figure" id="figure-5-10">
+    <img src="images/alerta.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Crear / Editar</strong></p>
+  
+  <ul>
+  <li>1.- Nombre de la alerta</li>
+  <li>2.- Color, esta dividido en 3 slide Rojo, Verde y Azul</li>
+  </ul>
+</blockquote>
+
+<h2 id="clues">5.6 Clues</h2>
+
+<p style="text-align: justify;">
+Clues contiene un listado de todas las unidades medicas con su informacion de la ficha tecnica. clues solo cuenta con 2 secciones listado y ficha tecnica para 
+crear o modificar solicitarlo al administrador de los catalosgos de la seceretaia de salud
+</p>
+
+<div class="figure" id="figure-5-11">
+    <img src="images/clues.png" alt="" />
+
+</div>
+
+
+<h2 id="cone">5.7 Cone</h2>
+
+<p style="text-align: justify;">
+Cone (Cuidado obstétrico y neonatal esencial) este catálogo agrupa las unidades medicas, es de suma importancia ya que todo los criterios dependen del nivel de cone de cada unidad médica. 
+</p>
+
+<div class="figure" id="figure-5-12">
+    <img src="images/cone.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Crear / Editar</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del cone</li>
+  <li>2.- Buscar unidades medicas</li>
+  <li>3.- Lista de unidades medicas que perteneceran a este nivel de cone</li>
+  <li>4.- Quitar de la lista</li>
+  </ul>
+</blockquote>
+
+<h2 id="zona">5.8 Zona</h2>
+
+<p style="text-align: justify;">
+Zona este catálogo contiene las zonas y las unidades médicas que la conforman, Debido a que cada zona puede tener muchas unidades médiacas y para no hacer tardio la carga del listado se recomienda descargar el listado y depues hacer un recorrido de cada uno de los resultados para extraer los datos del metodo show.
+</p>
+
+<div class="figure" id="figure-5-13">
+    <img src="images/zona.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Crear / Editar</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del cone</li>
+  <li>2.- Buscar unidades medicas</li>
+  <li>3.- Lista de unidades medicas que perteneceran a este nivel de cone</li>
+  <li>4.- Quitar de la lista</li>
+  </ul>
+</blockquote>
+
+<h2 id="lugar-de-verificacion">5.9 Lugar de Verificación</h2>
+
+<p style="text-align: justify;">
+LugarVerificacion este catálogo contiene los lugares de verificacion para agrupar los criterios de cada indicador para las unidades médicas.
+</p>
+
+<div class="figure" id="figure-5-14">
+    <img src="images/-verificacion.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Crear / Editar</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del lugar de verificación</li>
+  <li>2.- Tipo de evaluación</li>
+  </ul>
+</blockquote>
+
+<h2 id="indicador-2">5.10 Indicador</h2>
+
+<p style="text-align: justify;">
+Indicador este catálogo contiene todos los indicadores para generar las evaluaciones. Se relaciona con alertaIndicador para generar los colores segun el porcentaje obtenido.
+</p>
+
+<div class="figure" id="figure-5-15">
+    <img src="images/indicador-form.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Pestaña general</strong></p>
+  
+  <ul>
+  <li>1.- Pestañas de opciones</li>
+  <li>2.- Codigo del indicador</li>
+  <li>3.- Nombre del indicador </li>
+  <li>4.- Categoria para la evaluación que estará disponible</li>
+  <li>5.- color para identificar el indicador</li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-5-16">
+    <img src="images/indicador-alertas.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Pestaña alertas</strong></p>
+  
+  <ul>
+  <li>6.- Agregar una alerta</li>
+  <li>7.- Limpiar todas las alertas</li>
+  <li>8.- Rango minimo</li>
+  <li>9.- Rango maximo</li>
+  <li>10.- Color</li>
+  <li>11.- Quitar alerta</li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-5-17">
+    <img src="images/indicador-validacion.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Pestaña validacion</strong></p>
+  
+  <ul>
+  <li>12.- Pestañas de opciones</li>
+  <li>13.- Agregar una pregunta</li>
+  <li>14.- Limpiar todas las preguntas</li>
+  <li>15.- Pregunta</li>
+  <li>16.- Tipo de campo para la respuesta</li>
+  <li>17.- Es una valor constante o variable</li>
+  <li>18.- Si es de tipo fecha esta correspondera a la fecha del sistema</li>
+  <li>19.- Quitar pregunta</li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-5-18">
+    <img src="images/indicador-validacion-formula.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Pestaña validacion formula</strong></p>
+  
+  <ul>
+  <li>20.- Agregar una formula</li>
+  <li>21.- Limpiar las formulas</li>
+  <li>22.- Probar la formula</li>
+  <li>23.- Pregunta 1</li>
+  <li>24.- Operacion aritmetica</li>
+  <li>25.- Pregunta 2</li>
+  <li>26.- Unidd de medida para el resultado</li>
+  <li>27.- Operador logico de comparacion</li>
+  <li>28.- Valor a comparar</li>
+  <li>29.- Quitar la formula</li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-5-19">
+    <img src="images/indicador-indicacion.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Pestaña indicaciones</strong></p>
+</blockquote>
+
+<p style="text-align: justify;">
+Aca se escribe una indicación para el evaluador en caso del que el indicador tenga complejidad y se necesite aclarar la fuente de datos
+</p>
+
+<h2 id="criterio-2">5.11 Criterio</h2>
+
+<p style="text-align: justify;">
+Criterio este catálogo contiene todos los puntos a evaluar se relaciona con indicador, cone y lugar de verificación para obtener el listado correspondiente a cada de las unidades médicas, el lugar de verificación sirve para agrupar los criterios. 
+</p>
+
+<div class="figure" id="figure-5-20">
+    <img src="images/ccriterio.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Crear / Editar</strong></p>
+  
+  <ul>
+  <li>1.- Pestañas de opciones</li>
+  <li>2.- Nombre del criterio</li>
+  <li>3.- Orden en el que aprecera en las evaluaciones</li>
+  <li>4.- Tipo de campo para la entrad de valor</li>
+  <li>5.- Habilitar el no aplica en una evaluación</li>
+  <li>6.- Tipo de evaluacion disponible</li>
+  <li>7.- Seleccionar el indicador para el que va estar disponible</li>
+  <li>8.- Niveles de cone para el que va estar disponible</li>
+  <li>9.- Lugar de verificacion para agrupacion de criterios</li>
+  </ul>
+  
+  <p><strong>Validacion preguntas</strong></p>
+</blockquote>
+
+<p style="text-align: justify;">
+Un criterio puede tener formulas para determinar su valor, y funciona igual que las del indicador
+</p>
+
+<h2 id="plazo-accion">5.12 Plazo acción</h2>
+
+<p style="text-align: justify;">
+Plazo accion este catálogo contiene dias en que sera resolutivo un hallazgo en una unidad medica
+</p>
+
+<div class="figure" id="figure-5-21">
+    <img src="images/plazo.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Crear / Editar</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del plazo de la acción</li>
+  <li>2.- Valor dependiendo del tipo</li>
+  <li>3.- Tipo (tiempo)</li>
+  </ul>
+</blockquote>
+
+<h2 id="version-app">5.13 Versión app</h2>
+
+<p style="text-align: justify;">
+Aca se maneja el control de versionamiento de la app movil (Se carga el apk)
+</p>
+
+<div class="figure" id="figure-5-22">
+    <img src="images/app.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Crear / Editar</strong></p>
+  
+  <ul>
+  <li>1.- Seleccionar el apk a subir</li>
+  <li>2.- Nombre del path en el servidor</li>
+  <li>3.- Versión de la app</li>
+  <li>3.- Versión de la base de datos</li>
+  <li>3.- Descripción de los cambios</li>
+  </ul>
+</blockquote>
+
+</div>
+        <div class="item chapter">
+    <h1 id="sistema"><span>Capítulo 6</span> Sistema</h1>
+    <p style="text-align: justify;">
+En este apartado esta todo lo relacionado con el usuario, grupos y acciones. se pueden configurara permisos por acción lo que hace mas seguro y mas robusto el modelo de permisos.
+<br/>
+Todos los módulos tiene un listado con las opciones como se describen. ["VER"](#sistema-listado) 
+<br/>
+<br/>
+Todos los formularios tiene los elementos como se describen. ["VER"](#sistema-formulario) 
+<br/>
+</p>
+
+<h2 id="sistema-listado">6.1 Sistema listado</h2>
+
+<div class="figure" id="figure-6-1">
+    <img src="images/sistema-lista.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Listado</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del modulo</li>
+  <li>2.- Acciones en el modulo</li>
+  <li>3.- Datos </li>
+  <li>4.- Acciones por registro</li>
+  <li>4.- Paginación</li>
+  </ul>
+</blockquote>
+
+<p style="text-align: justify;">
+Acciones del modulo de izquierda a derecha
+</p>
+
+<div class="figure" id="figure-6-2">
+    <img src="images/sistema-lista-accion.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <ul>
+  <li>1.- Buscar</li>
+  <li>2.- Actualizar cargar de nuevo los datos</li>
+  <li>3.- Ir a formulario nuevo</li>
+  <li>4.- Cambiar idioma</li>
+  <li>5.- Ayuda</li>
+  <li>6.- Salir del sistema</li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-6-3">
+    <img src="images/sistema-lista-buscar.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Listado buscar</strong></p>
+  
+  <ul>
+  <li>1.- Regresar y restablecer las opciones</li>
+  <li>2.- Campo de busqueda: escribir y dar enter para iniciar la busqueda</li>
+  </ul>
+  
+  <p><strong>Listado actualizar</strong></p>
+  
+  <ul>
+  <li>1.- Actualizar cargar de nuevo los datos</li>
+  </ul>
+  
+  <p><strong>Listado nuevo</strong></p>
+  
+  <ul>
+  <li>1.- Ir al formulario de nuevo elemento</li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-6-4">
+    <img src="images/sistema-lista-registro.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Listado aciones por registro</strong></p>
+  
+  <ul>
+  <li>1.- Abrir el registro para visualizar la informacion e imprimir</li>
+  <li>2.- Abrir el regsitro para ser editado</li>
+  <li>2.- Eliminar el regsitro </li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-6-5">
+    <img src="images/sistema-lista-paginacion.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Listado paginación</strong></p>
+  
+  <ul>
+  <li>1.- Numero de registros por pagina</li>
+  <li>2.- Numero total de paginas y registros</li>
+  <li>2.- Botones de adelantar y regresar entre los registros</li>
+  </ul>
+</blockquote>
+
+<h2 id="sistema-formulario">6.2 Sistema formulario</h2>
+
+<div class="figure" id="figure-6-6">
+    <img src="images/sistema-form.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Formulario</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del modulo</li>
+  <li>2.- Acciones en el módulo</li>
+  <li>3.- Datos (Formulario)</li>
+  <li>4.- Si es en edición o ver agregar nuevo</li>
+  </ul>
+</blockquote>
+
+<p style="text-align: justify;">
+Acciones del modulo de izquierda a derecha
+</p>
+
+<div class="figure" id="figure-6-7">
+    <img src="images/sistema-form-accion.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <ul>
+  <li>1.- Regresar a la lista</li>
+  <li>2.- Guardar los datos del formulario</li>
+  <li>3.- Si esta en edicion ir a ver (Viseversa)</li>
+  <li>4.- Si esta en edicion o ver puede eliminar</li>
+  <li>5.- Cambiar idioma</li>
+  <li>6.- Ayuda</li>
+  <li>7.- Salir del sistema</li>
+  </ul>
+</blockquote>
+
+<h2 id="modulos">6.3 Modulos</h2>
+
+<p style="text-align: justify;">
+Aca se administra el catalogo de modulos y acciones para cada modulo, que conformaran un permiso disponible para crear un grupo
+</p>
+
+<div class="figure" id="figure-6-8">
+    <img src="images/sistema-modulos.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Listado</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del modulo</li>
+  <li>2.- Nombre del controlador asociado en la API</li>
+  <li>3.- Catálogo al que pertenece</li>
+  <li>4.- Tiene vista y si esta disponible para todos o es permiso especial</li>
+  <li>5.- Metodos (Acciones)</li>
+  <li>6.- Agregar, default y limpiar los metodos</li>
+  <li>7.- Nombre de la acción</li>
+  <li>8.- Metodo en la API asociado a la acción</li>
+  <li>9.- Tipo de petición para las cabeceras</li>
+  <li>10.- Si es permiso especial disponible solo para root</li>
+  </ul>
+</blockquote>
+
+<h2 id="grupos">6.4 Grupos</h2>
+
+<p style="text-align: justify;">
+Aca se administra el catalogo de grupos que contendran las acciones por modulo que tendra acceso el usuario
+</p>
+
+<div class="figure" id="figure-6-9">
+    <img src="images/sistema-grupos.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Listado</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del grupo</li>
+  <li>2.- Agrupación de los módulos</li>
+  <li>3.- Nombre del modulo</li>
+  <li>4.- Acciones del módulo</li>
+  </ul>
+</blockquote>
+
+<h2 id="usuarios">6.5 Usuarios</h2>
+
+<p style="text-align: justify;">
+Aca se administra el catalogo de usuarios
+</p>
+
+<div class="figure" id="figure-6-10">
+    <img src="images/sistema-usuarios.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Listado</strong></p>
+  
+  <ul>
+  <li>1.- Pestaña datos generales y grupos</li>
+  <li>2.- Nombre del usuario</li>
+  <li>3.- Correo electronico</li>
+  <li>4.- Apodo o username</li>
+  <li>5.- Cambiar contraseña</li>
+  <li>6.- Contraseña</li>
+  <li>7.- Repetir contraseña</li>
+  <li>8.- Ultimo acceso al sistema</li>
+  <li>9.- Si el usuario esta activo</li>
+  <li>10.- Si el usuario valido el correo al momento del alta</li>
+  <li>11.- Si el susuario tendra privilegios de super</li>
+  <li>12.- Foto del usuario</li>
+  <li>13.- Avatar del usuario este es una URL</li>
+  </ul>
+</blockquote>
+
+</div>
+    </div>
+    <div class="span3">
+    <div class="item toc">
+
+<h1>Índice de contenidos</h1>
+
+<ul class="unstyled">
+            <li class="chapter level-1">
+            <span>Capítulo 1</span> <a href="#login">Login</a>
+        </li>
+            <li class="chapter level-2">
+            <span>1.1</span> <a href="#objetivo">Objetivo</a>
+        </li>
+            <li class="chapter level-2">
+            <span>1.2</span> <a href="#inicio-de-sesion">Inicio de sesión</a>
+        </li>
+            <li class="chapter level-2">
+            <span>1.3</span> <a href="#login-2">Login</a>
+        </li>
+            <li class="chapter level-2">
+            <span>1.4</span> <a href="#recuperar-contrasena">Recuperar contraseña</a>
+        </li>
+            <li class="chapter level-2">
+            <span>1.5</span> <a href="#registro">Registro</a>
+        </li>
+                <li class="chapter level-1">
+            <span>Capítulo 2</span> <a href="#tablero">Tablero</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.1</span> <a href="#objetivo-2">Objetivo</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.2</span> <a href="#filtros">Filtros</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.3</span> <a href="#filtros-por-periodo">Filtros por periodo</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.4</span> <a href="#cobertura">Cobertura</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.5</span> <a href="#cobertura-calidad">Cobertura calidad</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.6</span> <a href="#cobertura-recurso">Cobertura recurso</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.7</span> <a href="#cobertura-p-c">Cobertura p c</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.8</span> <a href="#cobertura-opciones">Cobertura opciones</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.9</span> <a href="#criterio">Criterio</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.10</span> <a href="#criterio-calidad">Criterio calidad</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.11</span> <a href="#criterio-recurso">Criterio recurso</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.12</span> <a href="#criterio-p-c">Criterio p c</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.13</span> <a href="#desagregacion-criterio">Desagregación criterio</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.14</span> <a href="#indicador">Indicador</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.15</span> <a href="#indicador-calidad">Indicador calidad</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.16</span> <a href="#indicador-recurso">Indicador recurso</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.17</span> <a href="#indicador-p-c">Indicador p c</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.18</span> <a href="#desagregacion">Desagregación</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.19</span> <a href="#gauge">Gauge</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.20</span> <a href="#gauge-calidad">Gauge calidad</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.21</span> <a href="#gauge-recurso">Gauge recurso</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.22</span> <a href="#gauge-p-c">Gauge p c</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.23</span> <a href="#desagregacion-2">Desagregación</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.24</span> <a href="#pivot">Pivot</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.25</span> <a href="#pivot-calidad">Pivot calidad</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.26</span> <a href="#pivot-recurso">Pivot recurso</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.27</span> <a href="#pivot-p-c">Pivot p c</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.28</span> <a href="#tendecia">Tendecia</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.29</span> <a href="#filtro-1-click">Filtro 1 click</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.30</span> <a href="#filtro-2-click">Filtro 2 click</a>
+        </li>
+            <li class="chapter level-2">
+            <span>2.31</span> <a href="#tendencia-tabla">Tendencia tabla</a>
+        </li>
+                <li class="chapter level-1">
+            <span>Capítulo 3</span> <a href="#hallazgos">Hallazgos</a>
+        </li>
+            <li class="chapter level-2">
+            <span>3.1</span> <a href="#hallazgo-accion">Hallazgo acción</a>
+        </li>
+            <li class="chapter level-2">
+            <span>3.2</span> <a href="#hallazgo-indicador">Hallazgo indicador</a>
+        </li>
+            <li class="chapter level-2">
+            <span>3.3</span> <a href="#hallazgo-unidad-medica">Hallazgo unidad medica</a>
+        </li>
+            <li class="chapter level-2">
+            <span>3.4</span> <a href="#hallazgo-filtros">Hallazgo Filtros</a>
+        </li>
+            <li class="chapter level-2">
+            <span>3.5</span> <a href="#filtros-por-periodo-2">Filtros por periodo</a>
+        </li>
+                <li class="chapter level-1">
+            <span>Capítulo 4</span> <a href="#evaluaciones">Evaluaciónes</a>
+        </li>
+            <li class="chapter level-2">
+            <span>4.1</span> <a href="#evaluacion-recursos">Evaluación recursos</a>
+        </li>
+            <li class="chapter level-2">
+            <span>4.2</span> <a href="#evaluacion-recursos-ver">Evaluación recursos ver</a>
+        </li>
+            <li class="chapter level-2">
+            <span>4.3</span> <a href="#evaluacion-proceso">Evaluación proceso</a>
+        </li>
+            <li class="chapter level-2">
+            <span>4.4</span> <a href="#evaluacion-procesos-ver">Evaluación procesos ver</a>
+        </li>
+            <li class="chapter level-2">
+            <span>4.5</span> <a href="#evaluacion-p-c">Evaluación p c</a>
+        </li>
+            <li class="chapter level-2">
+            <span>4.6</span> <a href="#evaluacion-p-c-ver">Evaluación p c ver</a>
+        </li>
+                <li class="chapter level-1">
+            <span>Capítulo 5</span> <a href="#catalogos">Catálogos</a>
+        </li>
+            <li class="chapter level-2">
+            <span>5.1</span> <a href="#catalogos-listado">Catálogos listado</a>
+        </li>
+            <li class="chapter level-2">
+            <span>5.2</span> <a href="#catalogos-formulario">Catálogos formulario</a>
+        </li>
+            <li class="chapter level-2">
+            <span>5.3</span> <a href="#comunidad-priorizada">Comunidad priorizada</a>
+        </li>
+            <li class="chapter level-2">
+            <span>5.4</span> <a href="#acciones">Acciones</a>
+        </li>
+            <li class="chapter level-2">
+            <span>5.5</span> <a href="#alertas">Alertas</a>
+        </li>
+            <li class="chapter level-2">
+            <span>5.6</span> <a href="#clues">Clues</a>
+        </li>
+            <li class="chapter level-2">
+            <span>5.7</span> <a href="#cone">Cone</a>
+        </li>
+            <li class="chapter level-2">
+            <span>5.8</span> <a href="#zona">Zona</a>
+        </li>
+            <li class="chapter level-2">
+            <span>5.9</span> <a href="#lugar-de-verificacion">Lugar de Verificación</a>
+        </li>
+            <li class="chapter level-2">
+            <span>5.10</span> <a href="#indicador-2">Indicador</a>
+        </li>
+            <li class="chapter level-2">
+            <span>5.11</span> <a href="#criterio-2">Criterio</a>
+        </li>
+            <li class="chapter level-2">
+            <span>5.12</span> <a href="#plazo-accion">Plazo acción</a>
+        </li>
+            <li class="chapter level-2">
+            <span>5.13</span> <a href="#version-app">Versión app</a>
+        </li>
+                <li class="chapter level-1">
+            <span>Capítulo 6</span> <a href="#sistema">Sistema</a>
+        </li>
+            <li class="chapter level-2">
+            <span>6.1</span> <a href="#sistema-listado">Sistema listado</a>
+        </li>
+            <li class="chapter level-2">
+            <span>6.2</span> <a href="#sistema-formulario">Sistema formulario</a>
+        </li>
+            <li class="chapter level-2">
+            <span>6.3</span> <a href="#modulos">Modulos</a>
+        </li>
+            <li class="chapter level-2">
+            <span>6.4</span> <a href="#grupos">Grupos</a>
+        </li>
+            <li class="chapter level-2">
+            <span>6.5</span> <a href="#usuarios">Usuarios</a>
+        </li>
+    </ul>
+
+</div>    </div>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,672 @@
+<html >
+	<head>
+		<title>CIUM WEB </title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="charset" content="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<!-- Latest compiled and minified CSS -->
+		  
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+			<link rel="stylesheet" href="./css/styles.css" />  
+			<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+				
+					<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+			<!-- Latest compiled and minified JavaScript -->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+			<script charset="utf-8">
+			$(document).ready(function () {
+			  $("body").on("click",".btn-main-menu",function(e) {
+				e.preventDefault();
+				$("#wrapper").toggleClass("toggled");
+			  });
+			  $(".btn-datagrid-row-mostrar-opciones").on('click', function(e){
+				e.preventDefault();
+
+				$(this).toggleClass('btn-primary');
+				$(this).parent().find('.btn-group').eq(0).toggleClass('hidden-xs');
+			  });
+			});
+			</script>
+		
+		<link rel="shortcut icon" href="./images/favicon-cium.ico" />
+	</head>
+	<body>
+	
+
+	<nav class="navbar navbar-default navbar-fixed-top top-bar">
+    <div class="container-fluid">
+      <div class="navbar-header" style="margin-right:20pt;width: 208px;">
+		<a href="./index.html" class="navbar-brand"><img alt="Home" src="./images/icono-cium-blue.png" style="top:0px; margin-top:-5px; height:34px; float:left; ">CIUM WEB</a>
+      </div>
+      <ul class="nav navbar-nav">
+		<li class="">
+		  <a>Manual de usuario <i class="fa fa-caret-right"></i></a>
+		</li>
+		<li class="active">
+		  <a href="">Catálogos</a>
+		</li>
+	  </ul>
+      <ul class="nav navbar-nav navbar-right">
+        				<li><a  href="./capitulo-4.html">&larr; Anterior </a></li>
+			
+							<li><a href="./capitulo-6.html">Siguiente &rarr; </a></li>
+			      </ul>
+    </div>
+  </nav>
+
+	<div id="wrapper" class="" >
+	
+		
+<!-- Sidebar -->
+    <aside id="sidebar-wrapper">
+      <ul class="sidebar-nav nav">
+        
+        <li>
+          <a href="index.html"><i class="fa fa-dashboard"></i> Dashboard</a>
+        </li>
+															
+				<li class="">
+					<a href="./capitulo-1.html" ><i class="fa fa-book"></i> Login </a>				  
+					<ul id="chunk_toc" class='nav collapse submenu in'  aria-expanded="true">		
+						
+												
+													
+					</ul>
+					
+				</li>
+													
+				<li class="">
+					<a href="./capitulo-2.html" ><i class="fa fa-book"></i> Tablero </a>				  
+					<ul id="chunk_toc" class='nav collapse submenu in'  aria-expanded="true">		
+						
+												
+													
+					</ul>
+					
+				</li>
+													
+				<li class="">
+					<a href="./capitulo-3.html" ><i class="fa fa-book"></i> Hallazgos </a>				  
+					<ul id="chunk_toc" class='nav collapse submenu in'  aria-expanded="true">		
+						
+												
+													
+					</ul>
+					
+				</li>
+													
+				<li class="">
+					<a href="./capitulo-4.html" ><i class="fa fa-book"></i> Evaluaciónes </a>				  
+					<ul id="chunk_toc" class='nav collapse submenu in'  aria-expanded="true">		
+						
+												
+													
+					</ul>
+					
+				</li>
+													
+				<li class="active">
+					<a href="./capitulo-5.html" ><i class="fa fa-book"></i> Catálogos </a>				  
+					<ul id="chunk_toc" class='nav collapse submenu in'  aria-expanded="true">		
+						
+																																												<li><a href="./capitulo-5.html#catalogos-listado"><i class="fa fa-file"></i> Catálogos listado</a></li>
+																															<li><a href="./capitulo-5.html#catalogos-formulario"><i class="fa fa-file"></i> Catálogos formulario</a></li>
+																															<li><a href="./capitulo-5.html#comunidad-priorizada"><i class="fa fa-file"></i> Comunidad priorizada</a></li>
+																															<li><a href="./capitulo-5.html#acciones"><i class="fa fa-file"></i> Acciones</a></li>
+																															<li><a href="./capitulo-5.html#alertas"><i class="fa fa-file"></i> Alertas</a></li>
+																															<li><a href="./capitulo-5.html#clues"><i class="fa fa-file"></i> Clues</a></li>
+																															<li><a href="./capitulo-5.html#cone"><i class="fa fa-file"></i> Cone</a></li>
+																															<li><a href="./capitulo-5.html#zona"><i class="fa fa-file"></i> Zona</a></li>
+																															<li><a href="./capitulo-5.html#lugar-de-verificacion"><i class="fa fa-file"></i> Lugar de Verificación</a></li>
+																															<li><a href="./capitulo-5.html#indicador-2"><i class="fa fa-file"></i> Indicador</a></li>
+																															<li><a href="./capitulo-5.html#criterio-2"><i class="fa fa-file"></i> Criterio</a></li>
+																															<li><a href="./capitulo-5.html#plazo-accion"><i class="fa fa-file"></i> Plazo acción</a></li>
+																															<li><a href="./capitulo-5.html#version-app"><i class="fa fa-file"></i> Versión app</a></li>
+																						
+												
+													
+					</ul>
+					
+				</li>
+													
+				<li class="">
+					<a href="./capitulo-6.html" ><i class="fa fa-book"></i> Sistema </a>				  
+					<ul id="chunk_toc" class='nav collapse submenu in'  aria-expanded="true">		
+						
+												
+													
+					</ul>
+					
+				</li>
+		 
+				  
+        
+      </ul>
+	  
+    </aside>
+<!-- /#sidebar-wrapper -->
+		
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+            <br>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h1 class="panel-title"><i class="fa fa-bookmark"></i> <span>Capítulo 5</span>  </h1>
+              </div>
+              <div class="panel-body" >
+                
+				
+    <h1 id="catalogos"> Catálogos</h1>
+    <p style="text-align: justify;">
+En términos generales, un catálogo es la lista ordenada o clasificada que se hará sobre los datos que necesita el sistema para operar. Normalmente estos catálogos no cambian su contenido. Se crean una sola vez y después se utilizan muchas veces en operaciones y reportes.
+<br/>
+Todos los módulos tiene un listado con las opciones como se describen. ["VER"](#caatalogos-listado) 
+<br/>
+<br/>
+Todos los formularios tiene los elementos como se describen. ["VER"](#caatalogos-formulario) 
+<br/>
+</p>
+
+<h2 id="catalogos-listado">5.1 Catálogos listado</h2>
+
+<div class="figure" id="figure-5-1">
+    <img src="images/sistema-lista.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Listado</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del modulo</li>
+  <li>2.- Acciones en el modulo</li>
+  <li>3.- Datos </li>
+  <li>4.- Acciones por registro</li>
+  <li>4.- Paginación</li>
+  </ul>
+</blockquote>
+
+<p style="text-align: justify;">
+Acciones del modulo de izquierda a derecha
+</p>
+
+<div class="figure" id="figure-5-2">
+    <img src="images/sistema-lista-accion.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <ul>
+  <li>1.- Buscar</li>
+  <li>2.- Actualizar cargar de nuevo los datos</li>
+  <li>3.- Ir a formulario nuevo</li>
+  <li>4.- Cambiar idioma</li>
+  <li>5.- Ayuda</li>
+  <li>6.- Salir del sistema</li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-5-3">
+    <img src="images/sistema-lista-buscar.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Listado buscar</strong></p>
+  
+  <ul>
+  <li>1.- Regresar y restablecer las opciones</li>
+  <li>2.- Campo de busqueda: escribir y dar enter para iniciar la busqueda</li>
+  </ul>
+  
+  <p><strong>Listado actualizar</strong></p>
+  
+  <ul>
+  <li>1.- Actualizar cargar de nuevo los datos</li>
+  </ul>
+  
+  <p><strong>Listado nuevo</strong></p>
+  
+  <ul>
+  <li>1.- Ir al formulario de nuevo elemento</li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-5-4">
+    <img src="images/sistema-lista-registro.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Listado aciones por registro</strong></p>
+  
+  <ul>
+  <li>1.- Abrir el registro para visualizar la informacion e imprimir</li>
+  <li>2.- Abrir el regsitro para ser editado</li>
+  <li>2.- Eliminar el regsitro </li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-5-5">
+    <img src="images/sistema-lista-paginacion.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Listado paginación</strong></p>
+  
+  <ul>
+  <li>1.- Numero de registros por pagina</li>
+  <li>2.- Numero total de paginas y registros</li>
+  <li>2.- Botones de adelantar y regresar entre los registros</li>
+  </ul>
+</blockquote>
+
+<h2 id="catalogos-formulario">5.2 Catálogos formulario</h2>
+
+<div class="figure" id="figure-5-6">
+    <img src="images/sistema-form.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Formulario</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del modulo</li>
+  <li>2.- Acciones en el módulo</li>
+  <li>3.- Datos (Formulario)</li>
+  <li>4.- Si es en edición o ver agregar nuevo</li>
+  </ul>
+</blockquote>
+
+<p style="text-align: justify;">
+Acciones del modulo de izquierda a derecha
+</p>
+
+<div class="figure" id="figure-5-7">
+    <img src="images/sistema-form-accion.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <ul>
+  <li>1.- Regresar a la lista</li>
+  <li>2.- Guardar los datos del formulario</li>
+  <li>3.- Si esta en edicion ir a ver (Viseversa)</li>
+  <li>4.- Si esta en edicion o ver puede eliminar</li>
+  <li>5.- Cambiar idioma</li>
+  <li>6.- Ayuda</li>
+  <li>7.- Salir del sistema</li>
+  </ul>
+</blockquote>
+
+<h2 id="comunidad-priorizada">5.3 Comunidad priorizada</h2>
+
+<p style="text-align: justify;">
+Las comunidades priorizadas es un catalogo para la evaluacion de plataforma comunitaria, aca se especifica el numero a cubrir en el año y este dato sirve de numerador para los reportes
+</p>
+
+<div class="figure" id="figure-5-8">
+    <img src="images/comunidad-priorizada.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Crear / Editar</strong></p>
+  
+  <ul>
+  <li>1.- Año</li>
+  <li>2.- Numero de comunidades priorizadas en el año</li>
+  <li>3.- Lista de clues qeu contempla</li>
+  <li>4.- Busqueda de clues </li>
+  <li>5.- Datos de las clues</li>
+  <li>6.- Quitar de la lista</li>
+  </ul>
+</blockquote>
+
+<h2 id="acciones">5.4 Acciones</h2>
+
+<p style="text-align: justify;">
+Acciones contiene todos los datos a seleccionar cuando en una evaluación se encuentra un hallazgo. 
+</p>
+
+<div class="figure" id="figure-5-9">
+    <img src="images/accion.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Crear / Editar</strong></p>
+  
+  <ul>
+  <li>1.- Nombre de la accion</li>
+  <li>2.- Tipo de acción</li>
+  </ul>
+</blockquote>
+
+<h2 id="alertas">5.5 Alertas</h2>
+
+<p style="text-align: justify;">
+Alerta contiene todos los datos a seleccionar para identifcar las alertas por el valor que tome los indicadores en las evaluaciones. 
+</p>
+
+<div class="figure" id="figure-5-10">
+    <img src="images/alerta.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Crear / Editar</strong></p>
+  
+  <ul>
+  <li>1.- Nombre de la alerta</li>
+  <li>2.- Color, esta dividido en 3 slide Rojo, Verde y Azul</li>
+  </ul>
+</blockquote>
+
+<h2 id="clues">5.6 Clues</h2>
+
+<p style="text-align: justify;">
+Clues contiene un listado de todas las unidades medicas con su informacion de la ficha tecnica. clues solo cuenta con 2 secciones listado y ficha tecnica para 
+crear o modificar solicitarlo al administrador de los catalosgos de la seceretaia de salud
+</p>
+
+<div class="figure" id="figure-5-11">
+    <img src="images/clues.png" alt="" />
+
+</div>
+
+
+<h2 id="cone">5.7 Cone</h2>
+
+<p style="text-align: justify;">
+Cone (Cuidado obstétrico y neonatal esencial) este catálogo agrupa las unidades medicas, es de suma importancia ya que todo los criterios dependen del nivel de cone de cada unidad médica. 
+</p>
+
+<div class="figure" id="figure-5-12">
+    <img src="images/cone.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Crear / Editar</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del cone</li>
+  <li>2.- Buscar unidades medicas</li>
+  <li>3.- Lista de unidades medicas que perteneceran a este nivel de cone</li>
+  <li>4.- Quitar de la lista</li>
+  </ul>
+</blockquote>
+
+<h2 id="zona">5.8 Zona</h2>
+
+<p style="text-align: justify;">
+Zona este catálogo contiene las zonas y las unidades médicas que la conforman, Debido a que cada zona puede tener muchas unidades médiacas y para no hacer tardio la carga del listado se recomienda descargar el listado y depues hacer un recorrido de cada uno de los resultados para extraer los datos del metodo show.
+</p>
+
+<div class="figure" id="figure-5-13">
+    <img src="images/zona.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Crear / Editar</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del cone</li>
+  <li>2.- Buscar unidades medicas</li>
+  <li>3.- Lista de unidades medicas que perteneceran a este nivel de cone</li>
+  <li>4.- Quitar de la lista</li>
+  </ul>
+</blockquote>
+
+<h2 id="lugar-de-verificacion">5.9 Lugar de Verificación</h2>
+
+<p style="text-align: justify;">
+LugarVerificacion este catálogo contiene los lugares de verificacion para agrupar los criterios de cada indicador para las unidades médicas.
+</p>
+
+<div class="figure" id="figure-5-14">
+    <img src="images/-verificacion.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Crear / Editar</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del lugar de verificación</li>
+  <li>2.- Tipo de evaluación</li>
+  </ul>
+</blockquote>
+
+<h2 id="indicador-2">5.10 Indicador</h2>
+
+<p style="text-align: justify;">
+Indicador este catálogo contiene todos los indicadores para generar las evaluaciones. Se relaciona con alertaIndicador para generar los colores segun el porcentaje obtenido.
+</p>
+
+<div class="figure" id="figure-5-15">
+    <img src="images/indicador-form.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Pestaña general</strong></p>
+  
+  <ul>
+  <li>1.- Pestañas de opciones</li>
+  <li>2.- Codigo del indicador</li>
+  <li>3.- Nombre del indicador </li>
+  <li>4.- Categoria para la evaluación que estará disponible</li>
+  <li>5.- color para identificar el indicador</li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-5-16">
+    <img src="images/indicador-alertas.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Pestaña alertas</strong></p>
+  
+  <ul>
+  <li>6.- Agregar una alerta</li>
+  <li>7.- Limpiar todas las alertas</li>
+  <li>8.- Rango minimo</li>
+  <li>9.- Rango maximo</li>
+  <li>10.- Color</li>
+  <li>11.- Quitar alerta</li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-5-17">
+    <img src="images/indicador-validacion.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Pestaña validacion</strong></p>
+  
+  <ul>
+  <li>12.- Pestañas de opciones</li>
+  <li>13.- Agregar una pregunta</li>
+  <li>14.- Limpiar todas las preguntas</li>
+  <li>15.- Pregunta</li>
+  <li>16.- Tipo de campo para la respuesta</li>
+  <li>17.- Es una valor constante o variable</li>
+  <li>18.- Si es de tipo fecha esta correspondera a la fecha del sistema</li>
+  <li>19.- Quitar pregunta</li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-5-18">
+    <img src="images/indicador-validacion-formula.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Pestaña validacion formula</strong></p>
+  
+  <ul>
+  <li>20.- Agregar una formula</li>
+  <li>21.- Limpiar las formulas</li>
+  <li>22.- Probar la formula</li>
+  <li>23.- Pregunta 1</li>
+  <li>24.- Operacion aritmetica</li>
+  <li>25.- Pregunta 2</li>
+  <li>26.- Unidd de medida para el resultado</li>
+  <li>27.- Operador logico de comparacion</li>
+  <li>28.- Valor a comparar</li>
+  <li>29.- Quitar la formula</li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-5-19">
+    <img src="images/indicador-indicacion.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Pestaña indicaciones</strong></p>
+</blockquote>
+
+<p style="text-align: justify;">
+Aca se escribe una indicación para el evaluador en caso del que el indicador tenga complejidad y se necesite aclarar la fuente de datos
+</p>
+
+<h2 id="criterio-2">5.11 Criterio</h2>
+
+<p style="text-align: justify;">
+Criterio este catálogo contiene todos los puntos a evaluar se relaciona con indicador, cone y lugar de verificación para obtener el listado correspondiente a cada de las unidades médicas, el lugar de verificación sirve para agrupar los criterios. 
+</p>
+
+<div class="figure" id="figure-5-20">
+    <img src="images/ccriterio.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Crear / Editar</strong></p>
+  
+  <ul>
+  <li>1.- Pestañas de opciones</li>
+  <li>2.- Nombre del criterio</li>
+  <li>3.- Orden en el que aprecera en las evaluaciones</li>
+  <li>4.- Tipo de campo para la entrad de valor</li>
+  <li>5.- Habilitar el no aplica en una evaluación</li>
+  <li>6.- Tipo de evaluacion disponible</li>
+  <li>7.- Seleccionar el indicador para el que va estar disponible</li>
+  <li>8.- Niveles de cone para el que va estar disponible</li>
+  <li>9.- Lugar de verificacion para agrupacion de criterios</li>
+  </ul>
+  
+  <p><strong>Validacion preguntas</strong></p>
+</blockquote>
+
+<p style="text-align: justify;">
+Un criterio puede tener formulas para determinar su valor, y funciona igual que las del indicador
+</p>
+
+<h2 id="plazo-accion">5.12 Plazo acción</h2>
+
+<p style="text-align: justify;">
+Plazo accion este catálogo contiene dias en que sera resolutivo un hallazgo en una unidad medica
+</p>
+
+<div class="figure" id="figure-5-21">
+    <img src="images/plazo.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Crear / Editar</strong></p>
+  
+  <ul>
+  <li>1.- Nombre del plazo de la acción</li>
+  <li>2.- Valor dependiendo del tipo</li>
+  <li>3.- Tipo (tiempo)</li>
+  </ul>
+</blockquote>
+
+<h2 id="version-app">5.13 Versión app</h2>
+
+<p style="text-align: justify;">
+Aca se maneja el control de versionamiento de la app movil (Se carga el apk)
+</p>
+
+<div class="figure" id="figure-5-22">
+    <img src="images/app.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Crear / Editar</strong></p>
+  
+  <ul>
+  <li>1.- Seleccionar el apk a subir</li>
+  <li>2.- Nombre del path en el servidor</li>
+  <li>3.- Versión de la app</li>
+  <li>3.- Versión de la base de datos</li>
+  <li>3.- Descripción de los cambios</li>
+  </ul>
+</blockquote>
+
+
+	
+			
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="app-footer">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-4"><img src="./images/secretaria-de-salud.png"  height="30px" alt="" /></div>
+            <div class="col-xs-4">
+              <p class="hidden-xs">
+                Secretaría de Salud, Gobierno del Estado de Chiapas | CIUM
+              </p>
+            </div>
+            <div class="col-xs-4" align="right"><img src="./images/chiapas-nos-une.png"  height="30px" alt="" /></div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+</body>
+</html>

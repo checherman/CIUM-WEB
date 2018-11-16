@@ -189,7 +189,7 @@
                 ]
             });
 
-            
+
             $urlRouterProvider.otherwise("/signin");
             $stateProvider;
             $stateProvider
@@ -251,7 +251,7 @@
 
                 // RUTAS COMUNES
                 .state("COMUN", {
-                    
+
                     templateUrl: "src/comun.html",
                     controller: "MenuCtrl"
                 })
@@ -271,7 +271,7 @@
                 // DASHBOARD
 
                 .state("DASHBOARD", {
-                    
+
                     templateUrl: "src/comun.html",
                     controller: "MenuCtrl",
                     resolve: {
@@ -371,7 +371,7 @@
                 })
 
                 .state("GAUGE", {
-                    
+
                     templateUrl: "src/comun.html",
                     controller: "MenuCtrl",
                     resolve: {
@@ -417,7 +417,7 @@
                 })
 
                 .state("COBERTURA", {
-                    
+
                     templateUrl: "src/comun.html",
                     controller: "MenuCtrl",
                     resolve: {
@@ -466,7 +466,7 @@
                 })
 
                 .state("PIVOT", {
-                    
+
                     templateUrl: "src/comun.html",
                     controller: "MenuCtrl",
                     resolve: {
@@ -522,7 +522,7 @@
                 // formularios
 
                 .state("CATALOGO", {
-                    
+
                     templateUrl: "src/comun.html",
                     controller: "MenuCtrl",
                     resolve: {
@@ -617,7 +617,7 @@
                     controller: "CrudCtrl"
                 })
                 .state("CATALOGO.zona-modificar", {
-                    url: "/zona/midificar/:id",
+                    url: "/zona/modificar/:id",
                     templateUrl: "src/catalogos/zona/views/modificar.html",
                     controller: "CrudCtrl"
                 })
@@ -806,7 +806,7 @@
 
                 //SISTEMA
                 .state("SISTEMA", {
-                    
+
                     templateUrl: "src/comun.html",
                     controller: "MenuCtrl"
                 })
@@ -972,7 +972,7 @@
                 // evaluaciones
 
                 .state("EVALUACION", {
-                    
+
                     templateUrl: "src/comun.html",
                     controller: "MenuCtrl"
                 })
@@ -1246,7 +1246,7 @@
                 // formularios
 
                 .state("FORMULARIO_CAPTURA", {
-                    
+
                     templateUrl: "src/comun.html",
                     controller: "MenuCtrl",
                     resolve: {
@@ -1328,7 +1328,7 @@
                     },
                     responseError: function (response) {
                         if (response.status === 401 || response.status === 403) {
-                            if (response.data.status == 403 || response.status === 403) {                                
+                            if (response.data.status == 403 || response.status === 403) {
                                 var deferred = $q.defer();
                                 var req = { config: response.config, deferred: deferred };
                                 $rootScope.$broadcast("event:auth-loginRequired");
