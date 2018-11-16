@@ -204,7 +204,7 @@
   ]);
 
   angular.module("App").factory("Menu", function ($localStorage, $rootScope, $location, MENU) {
-    var menuAutorizado = $localStorage.etab.permisos || [""];
+    var menuAutorizado = $localStorage.cium.permisos || [""];
     var menu = [""];
 
     function updateMenu() {
@@ -227,7 +227,7 @@
         }
       }
     }
-    if ($localStorage.etab.access_token) {
+    if ($localStorage.cium.access_token) {
       updateMenu();
     }
 
@@ -241,7 +241,7 @@
       },
 
       setMenu: function (nuevo_menu) {
-        $localStorage.etab.permisos = nuevo_menu;
+        $localStorage.cium.permisos = nuevo_menu;
         updateMenu();
       },
 
