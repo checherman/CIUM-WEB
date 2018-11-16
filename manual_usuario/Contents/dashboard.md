@@ -241,7 +241,7 @@ Este gráfico muestra la tendencia de los indicadores (PROCESO y RECURSO) a trav
 </p>
 ![](tendencia.png)
 
->**Pivot**
+>**Tendencia**
 
 > - 1.- Nombre del gráfico
 > - 2.- Opciones de tabla y filtrado ["VER FILTROS"](#filtros) 
@@ -252,16 +252,19 @@ Este gráfico muestra la tendencia de los indicadores (PROCESO y RECURSO) a trav
 
 <p style="text-align: justify;">
 Si al elemento se le da un click este desaparece del gráfico
+</p>
 ![](tendencia1.png)
 
 ## Filtro 2 click
 
 <p style="text-align: justify;">
 Si al elemento se le da doble click el elemento se conserva en el gráfico y los demas desaparecen
+</p>
 ![](tendencia2.png)
 
 ## Tendencia tabla
 
 <p style="text-align: justify;">
 Muestra los datos en forma de tabla
+</p>
 ![](tendencia3.png)

@@ -8,7 +8,7 @@ En este apartado se encuentra las parte transaccional de la aplicación es decir
 Las evaluaciónes  tiene un listado con el formato y las opciones siguientes:
 </p>
 
-![](evaluación_lista.png)
+![](evaluacion_lista.png)
 
 >**Listado**
 
@@ -24,7 +24,7 @@ Las evaluaciónes  tiene un listado con el formato y las opciones siguientes:
 <p style="text-align: justify;">
 Acciones del modulo de izquierda a derecha
 </p>
-![](evaluación_lista_accion.png)
+![](evaluacion_lista_accion.png)
 
 > - 1.- Buscar
 > - 2.- Actualizar cargar de nuevo los datos
@@ -35,7 +35,7 @@ Acciones del modulo de izquierda a derecha
 > - 7.- Salir del sistema
 
 >**Listado buscar**
-![](evaluación_lista_buscar.png)
+![](evaluacion_lista_buscar.png)
 
 > - 1.- Regresar y restablecer las opciones
 > - 2.- Campo de busqueda: escribir y dar enter para iniciar la busqueda
@@ -46,7 +46,7 @@ Acciones del modulo de izquierda a derecha
 <p style="text-align: justify;">
 Para crear una evaluación simplemente busque una unidad medica, al seleccionar la unidad se llena la ficha de los datos, una vez cargado los datos hacer clic en crear
 </p>
-![](evaluación_nueva.png)
+![](evaluacion_nueva.png)
 
 
 
