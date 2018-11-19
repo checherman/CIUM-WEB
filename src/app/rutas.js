@@ -814,7 +814,7 @@
                 // modulo
                 .state("SISTEMA.modulo", {
                     url: "/modulo",
-                    templateUrl: "src/SISTEMA/modulo/views/lista.html",
+                    templateUrl: "src/sistema/modulo/views/lista.html",
                     controller: "ModuloCtrl",
                     resolve: {
                         loadPlugin: function ($ocLazyLoad) {
@@ -825,7 +825,7 @@
 
                 .state("SISTEMA.modulo-nuevo", {
                     url: "/modulo/nuevo",
-                    templateUrl: "src/SISTEMA/modulo/views/nuevo.html",
+                    templateUrl: "src/sistema/modulo/views/nuevo.html",
                     controller: "ModuloCtrl",
                     resolve: {
                         loadPlugin: function ($ocLazyLoad) {
@@ -836,7 +836,7 @@
 
                 .state("SISTEMA.modulo-modificar", {
                     url: "/modulo/modificar/:id",
-                    templateUrl: "src/SISTEMA/modulo/views/modificar.html",
+                    templateUrl: "src/sistema/modulo/views/modificar.html",
                     controller: "ModuloCtrl",
                     resolve: {
                         loadPlugin: function ($ocLazyLoad) {
@@ -847,7 +847,7 @@
 
                 .state("SISTEMA.modulo-ver", {
                     url: "/modulo/ver/:id",
-                    templateUrl: "src/SISTEMA/modulo/views/ver.html",
+                    templateUrl: "src/sistema/modulo/views/ver.html",
                     controller: "ModuloCtrl",
                     resolve: {
                         loadPlugin: function ($ocLazyLoad) {
@@ -859,7 +859,7 @@
                 //grupo
                 .state("SISTEMA.grupo", {
                     url: "/grupo",
-                    templateUrl: "src/SISTEMA/grupo/views/lista.html",
+                    templateUrl: "src/sistema/grupo/views/lista.html",
                     controller: "GrupoCtrl",
                     resolve: {
                         loadPlugin: function ($ocLazyLoad) {
@@ -873,7 +873,7 @@
 
                 .state("SISTEMA.grupo-nuevo", {
                     url: "/grupo/nuevo",
-                    templateUrl: "src/SISTEMA/grupo/views/nuevo.html",
+                    templateUrl: "src/sistema/grupo/views/nuevo.html",
                     controller: "GrupoCtrl",
                     resolve: {
                         loadPlugin: function ($ocLazyLoad) {
@@ -887,7 +887,7 @@
 
                 .state("SISTEMA.grupo-modificar", {
                     url: "/grupo/modificar/:id",
-                    templateUrl: "src/SISTEMA/grupo/views/modificar.html",
+                    templateUrl: "src/sistema/grupo/views/modificar.html",
                     controller: "GrupoCtrl",
                     resolve: {
                         loadPlugin: function ($ocLazyLoad) {
@@ -901,7 +901,7 @@
 
                 .state("SISTEMA.grupo-ver", {
                     url: "/grupo/ver/:id",
-                    templateUrl: "src/SISTEMA/grupo/views/ver.html",
+                    templateUrl: "src/sistema/grupo/views/ver.html",
                     controller: "GrupoCtrl",
                     resolve: {
                         loadPlugin: function ($ocLazyLoad) {
@@ -916,7 +916,7 @@
                 //usuario
                 .state("SISTEMA.usuario", {
                     url: "/usuario",
-                    templateUrl: "src/SISTEMA/usuario/views/lista.html",
+                    templateUrl: "src/sistema/usuario/views/lista.html",
                     controller: "UsuarioCtrl",
                     resolve: {
                         loadPlugin: function ($ocLazyLoad) {
@@ -927,7 +927,7 @@
 
                 .state("SISTEMA.usuario-nuevo", {
                     url: "/usuario/nuevo",
-                    templateUrl: "src/SISTEMA/usuario/views/nuevo.html",
+                    templateUrl: "src/sistema/usuario/views/nuevo.html",
                     controller: "UsuarioCtrl",
                     resolve: {
                         loadPlugin: function ($ocLazyLoad) {
@@ -938,7 +938,7 @@
 
                 .state("SISTEMA.usuario-modificar", {
                     url: "/usuario/modificar/:id",
-                    templateUrl: "src/SISTEMA/usuario/views/modificar.html",
+                    templateUrl: "src/sistema/usuario/views/modificar.html",
                     controller: "UsuarioCtrl",
                     resolve: {
                         loadPlugin: function ($ocLazyLoad) {
@@ -949,7 +949,7 @@
 
                 .state("SISTEMA.usuario-ver", {
                     url: "/usuario/ver/:id",
-                    templateUrl: "src/SISTEMA/usuario/views/ver.html",
+                    templateUrl: "src/sistema/usuario/views/ver.html",
                     controller: "UsuarioCtrl",
                     resolve: {
                         loadPlugin: function ($ocLazyLoad) {
@@ -960,7 +960,7 @@
 
                 .state("SISTEMA.perfil", {
                     url: "/usuario/perfil/:id",
-                    templateUrl: "src/SISTEMA/usuario/views/perfil.html",
+                    templateUrl: "src/sistema/usuario/views/perfil.html",
                     controller: "UsuarioCtrl",
                     resolve: {
                         loadPlugin: function ($ocLazyLoad) {
